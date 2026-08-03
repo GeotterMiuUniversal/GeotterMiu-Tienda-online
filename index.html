@@ -3,260 +3,623 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Geotter Miu | Tu tienda de confianza</title>
-    <!-- Fuente moderna de Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <!-- Iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <title>Geotter Miu - Tortas Frías | Diseño Web | Tienda Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --primary: #3b82f6;
-            --accent: #8b5cf6;
-            --text-main: #f8fafc;
-            --text-sec: #94a3b8;
-            --whatsapp: #25D366;
+            --gold-primary: #D4AF37;
+            --gold-light: #F4E4BC;
+            --gold-dark: #B8860B;
+            --black-bg: #0a0a0a;
+            --dark-bg: #1a1a1a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-white: #ffffff;
+            --text-muted: #cccccc;
+            --font-elegant: 'Great Vibes', cursive;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --shadow-gold: 0 4px 20px rgba(212, 175, 55, 0.3);
+            --border-gold: 1px solid rgba(212, 175, 55, 0.4);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 20%),
-                              radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 20%);
-            color: var(--text-main);
+            font-family: var(--font-body);
+            background-color: var(--black-bg);
+            color: var(--text-white);
             line-height: 1.6;
+            overflow-x: hidden;
         }
-
-        /* Header con efecto vidrio */
+        .parallax-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, var(--black-bg) 0%, #1a1a2e 50%, var(--black-bg) 100%);
+        }
+        .parallax-bg::before {
+            content: '';
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+        }
+        .dark-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: rgba(0, 0, 0, 0.7);
+        }
         header {
-            text-align: center;
-            padding: 60px 20px 40px;
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 1rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: var(--border-gold);
+        }
+        .logo {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; color: var(--text-white);
+        }
+        .logo-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; font-weight: bold; color: var(--black-bg);
+        }
+        .logo-text {
+            font-family: var(--font-elegant);
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        nav ul {
+            display: flex; list-style: none; gap: 2rem;
+        }
+        nav a {
+            color: var(--text-muted); text-decoration: none;
+            font-weight: 500; font-size: 0.95rem;
+            text-transform: uppercase; letter-spacing: 1px;
+            transition: all 0.3s ease; position: relative;
+        }
+        nav a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0;
+            width: 0; height: 2px; background: var(--gold-primary);
+            transition: width 0.3s ease;
+        }
+        nav a:hover { color: var(--gold-primary); }
+        nav a:hover::after { width: 100%; }
+        .hamburger {
+            display: none; font-size: 1.5rem; cursor: pointer;
+            color: var(--text-white);
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 8rem 2rem 4rem;
             position: relative;
-            overflow: hidden;
         }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
+        .hero-content { max-width: 900px; z-index: 1; }
+        .hero .logo-display img {
+            max-width: 300px; height: auto;
+            border-radius: 20px; box-shadow: var(--shadow-gold);
+            transition: transform 0.3s ease;
         }
-
-        p.subtitle {
-            color: var(--text-sec);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem; font-weight: 600; margin-bottom: 1rem;
+            color: var(--gold-primary);
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        .hero p {
+            font-size: 1.3rem; color: var(--text-muted);
+            max-width: 700px; margin: 0 auto 2rem; font-weight: 300;
         }
-
-        /* Grid de Productos */
-        .grid {
+        .cta-button {
+            display: inline-block; padding: 15px 40px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
+            color: var(--black-bg); text-decoration: none;
+            font-weight: 600; font-size: 1.1rem; border-radius: 50px;
+            transition: all 0.3s ease; box-shadow: var(--shadow-gold);
+        }
+        .cta-button:hover {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+        }
+        .services { padding: 6rem 5%; background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.03) 50%, transparent 100%); }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section-title h2 {
+            font-family: var(--font-heading);
+            font-size: 2.8rem; color: var(--gold-primary);
+            margin-bottom: 0.5rem; position: relative; display: inline-block;
+        }
+        .section-title h2::after {
+            content: ''; position: absolute; bottom: -10px; left: 50%;
+            transform: translateX(-50%); width: 80px; height: 3px;
+            background: var(--gold-primary);
+        }
+        .section-title p {
+            color: var(--text-muted); font-size: 1.1rem;
+            max-width: 600px; margin: 0 auto;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; margin-top: 2rem;
+        }
+        .service-card {
+            background: var(--card-bg); border: var(--border-gold);
+            border-radius: 20px; padding: 2.5rem; text-align: center;
+            transition: all 0.4s ease; backdrop-filter: blur(10px);
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold-primary); box-shadow: var(--shadow-gold);
+        }
+        .service-icon {
+            font-size: 3rem; color: var(--gold-primary);
+            margin-bottom: 1.5rem; transition: transform 0.3s ease;
+        }
+        .service-card:hover .service-icon { transform: scale(1.1); }
+        .service-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.6rem; margin-bottom: 1rem; color: var(--text-white);
+        }
+        .service-card p {
+            color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;
+        }
+        .products { padding: 6rem 5%; }
+        .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            padding-bottom: 60px;
+            gap: 2rem; margin-top: 2rem;
         }
-
-        /* Tarjeta de Producto */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            overflow: hidden;
+        .product-card {
+            background: var(--card-bg); border: var(--border-gold);
+            border-radius: 15px; overflow: hidden;
+            transition: all 0.3s ease; backdrop-filter: blur(10px);
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold-primary); box-shadow: var(--shadow-gold);
+        }
+        .product-image {
+            width: 100%; height: 200px; object-fit: cover;
+            background: linear-gradient(135deg, var(--dark-bg), #2a2a2a);
+        }
+        .product-info { padding: 1.5rem; }
+        .product-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--gold-primary);
+        }
+        .product-price {
+            font-size: 1.2rem; font-weight: 600;
+            color: var(--text-white); margin: 0.5rem 0;
+        }
+        .product-description {
+            color: var(--text-muted); font-size: 0.9rem;
+            margin-bottom: 1rem; line-height: 1.6;
+        }
+        .product-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .btn {
+            padding: 10px 20px; border-radius: 8px;
+            font-weight: 500; text-decoration: none;
+            display: inline-block; transition: all 0.3s ease;
+            cursor: pointer; border: none;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
+            color: var(--black-bg);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+            transform: translateY(-2px);
+        }
+        .online-store {
+            padding: 6rem 5%;
+            background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.02) 50%, transparent 100%);
+        }
+        .store-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem; margin-top: 2rem;
+        }
+        .feature { text-align: center; padding: 2rem; }
+        .feature-icon {
+            font-size: 2.5rem; color: var(--gold-primary);
+            margin-bottom: 1rem;
+        }
+        .feature h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--text-white);
+        }
+        .feature p { color: var(--text-muted); font-size: 0.95rem; }
+        .pricing { padding: 6rem 5%; text-align: center; }
+        .pricing-cards {
+            display: flex; justify-content: center; gap: 2rem;
+            flex-wrap: wrap; margin-top: 2rem;
+        }
+        .pricing-card {
+            background: var(--card-bg); border: var(--border-gold);
+            border-radius: 20px; padding: 2.5rem; max-width: 350px;
+            text-align: center; transition: all 0.3s ease;
             backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
         }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border-color: rgba(139, 92, 246, 0.3);
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold-primary); box-shadow: var(--shadow-gold);
         }
-
-        .img-container {
-            height: 220px;
-            width: 100%;
-            background: #1e293b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+        .pricing-card.popular {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.05);
         }
-
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        .pricing-card .price {
+            font-size: 3rem; font-weight: 700;
+            color: var(--gold-primary); margin: 1rem 0;
         }
-
-        .card:hover .img-container img {
-            transform: scale(1.05);
+        .pricing-card .price span {
+            font-size: 1rem; color: var(--text-muted);
         }
-
-        .card-body {
-            padding: 20px;
+        .pricing-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem; margin-bottom: 0.5rem;
         }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: white;
+        .pricing-card p {
+            color: var(--text-muted); margin-bottom: 1.5rem;
         }
-
-        .card-desc {
-            font-size: 0.9rem;
-            color: var(--text-sec);
-            margin-bottom: 15px;
-            min-height: 40px;
-        }
-
-        .price-tag {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #60a5fa;
-        }
-
-        .badge {
-            background: rgba(139, 92, 246, 0.2);
-            color: #c4b5fd;
-            padding: 4px 10px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        /* Botón de WhatsApp */
-        .btn-buy {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background: var(--whatsapp);
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: background 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-buy:hover {
-            background: #1ebc57;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-
         footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-sec);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 4rem 5% 2rem;
+            background: var(--dark-bg); border-top: var(--border-gold);
         }
-
-        /* Animación de entrada */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem; margin-bottom: 3rem;
+        }
+        .footer-section h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem; color: var(--gold-primary);
+            margin-bottom: 1.5rem; position: relative; padding-bottom: 0.5rem;
+        }
+        .footer-section h3::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 50px; height: 2px; background: var(--gold-primary);
+        }
+        .footer-section p, .footer-section a {
+            color: var(--text-muted); text-decoration: none;
+            margin-bottom: 0.5rem; display: block;
+        }
+        .footer-section a:hover { color: var(--gold-primary); }
+        .contact-info {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 1rem;
+        }
+        .contact-info i {
+            color: var(--gold-primary); font-size: 1.2rem;
+        }
+        .social-links {
+            display: flex; gap: 1rem; margin-top: 1rem;
+        }
+        .social-links a {
+            font-size: 1.5rem; color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--gold-primary); transform: translateY(-3px);
+        }
+        .copyright {
+            text-align: center; padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            color: var(--text-muted); font-size: 0.9rem;
+        }
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 2.8rem; }
+            .section-title h2 { font-size: 2.2rem; }
+        }
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .hamburger { display: block; }
+            .hero { padding: 6rem 2rem 4rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .section-title h2 { font-size: 2rem; }
+            .services-grid, .products-grid { grid-template-columns: 1fr; }
+            .pricing-cards { flex-direction: column; align-items: center; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 1rem; }
+            .cta-button { padding: 12px 30px; font-size: 1rem; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .card {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:nth-child(3) { animation-delay: 0.3s; }
-        .card:nth-child(4) { animation-delay: 0.4s; }
-
-        /* Responsivo para móviles */
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .grid { grid-template-columns: 1fr; }
-        }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body>
+    <div class="parallax-bg"></div>
+    <div class="dark-overlay"></div>
 
     <header>
-        <h1>GeotterMiu</h1>
-        <p class="subtitle">La mejor tecnología de Lara con entrega inmediata. <br>Productos originales garantizados.</p>
+        <a href="#" class="logo">
+            <div class="logo-icon">GM</div>
+            <span class="logo-text">Geotter Miu</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#tortas">Tortas</a></li>
+                <li><a href="#tienda">Tienda</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger"><i class="fas fa-bars"></i></button>
     </header>
 
-    <div class="container">
-        <div class="grid">
-            
-            <!-- PRODUCTO 1: Airpods -->
-            <div class="card">
-                <div class="img-container">
-                    <!-- Reemplaza esta URL con la foto real -->
-                    <img src="https://github.com/GeotterMiuUniversal/GeotterMiu-Tienda-online/blob/main/IMG-20260523-WA0008.jpg?raw=true" alt="Airpods">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">✅AIRPODS PRO 3RA GENERACIÓN. </h3>
-                    <p class="card-desc">El precio puede variar dependiendo del lugar a donde sera el delivery.</p>
-                    <div class="price-tag">
-                        <span class="price">$20</span>
-                        <span class="badge">Nuevo</span>
-                    </div>
-                    <!-- CAMBIA EL NÚMERO 584120000000 POR TU NÚMERO REAL -->
-                    <a href="https://wa.me/584129430088?text=Hola,%20me%20interesa%20el%20airpods%20de%20la%20web" class="btn-buy" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Comprar ahora
-                    </a>
-                </div>
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="logo-display">
+                <img src="https://raw.githubusercontent.com/GeotterMiuUniversal/shrdow-gaminig/main/pantalla%20de%20inicio.jpg" alt="Geotter Miu">
             </div>
-
-            <!-- PRODUCTO 2: TV Box -->
-            <div class="card">
-                <div class="img-container">
-                    <img src="https://github.com/GeotterMiuUniversal/GeotterMiu-Tienda-online/blob/main/IMG-20260605-WA0019.jpg?raw=true" alt="TV Box Z8">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">✅️TV BOX Z8 android TV </h3>
-                    <p class="card-desc">4GB de ram  , 32GB de espacio. el precio puede variar dependiendo el lugar a donde se entrega el delibery</p>
-                    <div class="price-tag">
-                        <span class="price">$55</span>
-                        <span class="badge">Oferta</span>
-                    </div>
-                    <a href="https://wa.me/584129430088?text=Hola,%20me%20interesa%20el%20TV%20Box%20Z8%20de%20la%20web" class="btn-buy" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Comprar ahora
-                    </a>
-                </div>
-            </div>
-
+            <h1>Geotter Miu Universal</h1>
+            <p>Pies en la tierra, alas para lo imposible. Soluciones digitales y delicias que endulzan tu vida.</p>
+            <a href="#contacto" class="cta-button">Contáctanos</a>
         </div>
-    </div>
+    </section>
 
-    <footer>
-        <p>🚀 Envíos a todo Barquisimeto gestionados por <strong>Geotter Miu</strong></p>
-        <p>© 2026 Geotter Miu | Precios en $</p>
+    <section class="services" id="servicios">
+        <div class="section-title">
+            <h2>Nuestros Servicios</h2>
+            <p>Ofrecemos soluciones integrales para tu negocio o evento especial</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-birthday-cake"></i></div>
+                <h3>Tortas Frías</h3>
+                <p>Deliciosas tortas artesanales con variedad de sabores. Ideales para eventos o consentirte.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>Diseño de Páginas Web</h3>
+                <p>Creamos páginas web profesionales y modernas adaptables a cualquier dispositivo.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-store"></i></div>
+                <h3>Tienda Online Personalizada</h3>
+                <p>Desarrollamos tu tienda virtual a medida con pasarela de pagos y carrito de compras.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="tortas">
+        <div class="section-title">
+            <h2>Tortas Frías Geotter Miu</h2>
+            <p>Sabores irresistibles a 2.5$ BCV por unidad</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Tres+Leches" alt="Tres Leches" class="product-image">
+                <div class="product-info">
+                    <h3>Tres Leches</h3>
+                    <p class="product-description">Clásico favorito. Bizcocho empapado en tres leches.</p>
+                    <div class="product-price">2.5$ BCV</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/584262305112?text=Quiero%20Tres%20Leches" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Chocolate" alt="Chocolate" class="product-image">
+                <div class="product-info">
+                    <h3>Chocolate</h3>
+                    <p class="product-description">Relleno cremoso de chocolate con galletas.</p>
+                    <div class="product-price">2.5$ BCV</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/584262305112?text=Quiero%20Chocolate" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Choco+Galleta" alt="Choco-Galleta" class="product-image">
+                <div class="product-info">
+                    <h3>Choco-Galleta</h3>
+                    <p class="product-description">Chocolate y galletas trituradas.</p>
+                    <div class="product-price">2.5$ BCV</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/584262305112?text=Quiero%20Choco-Galleta" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Milhojas" alt="Milhojas" class="product-image">
+                <div class="product-info">
+                    <h3>Milhojas</h3>
+                    <p class="product-description">Capas de hojaldre con crema pastelera.</p>
+                    <div class="product-price">2.5$ BCV</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/584262305112?text=Quiero%20Milhojas" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Mani" alt="Maní" class="product-image">
+                <div class="product-info">
+                    <h3>Maní</h3>
+                    <p class="product-description">Cremoso con trocitos de cacahuete.</p>
+                    <div class="product-price">2.5$ BCV</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/584262305112?text=Quiero%20Mani" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Arequipe" alt="Arequipe" class="product-image">
+                <div class="product-info">
+                    <h3>Arequipe</h3>
+                    <p class="product-description">Dulce de leche en su máxima expresión.</p>
+                    <div class="product-price">2.5$ BCV</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/584262305112?text=Quiero%20Arequipe" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Galleta+Maria" alt="Galleta María" class="product-image">
+                <div class="product-info">
+                    <h3>Galleta María</h3>
+                    <p class="product-description">Con crema y trozos de galleta María.</p>
+                    <div class="product-price">2.5$ BCV</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/584262305112?text=Quiero%20Galleta%20Maria" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Cocosette" alt="Cocosette" class="product-image">
+                <div class="product-info">
+                    <h3>Cocosette</h3>
+                    <p class="product-description">Coco y chocolate. Toque tropical.</p>
+                    <div class="product-price">2.5$ BCV</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/584262305112?text=Quiero%20Cocosette" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="section-title">
+            <h2>Ofertas Especiales</h2>
+            <p>¡Aprovecha nuestros precios para emprendedores!</p>
+        </div>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <h3>Por Unidad</h3>
+                <div class="price">2.5<span>$ BCV</span></div>
+                <p>Precio individual para cualquier sabor.</p>
+                <a href="https://wa.me/584262305112?text=Quiero%201%20torta" class="btn btn-primary">Pedir 1 Torta</a>
+            </div>
+            <div class="pricing-card popular">
+                <div style="background: #D4AF37; color: #0a0a0a; padding: 5px 15px; border-radius: 20px; display: inline-block; font-size: 0.8rem; font-weight: bold; margin-bottom: 10px;">¡Más Popular!</div>
+                <h3>Pack 10 Tortas</h3>
+                <div class="price">15<span>$ BCV</span></div>
+                <p>10 tortas de cualquier sabor combinado.</p>
+                <a href="https://wa.me/584262305112?text=Quiero%2010%20tortas%20(15$)" class="btn btn-primary">Pedir 10 Tortas</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="online-store" id="tienda">
+        <div class="section-title">
+            <h2>Tienda Online Geotter Miu</h2>
+            <p>Próximamente: Tu plataforma de compras en línea</p>
+        </div>
+        <div class="store-features">
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Responsive</h3>
+                <p>Adaptable a cualquier dispositivo: móvil, tablet o computadora.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-shopping-cart"></i></div>
+                <h3>Carrito de Compras</h3>
+                <p>Gestión sencilla de tus pedidos con seguimiento en tiempo real.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-credit-card"></i></div>
+                <h3>Pasarela de Pagos</h3>
+                <p>Múltiples métodos de pago: transferencias, Pagomovil, criptomonedas.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-box"></i></div>
+                <h3>Gestión de Inventario</h3>
+                <p>Control total de tus productos y existencias desde un panel fácil de usar.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Geotter Miu</h3>
+                <p>Pies en la tierra, alas para lo imposible. Innovación y sabor en cada proyecto.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <div class="contact-info">
+                    <i class="fas fa-phone"></i>
+                    <span>+58 426-2305112</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-university"></i>
+                    <span>Banco Caroni: 04129430088</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Pagomovil: 34450261</span>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#tortas">Tortas Frías</a>
+                <a href="#tienda">Tienda Online</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Geotter Miu Universal. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
+    <script>
+        // Animaciones al hacer scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.service-card, .product-card, .feature, .pricing-card, .footer-section').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Menú hamburguesa para móviles
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav ul');
+        hamburger.addEventListener('click', () => {
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            hamburger.innerHTML = nav.style.display === 'flex' ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Cerrar menú al hacer clic en un enlace (móvil)
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.style.display = 'none';
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Efecto parallax suave
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.querySelector('.parallax-bg').style.transform =
+                'translateY(' + (scrolled * 0.5) + 'px)';
+        });
+    </script>
 </body>
-</html>
+                        </html>
