@@ -74,13 +74,14 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         nav ul {
-            display: flex; list-style: none; gap: 2rem;
+            display: flex; list-style: none; gap: 1.5rem;
         }
         nav a {
             color: var(--text-muted); text-decoration: none;
-            font-weight: 500; font-size: 0.95rem;
-            text-transform: uppercase; letter-spacing: 1px;
+            font-weight: 500; font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 0.5px;
             transition: all 0.3s ease; position: relative;
+            white-space: nowrap;
         }
         nav a::after {
             content: ''; position: absolute; bottom: -5px; left: 0;
@@ -91,7 +92,7 @@
         nav a:hover::after { width: 100%; }
         .hamburger {
             display: none; font-size: 1.5rem; cursor: pointer;
-            color: var(--text-white);
+            color: var(--text-white); background: none; border: none;
         }
         .hero {
             min-height: 100vh;
@@ -100,20 +101,25 @@
             position: relative;
         }
         .hero-content { max-width: 900px; z-index: 1; }
+        .hero .logo-display {
+            margin-bottom: 2rem;
+        }
         .hero .logo-display img {
-            max-width: 300px; height: auto;
+            max-width: 250px; height: auto;
             border-radius: 20px; box-shadow: var(--shadow-gold);
-            transition: transform 0.3s ease;
         }
         .hero h1 {
             font-family: var(--font-heading);
-            font-size: 3.5rem; font-weight: 600; margin-bottom: 1rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600; margin-bottom: 1rem;
             color: var(--gold-primary);
             text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
         }
         .hero p {
-            font-size: 1.3rem; color: var(--text-muted);
-            max-width: 700px; margin: 0 auto 2rem; font-weight: 300;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: var(--text-muted);
+            max-width: 700px; margin: 0 auto 2rem;
+            font-weight: 300;
         }
         .cta-button {
             display: inline-block; padding: 15px 40px;
@@ -131,7 +137,8 @@
         .section-title { text-align: center; margin-bottom: 3rem; }
         .section-title h2 {
             font-family: var(--font-heading);
-            font-size: 2.8rem; color: var(--gold-primary);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--gold-primary);
             margin-bottom: 0.5rem; position: relative; display: inline-block;
         }
         .section-title h2::after {
@@ -140,40 +147,45 @@
             background: var(--gold-primary);
         }
         .section-title p {
-            color: var(--text-muted); font-size: 1.1rem;
+            color: var(--text-muted);
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
             max-width: 600px; margin: 0 auto;
         }
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem; margin-top: 2rem;
         }
         .service-card {
             background: var(--card-bg); border: var(--border-gold);
-            border-radius: 20px; padding: 2.5rem; text-align: center;
-            transition: all 0.4s ease; backdrop-filter: blur(10px);
+            border-radius: 20px; padding: 2rem;
+            text-align: center; transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
         }
         .service-card:hover {
             transform: translateY(-10px);
             border-color: var(--gold-primary); box-shadow: var(--shadow-gold);
         }
         .service-icon {
-            font-size: 3rem; color: var(--gold-primary);
+            font-size: 2.5rem; color: var(--gold-primary);
             margin-bottom: 1.5rem; transition: transform 0.3s ease;
         }
         .service-card:hover .service-icon { transform: scale(1.1); }
         .service-card h3 {
             font-family: var(--font-heading);
-            font-size: 1.6rem; margin-bottom: 1rem; color: var(--text-white);
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
+            margin-bottom: 1rem; color: var(--text-white);
         }
         .service-card p {
-            color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;
+            color: var(--text-muted);
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            line-height: 1.7;
         }
         .products { padding: 6rem 5%; }
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem; margin-top: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem; margin-top: 2rem;
         }
         .product-card {
             background: var(--card-bg); border: var(--border-gold);
@@ -185,28 +197,30 @@
             border-color: var(--gold-primary); box-shadow: var(--shadow-gold);
         }
         .product-image {
-            width: 100%; height: 200px; object-fit: cover;
+            width: 100%; height: 180px; object-fit: cover;
             background: linear-gradient(135deg, var(--dark-bg), #2a2a2a);
         }
-        .product-info { padding: 1.5rem; }
+        .product-info { padding: 1.2rem; }
         .product-info h3 {
             font-family: var(--font-heading);
-            font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--gold-primary);
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            margin-bottom: 0.5rem; color: var(--gold-primary);
         }
         .product-price {
-            font-size: 1.2rem; font-weight: 600;
-            color: var(--text-white); margin: 0.5rem 0;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 600; color: var(--text-white); margin: 0.5rem 0;
         }
         .product-description {
-            color: var(--text-muted); font-size: 0.9rem;
+            color: var(--text-muted);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             margin-bottom: 1rem; line-height: 1.6;
         }
-        .product-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .product-actions { display: flex; justify-content: center; gap: 0.5rem; }
         .btn {
-            padding: 10px 20px; border-radius: 8px;
+            padding: 0.7rem 1.2rem; border-radius: 8px;
             font-weight: 500; text-decoration: none;
             display: inline-block; transition: all 0.3s ease;
-            cursor: pointer; border: none;
+            cursor: pointer; border: none; font-size: 0.85rem;
         }
         .btn-primary {
             background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
@@ -225,26 +239,30 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem; margin-top: 2rem;
         }
-        .feature { text-align: center; padding: 2rem; }
+        .feature { text-align: center; padding: 1.5rem; }
         .feature-icon {
-            font-size: 2.5rem; color: var(--gold-primary);
+            font-size: 2rem; color: var(--gold-primary);
             margin-bottom: 1rem;
         }
         .feature h3 {
             font-family: var(--font-heading);
-            font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--text-white);
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            margin-bottom: 0.5rem; color: var(--text-white);
         }
-        .feature p { color: var(--text-muted); font-size: 0.95rem; }
+        .feature p {
+            color: var(--text-muted);
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+        }
         .pricing { padding: 6rem 5%; text-align: center; }
         .pricing-cards {
-            display: flex; justify-content: center; gap: 2rem;
+            display: flex; justify-content: center; gap: 1.5rem;
             flex-wrap: wrap; margin-top: 2rem;
         }
         .pricing-card {
             background: var(--card-bg); border: var(--border-gold);
-            border-radius: 20px; padding: 2.5rem; max-width: 350px;
-            text-align: center; transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            border-radius: 20px; padding: 2rem;
+            max-width: 320px; text-align: center;
+            transition: all 0.3s ease; backdrop-filter: blur(10px);
         }
         .pricing-card:hover {
             transform: translateY(-8px);
@@ -255,18 +273,22 @@
             background: rgba(212, 175, 55, 0.05);
         }
         .pricing-card .price {
-            font-size: 3rem; font-weight: 700;
-            color: var(--gold-primary); margin: 1rem 0;
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 700; color: var(--gold-primary); margin: 1rem 0;
         }
         .pricing-card .price span {
-            font-size: 1rem; color: var(--text-muted);
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            color: var(--text-muted);
         }
         .pricing-card h3 {
             font-family: var(--font-heading);
-            font-size: 1.5rem; margin-bottom: 0.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 0.5rem;
         }
         .pricing-card p {
-            color: var(--text-muted); margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            margin-bottom: 1.5rem;
         }
         footer {
             padding: 4rem 5% 2rem;
@@ -279,7 +301,8 @@
         }
         .footer-section h3 {
             font-family: var(--font-heading);
-            font-size: 1.4rem; color: var(--gold-primary);
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            color: var(--gold-primary);
             margin-bottom: 1.5rem; position: relative; padding-bottom: 0.5rem;
         }
         .footer-section h3::after {
@@ -289,6 +312,7 @@
         .footer-section p, .footer-section a {
             color: var(--text-muted); text-decoration: none;
             margin-bottom: 0.5rem; display: block;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
         }
         .footer-section a:hover { color: var(--gold-primary); }
         .contact-info {
@@ -299,7 +323,7 @@
             color: var(--gold-primary); font-size: 1.2rem;
         }
         .social-links {
-            display: flex; gap: 1rem; margin-top: 1rem;
+            display: flex; gap: 1rem; margin-top: 1rem; justify-content: center;
         }
         .social-links a {
             font-size: 1.5rem; color: var(--text-muted);
@@ -313,25 +337,26 @@
             border-top: 1px solid rgba(212, 175, 55, 0.2);
             color: var(--text-muted); font-size: 0.9rem;
         }
-        @media (max-width: 1024px) {
-            .hero h1 { font-size: 2.8rem; }
-            .section-title h2 { font-size: 2.2rem; }
+        /* ===== MENÚ MÓVIL MEJORADO ===== */
+        @media (max-width: 992px) {
+            nav ul { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(10,10,10,0.98); flex-direction: column; padding: 1rem; gap: 0; }
+            nav ul li { width: 100%; text-align: center; }
+            nav ul a { padding: 1rem; display: block; font-size: 1rem; }
+            nav ul a::after { display: none; }
+            .hamburger { display: block; }
+            nav.active ul { display: flex; }
         }
         @media (max-width: 768px) {
-            nav ul { display: none; }
-            .hamburger { display: block; }
-            .hero { padding: 6rem 2rem 4rem; }
-            .hero h1 { font-size: 2.2rem; }
-            .hero p { font-size: 1.1rem; }
-            .section-title h2 { font-size: 2rem; }
-            .services-grid, .products-grid { grid-template-columns: 1fr; }
-            .pricing-cards { flex-direction: column; align-items: center; }
-            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .hero { padding: 7rem 2rem 4rem; }
+            .services-grid, .products-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+            .pricing-cards { flex-direction: column; align-items: center; gap: 1rem; }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 1.8rem; }
+            .hero h1 { font-size: 2rem; }
             .hero p { font-size: 1rem; }
             .cta-button { padding: 12px 30px; font-size: 1rem; }
+            .products-grid { grid-template-columns: 1fr; }
+            .product-card { max-width: 100%; }
         }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
@@ -339,18 +364,25 @@
         }
         .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
         html { scroll-behavior: smooth; }
+        /* Estilo para el overlay del menú móvil */
+        .menu-overlay {
+            display: none; position: fixed; top: 70px; left: 0; width: 100%; height: calc(100vh - 70px);
+            background: rgba(0,0,0,0.8); z-index: 999;
+        }
+        .menu-overlay.active { display: block; }
     </style>
 </head>
 <body>
     <div class="parallax-bg"></div>
     <div class="dark-overlay"></div>
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <header>
         <a href="#" class="logo">
             <div class="logo-icon">GM</div>
             <span class="logo-text">Geotter Miu</span>
         </a>
-        <nav>
+        <nav id="mainNav">
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
@@ -359,13 +391,14 @@
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
-        <button class="hamburger"><i class="fas fa-bars"></i></button>
+        <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
     </header>
 
     <section class="hero" id="inicio">
         <div class="hero-content">
             <div class="logo-display">
-                <img src="https://raw.githubusercontent.com/GeotterMiuUniversal/shrdow-gaminig/main/pantalla%20de%20inicio.jpg" alt="Geotter Miu">
+                <!-- REEMPLAZA ESTA URL CON LA DE TU LOGO SUBIDO A GITHUB -->
+                <img src="https://raw.githubusercontent.com/GeotterMiuUniversal/GeotterMiu-Tienda-online/main/geotter-miu-logo.jpg" alt="Geotter Miu Logo">
             </div>
             <h1>Geotter Miu Universal</h1>
             <p>Pies en la tierra, alas para lo imposible. Soluciones digitales y delicias que endulzan tu vida.</p>
@@ -382,17 +415,17 @@
             <div class="service-card">
                 <div class="service-icon"><i class="fas fa-birthday-cake"></i></div>
                 <h3>Tortas Frías</h3>
-                <p>Deliciosas tortas artesanales con variedad de sabores. Ideales para eventos o consentirte.</p>
+                <p>Deliciosas tortas artesanales con una variedad de sabores para satisfacer cualquier antojo. Ideales para eventos, celebraciones o simplemente para consentirte.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
                 <h3>Diseño de Páginas Web</h3>
-                <p>Creamos páginas web profesionales y modernas adaptables a cualquier dispositivo.</p>
+                <p>Creamos páginas web profesionales, modernas y adaptables a cualquier dispositivo. Desde landing pages hasta sitios corporativos completos.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon"><i class="fas fa-store"></i></div>
                 <h3>Tienda Online Personalizada</h3>
-                <p>Desarrollamos tu tienda virtual a medida con pasarela de pagos y carrito de compras.</p>
+                <p>Desarrollamos tu tienda virtual a medida, con pasarela de pagos, carrito de compras y gestión de inventario. Ideal para emprendedores.</p>
             </div>
         </div>
     </section>
@@ -400,94 +433,94 @@
     <section class="products" id="tortas">
         <div class="section-title">
             <h2>Tortas Frías Geotter Miu</h2>
-            <p>Sabores irresistibles a 2.5$ BCV por unidad</p>
+            <p>Sabores irresistibles a precios increíbles</p>
         </div>
         <div class="products-grid">
             <div class="product-card">
-                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Tres+Leches" alt="Tres Leches" class="product-image">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Tres+Leches" alt="Torta Tres Leches" class="product-image">
                 <div class="product-info">
                     <h3>Tres Leches</h3>
-                    <p class="product-description">Clásico favorito. Bizcocho empapado en tres leches.</p>
+                    <p class="product-description">Clásico favorito de todos. Esponjoso bizcocho empapado en tres tipos de leche.</p>
                     <div class="product-price">2.5$ BCV</div>
                     <div class="product-actions">
-                        <a href="https://wa.me/584262305112?text=Quiero%20Tres%20Leches" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        <a href="https://wa.me/584129430088?text=Hola%20Geotter%20Miu,%20quiero%20pedir%20torta%20Tres%20Leches" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
                     </div>
                 </div>
             </div>
             <div class="product-card">
-                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Chocolate" alt="Chocolate" class="product-image">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Chocolate" alt="Torta Chocolate" class="product-image">
                 <div class="product-info">
                     <h3>Chocolate</h3>
-                    <p class="product-description">Relleno cremoso de chocolate con galletas.</p>
+                    <p class="product-description">Para los amantes del cacao. Relleno cremoso de chocolate con toques de galletas.</p>
                     <div class="product-price">2.5$ BCV</div>
                     <div class="product-actions">
-                        <a href="https://wa.me/584262305112?text=Quiero%20Chocolate" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        <a href="https://wa.me/584129430088?text=Hola%20Geotter%20Miu,%20quiero%20pedir%20torta%20Chocolate" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
                     </div>
                 </div>
             </div>
             <div class="product-card">
-                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Choco+Galleta" alt="Choco-Galleta" class="product-image">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Choco+Galleta" alt="Torta Choco-Galleta" class="product-image">
                 <div class="product-info">
                     <h3>Choco-Galleta</h3>
-                    <p class="product-description">Chocolate y galletas trituradas.</p>
+                    <p class="product-description">Combinación perfecta de chocolate y galletas trituradas. Textura crujiente y cremosa.</p>
                     <div class="product-price">2.5$ BCV</div>
                     <div class="product-actions">
-                        <a href="https://wa.me/584262305112?text=Quiero%20Choco-Galleta" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        <a href="https://wa.me/584129430088?text=Hola%20Geotter%20Miu,%20quiero%20pedir%20torta%20Choco-Galleta" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
                     </div>
                 </div>
             </div>
             <div class="product-card">
-                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Milhojas" alt="Milhojas" class="product-image">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Milhojas" alt="Torta Milhojas" class="product-image">
                 <div class="product-info">
                     <h3>Milhojas</h3>
-                    <p class="product-description">Capas de hojaldre con crema pastelera.</p>
+                    <p class="product-description">Capas finas de hojaldre con crema pastelera. Un clásico que nunca falla.</p>
                     <div class="product-price">2.5$ BCV</div>
                     <div class="product-actions">
-                        <a href="https://wa.me/584262305112?text=Quiero%20Milhojas" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        <a href="https://wa.me/584129430088?text=Hola%20Geotter%20Miu,%20quiero%20pedir%20torta%20Milhojas" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
                     </div>
                 </div>
             </div>
             <div class="product-card">
-                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Mani" alt="Maní" class="product-image">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Mani" alt="Torta Maní" class="product-image">
                 <div class="product-info">
                     <h3>Maní</h3>
-                    <p class="product-description">Cremoso con trocitos de cacahuete.</p>
+                    <p class="product-description">Para los que disfrutan del sabor único del maní. Cremoso y con trocitos de cacahuete.</p>
                     <div class="product-price">2.5$ BCV</div>
                     <div class="product-actions">
-                        <a href="https://wa.me/584262305112?text=Quiero%20Mani" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        <a href="https://wa.me/584129430088?text=Hola%20Geotter%20Miu,%20quiero%20pedir%20torta%20Mani" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
                     </div>
                 </div>
             </div>
             <div class="product-card">
-                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Arequipe" alt="Arequipe" class="product-image">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Arequipe" alt="Torta Arequipe" class="product-image">
                 <div class="product-info">
                     <h3>Arequipe</h3>
-                    <p class="product-description">Dulce de leche en su máxima expresión.</p>
+                    <p class="product-description">Dulce de leche en su máxima expresión. Suave, cremoso y adictivo.</p>
                     <div class="product-price">2.5$ BCV</div>
                     <div class="product-actions">
-                        <a href="https://wa.me/584262305112?text=Quiero%20Arequipe" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        <a href="https://wa.me/584129430088?text=Hola%20Geotter%20Miu,%20quiero%20pedir%20torta%20Arequipe" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
                     </div>
                 </div>
             </div>
             <div class="product-card">
-                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Galleta+Maria" alt="Galleta María" class="product-image">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Galleta+Maria" alt="Torta Galleta María" class="product-image">
                 <div class="product-info">
                     <h3>Galleta María</h3>
-                    <p class="product-description">Con crema y trozos de galleta María.</p>
+                    <p class="product-description">Nostalgia en cada bocado. Relleno con crema y trozos de la clásica galleta María.</p>
                     <div class="product-price">2.5$ BCV</div>
                     <div class="product-actions">
-                        <a href="https://wa.me/584262305112?text=Quiero%20Galleta%20Maria" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        <a href="https://wa.me/584129430088?text=Hola%20Geotter%20Miu,%20quiero%20pedir%20torta%20Galleta%20Maria" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
                     </div>
                 </div>
             </div>
             <div class="product-card">
-                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Cocosette" alt="Cocosette" class="product-image">
+                <img src="https://via.placeholder.com/400x300/2a2a2a/D4AF37?text=Cocosette" alt="Torta Cocosette" class="product-image">
                 <div class="product-info">
                     <h3>Cocosette</h3>
-                    <p class="product-description">Coco y chocolate. Toque tropical.</p>
+                    <p class="product-description">Deliciosa combinación de coco y chocolate. Fresco y con un toque tropical.</p>
                     <div class="product-price">2.5$ BCV</div>
                     <div class="product-actions">
-                        <a href="https://wa.me/584262305112?text=Quiero%20Cocosette" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        <a href="https://wa.me/584129430088?text=Hola%20Geotter%20Miu,%20quiero%20pedir%20torta%20Cocosette" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Pedir</a>
                     </div>
                 </div>
             </div>
@@ -503,15 +536,15 @@
             <div class="pricing-card">
                 <h3>Por Unidad</h3>
                 <div class="price">2.5<span>$ BCV</span></div>
-                <p>Precio individual para cualquier sabor.</p>
-                <a href="https://wa.me/584262305112?text=Quiero%201%20torta" class="btn btn-primary">Pedir 1 Torta</a>
+                <p>Precio individual para cualquier sabor de torta fría.</p>
+                <a href="https://wa.me/584129430088?text=Hola%20Geotter%20Miu,%20quiero%20pedir%201%20torta%20(2.5$%20BCV)" class="btn btn-primary">Pedir 1 Torta</a>
             </div>
             <div class="pricing-card popular">
                 <div style="background: #D4AF37; color: #0a0a0a; padding: 5px 15px; border-radius: 20px; display: inline-block; font-size: 0.8rem; font-weight: bold; margin-bottom: 10px;">¡Más Popular!</div>
-                <h3>Pack 10 Tortas</h3>
+                <h3>Pack Emprendedor</h3>
                 <div class="price">15<span>$ BCV</span></div>
-                <p>10 tortas de cualquier sabor combinado.</p>
-                <a href="https://wa.me/584262305112?text=Quiero%2010%20tortas%20(15$)" class="btn btn-primary">Pedir 10 Tortas</a>
+                <p>10 tortas frías de cualquier sabor combinado.</p>
+                <a href="https://wa.me/584129430088?text=Hola%20Geotter%20Miu,%20quiero%20pedir%2010%20tortas%20(15$%20BCV)" class="btn btn-primary">Pedir 10 Tortas</a>
             </div>
         </div>
     </section>
@@ -560,7 +593,7 @@
                 <h3>Contacto</h3>
                 <div class="contact-info">
                     <i class="fas fa-phone"></i>
-                    <span>+58 426-2305112</span>
+                    <span>+58 412-9430088</span>
                 </div>
                 <div class="contact-info">
                     <i class="fas fa-university"></i>
@@ -585,6 +618,32 @@
     </footer>
 
     <script>
+        // Menú móvil
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mainNav = document.getElementById('mainNav');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            hamburgerBtn.innerHTML = mainNav.classList.contains('active') ?
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            hamburgerBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                hamburgerBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
         // Animaciones al hacer scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -596,22 +655,6 @@
 
         document.querySelectorAll('.service-card, .product-card, .feature, .pricing-card, .footer-section').forEach(el => {
             observer.observe(el);
-        });
-
-        // Menú hamburguesa para móviles
-        const hamburger = document.querySelector('.hamburger');
-        const nav = document.querySelector('nav ul');
-        hamburger.addEventListener('click', () => {
-            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-            hamburger.innerHTML = nav.style.display === 'flex' ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        });
-
-        // Cerrar menú al hacer clic en un enlace (móvil)
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.style.display = 'none';
-                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-            });
         });
 
         // Efecto parallax suave
