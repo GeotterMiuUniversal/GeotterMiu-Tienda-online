@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Digital - Geotter Miu Universal</title>
+    <title>GeotterMiu Tienda Digital</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -22,6 +22,7 @@
             --shadow-gold: 0 4px 20px rgba(212, 175, 55, 0.3);
             --border-gold: 1px solid rgba(212, 175, 55, 0.4);
             --digital-blue: #007BFF;
+            --whatsapp-green: #25D366;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -117,6 +118,19 @@
         .cta-button:hover {
             background: linear-gradient(135deg, var(--digital-blue), var(--gold-primary));
             transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0, 123, 255, 0.5);
+        }
+        .btn-whatsapp {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #128C7E, var(--whatsapp-green));
+            color: white; text-decoration: none;
+            font-weight: 600; font-size: 1rem; border-radius: 50px;
+            transition: all 0.3s ease; border: none; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
         }
         .section-title { text-align: center; margin-bottom: 3rem; }
         .section-title h2 {
@@ -244,7 +258,7 @@
         .modal.active { display: flex; }
         .modal-content { background: var(--dark-bg); border-radius: 20px; padding: 2rem; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; border: var(--border-gold); }
         .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
-                .modal-close:hover { color: var(--gold-primary); }
+        .modal-close:hover { color: var(--gold-primary); }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -270,7 +284,7 @@
     <header>
         <a href="#" class="logo">
             <div class="logo-icon"><i class="fas fa-store"></i></div>
-            <span class="logo-text">Tienda Digital</span>
+            <span class="logo-text">GeotterMiu</span>
         </a>
         <nav id="mainNav">
             <ul>
@@ -288,12 +302,12 @@
     <!-- HERO -->
     <section class="hero" id="inicio">
         <div class="hero-content">
-            <img src="https://raw.githubusercontent.com/GeotterMiuUniversal/GeotterMiu-Tienda-online/refs/heads/main/XRecorder_Edited_20260803_01.jpg" alt="Tienda Digital" style="max-width: 200px; border-radius: 20px; box-shadow: var(--shadow-gold); margin-bottom: 2rem;">
-            <h1>Tienda Digital Geotter Miu</h1>
-            <p>Descubre el futuro de las compras digitales. Software, juegos, suscripciones, cursos y más.</p>
+            <img src="https://raw.githubusercontent.com/GeotterMiuUniversal/GeotterMiu-Tienda-online/main/IMG-20260523-WA0008.jpg" alt="GeotterMiu Tienda Digital" style="max-width: 200px; border-radius: 20px; box-shadow: var(--shadow-gold); margin-bottom: 2rem;">
+            <h1>GeotterMiu Tienda Digital</h1>
+            <p>Descubre el futuro de las compras digitales. Software, juegos, suscripciones, cursos y más. ¡Escríbenos por WhatsApp y compra fácil!</p>
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                 <a href="#categorias" class="cta-button">Explorar Categorías</a>
-                <a href="#productos" class="cta-button" style="background: linear-gradient(135deg, var(--digital-blue), var(--gold-primary));">Ver Productos</a>
+                <a href="https://wa.me/584129430088?text=Hola%20GeotterMiu,%20vi%20su%20tienda%20digital%20y%20quiero%20hacer%20un%20pedido." target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Escribir por WhatsApp</a>
             </div>
         </div>
     </section>
@@ -342,7 +356,7 @@
     <section class="featured-products" id="productos">
         <div class="section-title">
             <h2>Productos Destacados</h2>
-            <p>Los más populares en nuestra tienda</p>
+            <p>Los más populares en nuestra tienda. Haz clic en comprar para pedir por WhatsApp.</p>
         </div>
         <div class="featured-grid" id="productsGrid">
             <div class="product-card" data-category="software">
@@ -357,7 +371,7 @@
                         <span class="tag">Original</span>
                     </div>
                     <div class="product-actions">
-                        <button class="btn btn-primary" onclick="addToCart('Windows 11 Pro', 25.00)"><i class="fas fa-shopping-cart"></i> Comprar</button>
+                        <button class="btn btn-whatsapp" onclick="buyOnWhatsApp('Windows 11 Pro', 25.00)" style="border-radius: 8px; font-size: 0.85rem; padding: 0.7rem 1.2rem;"><i class="fab fa-whatsapp"></i> Comprar</button>
                         <button class="btn btn-secondary" onclick="showDetails('Windows 11 Pro')"><i class="fas fa-info-circle"></i> Detalles</button>
                     </div>
                 </div>
@@ -374,7 +388,7 @@
                         <span class="tag">PS5</span>
                     </div>
                     <div class="product-actions">
-                        <button class="btn btn-primary" onclick="addToCart('FIFA 24', 49.99)"><i class="fas fa-shopping-cart"></i> Comprar</button>
+                        <button class="btn btn-whatsapp" onclick="buyOnWhatsApp('FIFA 24', 49.99)" style="border-radius: 8px; font-size: 0.85rem; padding: 0.7rem 1.2rem;"><i class="fab fa-whatsapp"></i> Comprar</button>
                         <button class="btn btn-secondary" onclick="showDetails('FIFA 24')"><i class="fas fa-info-circle"></i> Detalles</button>
                     </div>
                 </div>
@@ -391,7 +405,7 @@
                         <span class="tag">4K</span>
                     </div>
                     <div class="product-actions">
-                        <button class="btn btn-primary" onclick="addToCart('Netflix Premium', 12.99)"><i class="fas fa-shopping-cart"></i> Comprar</button>
+                        <button class="btn btn-whatsapp" onclick="buyOnWhatsApp('Netflix Premium', 12.99)" style="border-radius: 8px; font-size: 0.85rem; padding: 0.7rem 1.2rem;"><i class="fab fa-whatsapp"></i> Comprar</button>
                         <button class="btn btn-secondary" onclick="showDetails('Netflix Premium')"><i class="fas fa-info-circle"></i> Detalles</button>
                     </div>
                 </div>
@@ -416,7 +430,7 @@
                     <li>Contenido estándar</li>
                     <li>Soporte por email</li>
                 </ul>
-                <button class="btn btn-primary" onclick="addToCart('Plan Básico', 9.99)">Elegir Plan</button>
+                <button class="btn btn-whatsapp" onclick="buyOnWhatsApp('Plan Básico', 9.99)" style="width: 100%; justify-content: center;"><i class="fab fa-whatsapp"></i> Elegir Plan</button>
             </div>
             <div class="subscription-card popular">
                 <div style="background: var(--digital-blue); color: white; padding: 5px 15px; border-radius: 20px; display: inline-block; font-size: 0.8rem; font-weight: bold; margin-bottom: 10px;">¡Más Popular!</div>
@@ -429,7 +443,7 @@
                     <li>Contenido exclusivo</li>
                     <li>Soporte 24/7</li>
                 </ul>
-                <button class="btn btn-primary" onclick="addToCart('Plan Premium', 24.99)">Elegir Plan</button>
+                <button class="btn btn-whatsapp" onclick="buyOnWhatsApp('Plan Premium', 24.99)" style="width: 100%; justify-content: center;"><i class="fab fa-whatsapp"></i> Elegir Plan</button>
             </div>
         </div>
     </section>
@@ -463,18 +477,19 @@
     <footer id="contacto">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Tienda Digital</h3>
-                <p>Tu tienda de confianza para productos digitales.</p>
+                <h3>GeotterMiu Tienda Digital</h3>
+                <p>Tu tienda de confianza para productos digitales. Escríbenos por WhatsApp para comprar.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://wa.me/584129430088" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     <a href="#"><i class="fab fa-telegram"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
             <div class="footer-section">
                 <h3>Contacto</h3>
-                <div class="contact-info"><i class="fas fa-phone"></i><span>+58 412-9430088</span></div>
+                <div class="contact-info"><i class="fab fa-whatsapp"></i><span>+58 412-9430088</span></div>
                 <div class="contact-info"><i class="fas fa-envelope"></i><span>contacto@geottermiu.com</span></div>
+                <a href="https://wa.me/584129430088?text=Hola%20GeotterMiu,%20quiero%20hacer%20un%20pedido." target="_blank" class="btn-whatsapp" style="margin-top: 1rem; display: inline-flex;"><i class="fab fa-whatsapp"></i> Escribir por WhatsApp</a>
             </div>
         </div>
         <div class="copyright">
@@ -482,73 +497,22 @@
         </div>
     </footer>
 
-    <!-- MODALES -->
+    <!-- MODAL DE DETALLES -->
     <div class="modal" id="productModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
             <div id="modalBody"></div>
         </div>
     </div>
-    <div class="modal" id="cartModal">
-        <div class="modal-content" style="max-width: 500px;">
-            <button class="modal-close" onclick="closeCart()"><i class="fas fa-times"></i></button>
-            <h2 style="margin-bottom: 1rem; text-align: center;">Carrito de Compras</h2>
-            <div id="cartItems" style="min-height: 100px; margin-bottom: 1rem;"></div>
-            <div style="text-align: center; font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;">
-                Total: $<span id="cartTotal">0.00</span>
-            </div>
-            <button class="btn btn-primary" onclick="checkout()" style="width: 100%; padding: 12px;">Finalizar Compra</button>
-        </div>
-    </div>
 
     <!-- JAVASCRIPT -->
     <script>
-        // CARRITO DE COMPRAS
-        let cart = [];
-
-        function addToCart(name, price) {
-            cart.push({ name, price });
-            updateCart();
-            showNotification(`${name} añadido al carrito`);
-        }
-
-        function updateCart() {
-            const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
-
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<p style="color: var(--text-muted);">El carrito está vacío</p>';
-                cartTotal.textContent = '0.00';
-                return;
-            }
-
-            cartItems.innerHTML = cart.map(item => `
-                <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(212, 175, 55, 0.2);">
-                    <span>${item.name}</span>
-                    <span>$${item.price.toFixed(2)}</span>
-                </div>
-            `).join('');
-
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            cartTotal.textContent = total.toFixed(2);
-        }
-
-        function showCart() {
-            document.getElementById('cartModal').classList.add('active');
-            updateCart();
-        }
-
-        function closeCart() {
-            document.getElementById('cartModal').classList.remove('active');
-        }
-
-        function checkout() {
-            if (cart.length === 0) {
-                showNotification('El carrito está vacío');
-                return;
-            }
-            closeCart();
-            showNotification('Redirigiendo a pago...');
+        // WHATSAPP COMPRA
+        function buyOnWhatsApp(productName, price) {
+            const phone = '584129430088';
+            const message = `Hola GeotterMiu, quiero comprar: *${productName}* - Precio: *$${price.toFixed(2)}*. ¿Está disponible?`;
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
         }
 
         // MODAL DE PRODUCTOS
@@ -559,21 +523,21 @@
             const productDetails = {
                 'Windows 11 Pro': {
                     title: 'Windows 11 Pro',
-                    price: '$25.00',
+                    price: 25.00,
                     description: 'Licencia original de Windows 11 Professional con todas las funciones avanzadas.',
                     features: ['Sistema operativo de 64 bits', 'Actualizaciones gratuitas', 'Soporte técnico', 'Compatible con la mayoría de hardware'],
                     image: 'https://via.placeholder.com/400x300/1a1a2e/007BFF?text=Windows+11'
                 },
                 'FIFA 24': {
                     title: 'FIFA 24 Ultimate Edition',
-                    price: '$49.99',
+                    price: 49.99,
                     description: 'La edición definitiva del juego de fútbol más popular del mundo.',
                     features: ['Juego base FIFA 24', '4600 FIFA Points', 'Acceso anticipado', 'Beneficios exclusivos'],
                     image: 'https://via.placeholder.com/400x300/1a1a2e/007BFF?text=FIFA+24'
                 },
                 'Netflix Premium': {
                     title: 'Netflix Premium',
-                    price: '$12.99/mes',
+                    price: 12.99,
                     description: 'El mejor plan de Netflix con calidad 4K Ultra HD.',
                     features: ['Calidad 4K Ultra HD', '4 pantallas simultáneas', 'Catálogo completo', 'Sin anuncios'],
                     image: 'https://via.placeholder.com/400x300/1a1a2e/007BFF?text=Netflix'
@@ -582,7 +546,7 @@
 
             const product = productDetails[productName] || {
                 title: productName,
-                price: '$0.00',
+                price: 0,
                 description: 'Información detallada del producto.',
                 features: ['Característica 1', 'Característica 2'],
                 image: 'https://via.placeholder.com/400x300/1a1a2e/007BFF?text=Producto'
@@ -591,15 +555,15 @@
             modalBody.innerHTML = `
                 <img src="${product.image}" alt="${product.title}" style="width: 100%; max-height: 200px; object-fit: contain; margin-bottom: 1.5rem; border-radius: 10px;">
                 <h2 style="margin-bottom: 1rem;">${product.title}</h2>
-                <p style="font-size: 1.2rem; font-weight: bold; background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">${product.price}</p>
+                <p style="font-size: 1.2rem; font-weight: bold; background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">$${product.price.toFixed(2)}</p>
                 <p style="color: var(--text-muted); margin-bottom: 1.5rem;">${product.description}</p>
                 <h3 style="margin-bottom: 1rem; background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Características:</h3>
                 <ul style="list-style: none; padding-left: 0;">
                     ${product.features.map(feature => `<li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(212, 175, 55, 0.2); color: var(--text-muted);">${feature}</li>`).join('')}
                 </ul>
                 <div style="margin-top: 1.5rem; text-align: center;">
-                    <button class="btn btn-primary" onclick="addToCart('${product.title}', ${product.price.replace(/[^0-9.]/g, '')}); closeModal();" style="margin-right: 0.5rem;">
-                        <i class="fas fa-shopping-cart"></i> Añadir al Carrito
+                    <button class="btn btn-whatsapp" onclick="buyOnWhatsApp('${product.title}', ${product.price}); closeModal();" style="margin-right: 0.5rem;">
+                        <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
                     </button>
                     <button class="btn btn-secondary" onclick="closeModal()">Cerrar</button>
                 </div>
