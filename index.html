@@ -1,3 +1,14 @@
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -49,6 +60,16 @@
             z-index: -1;
             background: rgba(0, 0, 0, 0.7);
         }
+
+        /* ===== SISTEMA DE VISTAS ===== */
+        .view { display: none; animation: fadeIn 0.5s ease; }
+        .view.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== HEADER ===== */
         header {
             position: fixed; top: 0; left: 0; width: 100%;
             padding: 1rem 5%;
@@ -60,444 +81,546 @@
         }
         .logo {
             display: flex; align-items: center; gap: 10px;
-            text-decoration: none; color: var(--text-white);
+            text-decoration: none; color: var(--text-white); cursor: pointer;
         }
         .logo-icon {
-            width: 50px; height: 50px;
+            width: 45px; height: 45px;
             background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue));
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; font-weight: bold; color: var(--black-bg);
+            font-size: 1.3rem; font-weight: bold; color: var(--black-bg);
         }
         .logo-text {
             font-family: var(--font-elegant);
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         nav ul { display: flex; list-style: none; gap: 1.5rem; }
         nav a {
             color: var(--text-muted); text-decoration: none;
-            font-weight: 500; font-size: 0.9rem;
+            font-weight: 500; font-size: 0.85rem;
             text-transform: uppercase; letter-spacing: 0.5px;
             transition: all 0.3s ease; position: relative; white-space: nowrap;
+            cursor: pointer;
         }
         nav a::after {
             content: ''; position: absolute; bottom: -5px; left: 0;
             width: 0; height: 2px; background: var(--gold-primary); transition: width 0.3s ease;
         }
-        nav a:hover { color: var(--gold-primary); }
-        nav a:hover::after { width: 100%; }
+        nav a:hover, nav a.active { color: var(--gold-primary); }
+        nav a:hover::after, nav a.active::after { width: 100%; }
         .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-white); background: none; border: none; }
-        .hero {
+
+        /* ===== PORTADA / HERO ===== */
+        .hero-portada {
             min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; padding: 8rem 2rem 4rem; position: relative;
+            text-align: center; padding: 6rem 2rem 4rem; position: relative;
         }
-        .hero-content { max-width: 900px; z-index: 1; }
-        .hero img { max-width: 200px; height: auto; border-radius: 20px; box-shadow: var(--shadow-gold); margin-bottom: 2rem; }
-        .hero h1 {
-            font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.5rem);
+        .hero-content { max-width: 800px; z-index: 1; }
+        .hero-content img {
+            max-width: 180px; height: auto; border-radius: 20px;
+            box-shadow: var(--shadow-gold); margin-bottom: 2rem;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+        .hero-content h1 {
+            font-family: var(--font-heading); font-size: clamp(2.2rem, 5vw, 3.5rem);
             font-weight: 600; margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
         }
-        .hero p {
-            font-size: clamp(1rem, 2.5vw, 1.3rem); color: var(--text-muted);
-            max-width: 700px; margin: 0 auto 2rem; font-weight: 300;
+        .hero-content p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--text-muted);
+            max-width: 600px; margin: 0 auto 2.5rem; font-weight: 300;
         }
         .cta-button {
-            display: inline-block; padding: 15px 40px;
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 45px;
             background: linear-gradient(135deg, var(--gold-dark), var(--digital-blue));
             color: var(--text-white); text-decoration: none;
             font-weight: 600; font-size: 1.1rem; border-radius: 50px;
             transition: all 0.3s ease; box-shadow: var(--shadow-gold);
+            border: none; cursor: pointer;
         }
         .cta-button:hover {
-            background: linear-gradient(135deg, var(--digital-blue), var(--gold-primary));
-            transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0, 123, 255, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 123, 255, 0.5);
         }
         .btn-whatsapp {
             display: inline-flex; align-items: center; gap: 8px;
-            padding: 12px 28px;
+            padding: 14px 32px;
             background: linear-gradient(135deg, #128C7E, var(--whatsapp-green));
             color: white; text-decoration: none;
             font-weight: 600; font-size: 1rem; border-radius: 50px;
             transition: all 0.3s ease; border: none; cursor: pointer;
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
         }
-        .btn-whatsapp:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+        .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5); }
+
+        /* ===== DASHBOARD DE CATEGORÍAS ===== */
+        .dashboard { padding: 7rem 5% 4rem; min-height: 100vh; }
+        .section-header {
+            text-align: center; margin-bottom: 3rem;
         }
-        .section-title { text-align: center; margin-bottom: 3rem; }
-        .section-title h2 {
-            font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem);
+        .section-header h2 {
+            font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.5rem);
             background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem; position: relative; display: inline-block;
+            margin-bottom: 0.5rem;
         }
-        .section-title h2::after {
-            content: ''; position: absolute; bottom: -10px; left: 50%;
-            transform: translateX(-50%); width: 80px; height: 3px;
+        .section-header p { color: var(--text-muted); font-size: clamp(0.9rem, 2vw, 1.1rem); max-width: 500px; margin: 0 auto; }
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .category-card {
+            background: var(--card-bg); border: var(--border-gold); border-radius: 20px;
+            padding: 2.5rem 2rem; text-align: center;
+            transition: all 0.4s ease; backdrop-filter: blur(10px);
+            cursor: pointer; position: relative; overflow: hidden;
+        }
+        .category-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--gold-primary), var(--digital-blue));
+            transform: scaleX(0); transition: transform 0.3s ease;
+        }
+        .category-card:hover::before { transform: scaleX(1); }
+        .category-card:hover {
+            transform: translateY(-8px); border-color: var(--digital-blue);
+            box-shadow: 0 12px 40px rgba(0, 123, 255, 0.2);
+        }
+        .category-icon {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 1.2rem;
+        }
+        .category-card h3 {
+            font-family: var(--font-heading); font-size: 1.4rem;
+            margin-bottom: 0.6rem; color: var(--text-white);
+        }
+        .category-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+        .category-count {
+            display: inline-block; margin-top: 1rem;
+            background: rgba(0, 123, 255, 0.15); color: var(--digital-blue);
+            padding: 4px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+        }
+
+        /* ===== VISTA DE CATEGORÍA (PRODUCTOS) ===== */
+        .category-view { padding: 7rem 5% 4rem; min-height: 100vh; }
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: transparent; border: 1px solid rgba(212, 175, 55, 0.4);
+            color: var(--gold-primary); padding: 10px 20px; border-radius: 30px;
+            font-size: 0.9rem; cursor: pointer; margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover { background: var(--gold-primary); color: var(--black-bg); }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: var(--card-bg); border: var(--border-gold); border-radius: 16px;
+            overflow: hidden; transition: all 0.3s ease; backdrop-filter: blur(10px);
+            position: relative; display: flex; flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-6px); border-color: var(--digital-blue);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.2);
+        }
+        .product-image {
+            width: 100%; height: 170px; object-fit: cover;
+            background: linear-gradient(135deg, #1a1a2e, #2a2a3a);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; color: rgba(212, 175, 55, 0.3);
+        }
+        .product-badge {
+            position: absolute; top: 12px; right: 12px;
+            background: var(--digital-blue); color: white;
+            padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: bold;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .product-info { padding: 1.3rem; flex: 1; display: flex; flex-direction: column; }
+        .product-info h3 {
+            font-family: var(--font-heading); font-size: 1.15rem;
+            margin-bottom: 0.4rem;
+            background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .product-price {
+            font-size: 1.1rem; font-weight: 700; color: var(--gold-primary);
+            margin-bottom: 0.6rem;
+        }
+        .product-description {
+            color: var(--text-muted); font-size: 0.85rem;
+            margin-bottom: 1rem; line-height: 1.6; flex: 1;
+        }
+        .product-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+        .tag {
+            background: rgba(0, 123, 255, 0.15); color: var(--digital-blue);
+            padding: 3px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 500;
+        }
+        .product-actions { display: flex; gap: 0.5rem; }
+        .btn {
+            padding: 0.7rem 1rem; border-radius: 8px; font-weight: 500;
+            text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            transition: all 0.3s ease; cursor: pointer; border: none; font-size: 0.8rem; flex: 1;
+        }
+        .btn-whatsapp-sm {
+            background: linear-gradient(135deg, #128C7E, var(--whatsapp-green));
+            color: white;
+        }
+        .btn-whatsapp-sm:hover { transform: translateY(-2px); opacity: 0.9; }
+        .btn-secondary {
+            background: transparent; border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+        }
+        .btn-secondary:hover { background: var(--gold-primary); color: var(--black-bg); }
+
+        /* ===== SUSCRIPCIONES ===== */
+        .subscriptions-view { padding: 7rem 5% 4rem; min-height: 100vh; }
+        .subscription-cards {
+            display: flex; justify-content: center; gap: 1.5rem;
+            flex-wrap: wrap; max-width: 1000px; margin: 0 auto;
+        }
+        .subscription-card {
+            background: var(--card-bg); border: var(--border-gold); border-radius: 20px;
+            padding: 2rem; max-width: 320px; text-align: center;
+            transition: all 0.3s ease; backdrop-filter: blur(10px);
+            position: relative; overflow: hidden; flex: 1; min-width: 280px;
+        }
+        .subscription-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
             background: linear-gradient(90deg, var(--gold-primary), var(--digital-blue));
         }
-        .section-title p { color: var(--text-muted); font-size: clamp(0.9rem, 2vw, 1.1rem); max-width: 600px; margin: 0 auto; }
-        .categories { padding: 6rem 5%; background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.03) 50%, transparent 100%); }
-        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
-        .category-card {
-            background: var(--card-bg); border: var(--border-gold); border-radius: 20px; padding: 2rem;
-            text-align: center; transition: all 0.4s ease; backdrop-filter: blur(10px); cursor: pointer;
+        .subscription-card:hover {
+            transform: translateY(-6px); border-color: var(--digital-blue);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.2);
         }
-        .category-card:hover { transform: translateY(-10px); border-color: var(--digital-blue); box-shadow: 0 8px 30px rgba(0, 123, 255, 0.3); }
-        .category-icon {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem; transition: transform 0.3s ease;
-        }
-        .category-card:hover .category-icon { transform: scale(1.1); }
-        .category-card h3 { font-family: var(--font-heading); font-size: clamp(1.3rem, 3vw, 1.6rem); margin-bottom: 1rem; color: var(--text-white); }
-        .category-card p { color: var(--text-muted); font-size: clamp(0.85rem, 2vw, 0.95rem); line-height: 1.7; }
-        .featured-products { padding: 6rem 5%; }
-        .featured-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-        .product-card {
-            background: var(--card-bg); border: var(--border-gold); border-radius: 15px; overflow: hidden;
-            transition: all 0.3s ease; backdrop-filter: blur(10px); position: relative;
-        }
-        .product-card:hover { transform: translateY(-8px); border-color: var(--digital-blue); box-shadow: 0 8px 30px rgba(0, 123, 255, 0.3); }
-        .product-image { width: 100%; height: 180px; object-fit: cover; background: linear-gradient(135deg, var(--dark-bg), #2a2a2a); }
-        .product-badge {
-            position: absolute; top: 10px; right: 10px; background: var(--digital-blue); color: white;
-            padding: 5px 10px; border-radius: 5px; font-size: 0.75rem; font-weight: bold;
-        }
-        .product-info { padding: 1.2rem; }
-        .product-info h3 {
-            font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .product-price { font-size: clamp(1rem, 2.5vw, 1.2rem); font-weight: 600; color: var(--gold-primary); margin: 0.5rem 0; }
-        .product-description { color: var(--text-muted); font-size: clamp(0.8rem, 2vw, 0.9rem); margin-bottom: 1rem; line-height: 1.6; }
-        .product-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
-        .tag { background: rgba(0, 123, 255, 0.2); color: var(--digital-blue); padding: 3px 8px; border-radius: 3px; font-size: 0.75rem; }
-        .product-actions { display: flex; justify-content: center; gap: 0.5rem; }
-        .btn {
-            padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: 500; text-decoration: none;
-            display: inline-block; transition: all 0.3s ease; cursor: pointer; border: none; font-size: 0.85rem;
-        }
-        .btn-primary { background: linear-gradient(135deg, var(--gold-dark), var(--digital-blue)); color: var(--text-white); }
-        .btn-primary:hover { background: linear-gradient(135deg, var(--digital-blue), var(--gold-primary)); transform: translateY(-2px); }
-        .btn-secondary { background: transparent; border: 1px solid var(--gold-primary); color: var(--gold-primary); }
-        .btn-secondary:hover { background: var(--gold-primary); color: var(--black-bg); }
-        .subscriptions { padding: 6rem 5%; background: linear-gradient(180deg, transparent 0%, rgba(0, 123, 255, 0.02) 50%, transparent 100%); }
-        .subscription-cards { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; }
-        .subscription-card {
-            background: var(--card-bg); border: var(--border-gold); border-radius: 20px; padding: 2rem;
-            max-width: 320px; text-align: center; transition: all 0.3s ease; backdrop-filter: blur(10px); position: relative; overflow: hidden;
-        }
-        .subscription-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--gold-primary), var(--digital-blue)); }
-        .subscription-card:hover { transform: translateY(-8px); border-color: var(--digital-blue); box-shadow: 0 8px 30px rgba(0, 123, 255, 0.3); }
         .subscription-card.popular { border-color: var(--digital-blue); background: rgba(0, 123, 255, 0.05); }
-        .subscription-icon { font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .subscription-card .price { font-size: clamp(2rem, 6vw, 3rem); font-weight: 700; background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 1rem 0; }
-        .subscription-card .price span { font-size: clamp(0.8rem, 2vw, 1rem); color: var(--text-muted); }
-        .subscription-card h3 { font-family: var(--font-heading); font-size: clamp(1.2rem, 3vw, 1.5rem); margin-bottom: 0.5rem; color: var(--text-white); }
-        .subscription-card p { color: var(--text-muted); font-size: clamp(0.85rem, 2vw, 0.95rem); margin-bottom: 1.5rem; }
-        .subscription-features { list-style: none; margin-bottom: 1.5rem; }
-        .subscription-features li { padding: 0.5rem 0; color: var(--text-muted); font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
-        .subscription-features li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--gold-primary); }
-        .benefits { padding: 6rem 5%; }
-        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
-        .benefit { text-align: center; padding: 1.5rem; }
-        .benefit-icon { font-size: 2rem; background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
-        .benefit h3 { font-family: var(--font-heading); font-size: clamp(1.2rem, 3vw, 1.4rem); margin-bottom: 0.5rem; color: var(--text-white); }
-        .benefit p { color: var(--text-muted); font-size: clamp(0.85rem, 2vw, 0.95rem); }
-        footer { padding: 4rem 5% 2rem; background: var(--dark-bg); border-top: var(--border-gold); }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
-        .footer-section h3 {
-            font-family: var(--font-heading); font-size: clamp(1.2rem, 3vw, 1.4rem);
+        .popular-badge {
+            background: var(--digital-blue); color: white;
+            padding: 4px 14px; border-radius: 20px;
+            font-size: 0.75rem; font-weight: bold; display: inline-block; margin-bottom: 12px;
+        }
+        .subscription-icon {
+            font-size: 2.5rem; margin-bottom: 0.8rem;
             background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem; position: relative; padding-bottom: 0.5rem;
         }
-        .footer-section h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 50px; height: 2px; background: linear-gradient(90deg, var(--gold-primary), var(--digital-blue)); }
-        .footer-section p, .footer-section a { color: var(--text-muted); text-decoration: none; margin-bottom: 0.5rem; display: block; font-size: clamp(0.85rem, 2vw, 0.95rem); }
-        .footer-section a:hover { background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .contact-info { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
-        .contact-info i { background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.2rem; }
-        .social-links { display: flex; gap: 1rem; margin-top: 1rem; justify-content: center; }
-        .social-links a { font-size: 1.5rem; color: var(--text-muted); transition: all 0.3s ease; }
-        .social-links a:hover { background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transform: translateY(-3px); }
-        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(212, 175, 55, 0.2); color: var(--text-muted); font-size: 0.9rem; }
+        .subscription-card h3 {
+            font-family: var(--font-heading); font-size: 1.4rem;
+            margin-bottom: 0.3rem; color: var(--text-white);
+        }
+        .subscription-card .price {
+            font-size: 2.2rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin: 0.8rem 0;
+        }
+        .subscription-card .price span { font-size: 0.9rem; color: var(--text-muted); }
+        .subscription-card > p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .subscription-features { list-style: none; margin-bottom: 1.5rem; text-align: left; }
+        .subscription-features li {
+            padding: 0.5rem 0; color: var(--text-muted); font-size: 0.85rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .subscription-features li::before {
+            content: '\\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            color: var(--gold-primary); font-size: 0.8rem;
+        }
+
+        /* ===== BENEFICIOS ===== */
+        .benefits-view { padding: 7rem 5% 4rem; min-height: 100vh; }
+        .benefits-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem; max-width: 1000px; margin: 0 auto;
+        }
+        .benefit {
+            text-align: center; padding: 2rem 1.5rem;
+            background: var(--card-bg); border: var(--border-gold);
+            border-radius: 16px; transition: all 0.3s ease;
+        }
+        .benefit:hover { transform: translateY(-5px); border-color: var(--digital-blue); }
+        .benefit-icon {
+            font-size: 2.2rem; margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .benefit h3 { font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .benefit p { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* ===== CONTACTO ===== */
+        .contact-view { padding: 7rem 5% 4rem; min-height: 100vh; }
+        .contact-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem; max-width: 800px; margin: 0 auto;
+        }
+        .contact-card {
+            background: var(--card-bg); border: var(--border-gold);
+            border-radius: 16px; padding: 2rem; text-align: center;
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover { border-color: var(--digital-blue); transform: translateY(-5px); }
+        .contact-card i {
+            font-size: 2.5rem; margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .contact-card h3 { font-family: var(--font-heading); margin-bottom: 0.5rem; }
+        .contact-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 3rem 5% 2rem; background: var(--dark-bg);
+            border-top: var(--border-gold); text-align: center;
+        }
+        .footer-logo {
+            font-family: var(--font-elegant); font-size: 2rem;
+            background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        .social-links { display: flex; gap: 1.2rem; justify-content: center; margin-bottom: 1.5rem; }
+        .social-links a {
+            font-size: 1.5rem; color: var(--text-muted); transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            transform: translateY(-3px);
+        }
+        .copyright { color: var(--text-muted); font-size: 0.85rem; }
+
+        /* ===== MODAL ===== */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92);
+            z-index: 2000; align-items: center; justify-content: center; padding: 20px;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: var(--dark-bg); border-radius: 20px; padding: 2rem;
+            max-width: 550px; width: 100%; max-height: 85vh; overflow-y: auto;
+            position: relative; border: var(--border-gold);
+        }
+        .modal-close {
+            position: absolute; top: 15px; right: 15px;
+            background: none; border: none; color: var(--text-muted);
+            font-size: 1.5rem; cursor: pointer;
+        }
+        .modal-close:hover { color: var(--gold-primary); }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
-            nav ul { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(10,10,10,0.98); flex-direction: column; padding: 1rem; gap: 0; }
+            nav ul {
+                display: none; position: absolute; top: 100%; left: 0;
+                width: 100%; background: rgba(10,10,10,0.98);
+                flex-direction: column; padding: 1rem; gap: 0;
+            }
             nav ul li { width: 100%; text-align: center; }
             nav ul a { padding: 1rem; display: block; font-size: 1rem; }
-            nav ul a::after { display: none; }
             .hamburger { display: block; }
             nav.active ul { display: flex; }
         }
         @media (max-width: 768px) {
-            .hero { padding: 7rem 2rem 4rem; }
-            .categories-grid, .featured-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
-            .subscription-cards { flex-direction: column; align-items: center; gap: 1rem; }
-        }
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1rem; }
-            .cta-button { padding: 12px 30px; font-size: 1rem; }
-            .featured-grid { grid-template-columns: 1fr; }
-        }
-        .menu-overlay { display: none; position: fixed; top: 70px; left: 0; width: 100%; height: calc(100vh - 70px); background: rgba(0,0,0,0.8); z-index: 999; }
-        .menu-overlay.active { display: block; }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 2000; align-items: center; justify-content: center; }
-        .modal.active { display: flex; }
-        .modal-content { background: var(--dark-bg); border-radius: 20px; padding: 2rem; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; border: var(--border-gold); }
-        .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
-        .modal-close:hover { color: var(--gold-primary); }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
-        html { scroll-behavior: smooth; }
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
+            .categories-grid, .products-grid { grid-template-columns: 1fr; }
+            .subscription-cards { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
     <div class="parallax-bg"></div>
     <div class="dark-overlay"></div>
-    <div class="menu-overlay" id="menuOverlay"></div>
 
     <!-- HEADER -->
     <header>
-        <a href="#" class="logo">
+        <div class="logo" onclick="showView('portada')">
             <div class="logo-icon"><i class="fas fa-store"></i></div>
             <span class="logo-text">GeotterMiu</span>
-        </a>
+        </div>
         <nav id="mainNav">
             <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#categorias">Categorías</a></li>
-                <li><a href="#productos">Productos</a></li>
-                <li><a href="#suscripciones">Suscripciones</a></li>
-                <li><a href="#beneficios">Beneficios</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a onclick="showView('dashboard')" id="nav-dashboard">Tienda</a></li>
+                <li><a onclick="showView('subscriptions')" id="nav-suscripciones">Suscripciones</a></li>
+                <li><a onclick="showView('benefits')" id="nav-beneficios">Beneficios</a></li>
+                <li><a onclick="showView('contact')" id="nav-contacto">Contacto</a></li>
             </ul>
         </nav>
         <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
     </header>
 
-    <!-- HERO -->
-    <section class="hero" id="inicio">
-        <div class="hero-content">
-            <img src="https://raw.githubusercontent.com/GeotterMiuUniversal/GeotterMiu-Tienda-online/main/IMG-20260523-WA0008.jpg" alt="GeotterMiu Tienda Digital" style="max-width: 200px; border-radius: 20px; box-shadow: var(--shadow-gold); margin-bottom: 2rem;">
-            <h1>GeotterMiu Tienda Digital</h1>
-            <p>Descubre el futuro de las compras digitales. Software, juegos, suscripciones, cursos y más. ¡Escríbenos por WhatsApp y compra fácil!</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="#categorias" class="cta-button">Explorar Categorías</a>
-                <a href="https://wa.me/584129430088?text=Hola%20GeotterMiu,%20vi%20su%20tienda%20digital%20y%20quiero%20hacer%20un%20pedido." target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Escribir por WhatsApp</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CATEGORÍAS -->
-    <section class="categories" id="categorias">
-        <div class="section-title">
-            <h2>Nuestras Categorías</h2>
-            <p>Encuentra todo lo que necesitas en el mundo digital</p>
-        </div>
-        <div class="categories-grid">
-            <div class="category-card" onclick="filterProducts('software')">
-                <div class="category-icon"><i class="fas fa-laptop-code"></i></div>
-                <h3>Software y Aplicaciones</h3>
-                <p>Programas profesionales y herramientas de productividad.</p>
-            </div>
-            <div class="category-card" onclick="filterProducts('juegos')">
-                <div class="category-icon"><i class="fas fa-gamepad"></i></div>
-                <h3>Juegos y Licencias</h3>
-                <p>Juegos, DLCs y licencias para todas las plataformas.</p>
-            </div>
-            <div class="category-card" onclick="filterProducts('suscripciones')">
-                <div class="category-icon"><i class="fas fa-tv"></i></div>
-                <h3>Suscripciones</h3>
-                <p>Netflix, Spotify, Disney+, HBO Max y más.</p>
-            </div>
-            <div class="category-card" onclick="filterProducts('cursos')">
-                <div class="category-icon"><i class="fas fa-graduation-cap"></i></div>
-                <h3>Cursos y Capacitación</h3>
-                <p>Cursos online en programación, diseño y marketing.</p>
-            </div>
-            <div class="category-card" onclick="filterProducts('ebooks')">
-                <div class="category-icon"><i class="fas fa-book"></i></div>
-                <h3>Ebooks</h3>
-                <p>Libros electrónicos y guías digitales.</p>
-            </div>
-            <div class="category-card" onclick="filterProducts('servicios')">
-                <div class="category-icon"><i class="fas fa-cloud"></i></div>
-                <h3>Servicios en la Nube</h3>
-                <p>Hosting, dominios, VPN y almacenamiento.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRODUCTOS -->
-    <section class="featured-products" id="productos">
-        <div class="section-title">
-            <h2>Productos Destacados</h2>
-            <p>Los más populares en nuestra tienda. Haz clic en comprar para pedir por WhatsApp.</p>
-        </div>
-        <div class="featured-grid" id="productsGrid">
-            <div class="product-card" data-category="software">
-                <div class="product-badge">Software</div>
-                <img src="https://via.placeholder.com/400x300/1a1a2e/007BFF?text=Windows+11" alt="Windows 11" class="product-image">
-                <div class="product-info">
-                    <h3>Windows 11 Pro</h3>
-                    <div class="product-price">$25.00</div>
-                    <p class="product-description">Licencia original con actualizaciones.</p>
-                    <div class="product-tags">
-                        <span class="tag">Sistema</span>
-                        <span class="tag">Original</span>
-                    </div>
-                    <div class="product-actions">
-                        <button class="btn btn-whatsapp" onclick="buyOnWhatsApp('Windows 11 Pro', 25.00)" style="border-radius: 8px; font-size: 0.85rem; padding: 0.7rem 1.2rem;"><i class="fab fa-whatsapp"></i> Comprar</button>
-                        <button class="btn btn-secondary" onclick="showDetails('Windows 11 Pro')"><i class="fas fa-info-circle"></i> Detalles</button>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card" data-category="juegos">
-                <div class="product-badge">Juegos</div>
-                <img src="https://via.placeholder.com/400x300/1a1a2e/007BFF?text=FIFA+24" alt="FIFA 24" class="product-image">
-                <div class="product-info">
-                    <h3>FIFA 24</h3>
-                    <div class="product-price">$49.99</div>
-                    <p class="product-description">Edición Ultimate con 4600 FIFA Points.</p>
-                    <div class="product-tags">
-                        <span class="tag">Deportes</span>
-                        <span class="tag">PS5</span>
-                    </div>
-                    <div class="product-actions">
-                        <button class="btn btn-whatsapp" onclick="buyOnWhatsApp('FIFA 24', 49.99)" style="border-radius: 8px; font-size: 0.85rem; padding: 0.7rem 1.2rem;"><i class="fab fa-whatsapp"></i> Comprar</button>
-                        <button class="btn btn-secondary" onclick="showDetails('FIFA 24')"><i class="fas fa-info-circle"></i> Detalles</button>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card" data-category="suscripciones">
-                <div class="product-badge">Suscripción</div>
-                <img src="https://via.placeholder.com/400x300/1a1a2e/007BFF?text=Netflix" alt="Netflix" class="product-image">
-                <div class="product-info">
-                    <h3>Netflix Premium</h3>
-                    <div class="product-price">$12.99/mes</div>
-                    <p class="product-description">4K Ultra HD, 4 pantallas simultáneas.</p>
-                    <div class="product-tags">
-                        <span class="tag">Streaming</span>
-                        <span class="tag">4K</span>
-                    </div>
-                    <div class="product-actions">
-                        <button class="btn btn-whatsapp" onclick="buyOnWhatsApp('Netflix Premium', 12.99)" style="border-radius: 8px; font-size: 0.85rem; padding: 0.7rem 1.2rem;"><i class="fab fa-whatsapp"></i> Comprar</button>
-                        <button class="btn btn-secondary" onclick="showDetails('Netflix Premium')"><i class="fas fa-info-circle"></i> Detalles</button>
-                    </div>
+    <!-- ===== PORTADA ===== -->
+    <section class="view active" id="view-portada">
+        <div class="hero-portada">
+            <div class="hero-content">
+                <img src="https://raw.githubusercontent.com/GeotterMiuUniversal/GeotterMiu-Tienda-online/main/logo.jpg" alt="GeotterMiu">
+                <h1>GeotterMiu Tienda Digital</h1>
+                <p>El mejor contenido digital al alcance de un clic. Software, cursos, suscripciones y mucho más. Compra fácil y seguro por WhatsApp.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
+                    <button class="cta-button" onclick="showView('dashboard')"><i class="fas fa-arrow-right"></i> Entrar a la Tienda</button>
+                    <a href="https://wa.me/584129430088?text=Hola%20GeotterMiu,%20vi%20su%20tienda%20digital%20y%20quiero%20hacer%20un%20pedido." target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Escríbenos</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SUSCRIPCIONES -->
-    <section class="subscriptions" id="suscripciones">
-        <div class="section-title">
-            <h2>Planes de Suscripción</h2>
-            <p>Elige el plan que mejor se adapte a ti</p>
-        </div>
-        <div class="subscription-cards">
-            <div class="subscription-card">
-                <div class="subscription-icon"><i class="fas fa-user"></i></div>
-                <h3>Básico</h3>
-                <div class="price">$9.99<span>/mes</span></div>
-                <p>Acceso a catálogo básico</p>
-                <ul class="subscription-features">
-                    <li>10 descargas/mes</li>
-                    <li>Contenido estándar</li>
-                    <li>Soporte por email</li>
-                </ul>
-                <button class="btn btn-whatsapp" onclick="buyOnWhatsApp('Plan Básico', 9.99)" style="width: 100%; justify-content: center;"><i class="fab fa-whatsapp"></i> Elegir Plan</button>
+    <!-- ===== DASHBOARD / CATEGORÍAS ===== -->
+    <section class="view" id="view-dashboard">
+        <div class="dashboard">
+            <div class="section-header">
+                <h2>Nuestras Categorías</h2>
+                <p>Selecciona una categoría para ver los productos disponibles</p>
             </div>
-            <div class="subscription-card popular">
-                <div style="background: var(--digital-blue); color: white; padding: 5px 15px; border-radius: 20px; display: inline-block; font-size: 0.8rem; font-weight: bold; margin-bottom: 10px;">¡Más Popular!</div>
-                <div class="subscription-icon"><i class="fas fa-crown"></i></div>
-                <h3>Premium</h3>
-                <div class="price">$24.99<span>/mes</span></div>
-                <p>Acceso completo</p>
-                <ul class="subscription-features">
-                    <li>Descargas ilimitadas</li>
-                    <li>Contenido exclusivo</li>
-                    <li>Soporte 24/7</li>
-                </ul>
-                <button class="btn btn-whatsapp" onclick="buyOnWhatsApp('Plan Premium', 24.99)" style="width: 100%; justify-content: center;"><i class="fab fa-whatsapp"></i> Elegir Plan</button>
+            <div class="categories-grid">
+                <div class="category-card" onclick="showCategory('software')">
+                    <div class="category-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Software</h3>
+                    <p>Licencias originales y herramientas profesionales.</p>
+                    <span class="category-count">Próximamente</span>
+                </div>
+                <div class="category-card" onclick="showCategory('juegos')">
+                    <div class="category-icon"><i class="fas fa-gamepad"></i></div>
+                    <h3>Juegos</h3>
+                    <p>Juegos y licencias para todas las plataformas.</p>
+                    <span class="category-count">Próximamente</span>
+                </div>
+                <div class="category-card" onclick="showCategory('suscripciones')">
+                    <div class="category-icon"><i class="fas fa-tv"></i></div>
+                    <h3>Suscripciones</h3>
+                    <p>Streaming, música y servicios digitales.</p>
+                    <span class="category-count">Próximamente</span>
+                </div>
+                <div class="category-card" onclick="showCategory('cursos')">
+                    <div class="category-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Cursos</h3>
+                    <p>Aprende música, diseño, programación, hacking y más.</p>
+                    <span class="category-count">10 productos</span>
+                </div>
+                <div class="category-card" onclick="showCategory('ebooks')">
+                    <div class="category-icon"><i class="fas fa-book"></i></div>
+                    <h3>Ebooks</h3>
+                    <p>Libros electrónicos y guías digitales.</p>
+                    <span class="category-count">Próximamente</span>
+                </div>
+                <div class="category-card" onclick="showCategory('servicios')">
+                    <div class="category-icon"><i class="fas fa-cloud"></i></div>
+                    <h3>Servicios</h3>
+                    <p>Hosting, dominios, VPN y almacenamiento.</p>
+                    <span class="category-count">Próximamente</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- BENEFICIOS -->
-    <section class="benefits" id="beneficios">
-        <div class="section-title">
-            <h2>Beneficios</h2>
-            <p>Calidad, seguridad y satisfacción garantizada</p>
+    <!-- ===== VISTA DE CATEGORÍA ===== -->
+    <section class="view" id="view-category">
+        <div class="category-view">
+            <button class="back-btn" onclick="showView('dashboard')"><i class="fas fa-arrow-left"></i> Volver a Categorías</button>
+            <div class="section-header">
+                <h2 id="category-title">Productos</h2>
+                <p id="category-desc">Explora nuestros productos</p>
+            </div>
+            <div class="products-grid" id="category-products"></div>
         </div>
-        <div class="benefits-grid">
-            <div class="benefit">
-                <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>100% Seguro</h3>
-                <p>Transacciones protegidas con cifrado SSL.</p>
+    </section>
+
+    <!-- ===== SUSCRIPCIONES ===== -->
+    <section class="view" id="view-subscriptions">
+        <div class="subscriptions-view">
+            <button class="back-btn" onclick="showView('dashboard')" style="display:block; margin: 0 auto 2rem;"><i class="fas fa-arrow-left"></i> Volver a Categorías</button>
+            <div class="section-header">
+                <h2>Planes de Suscripción</h2>
+                <p>Próximamente</p>
             </div>
-            <div class="benefit">
-                <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
-                <h3>Entrega Inmediata</h3>
-                <p>Recibe tus productos al instante.</p>
+            <div style="text-align:center; padding: 4rem 2rem; color: var(--text-muted);">
+                <i class="fas fa-clock" style="font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                <h3 style="font-family: var(--font-heading); margin-bottom: 0.5rem; color: var(--text-white);">Próximamente</h3>
+                <p>Estamos preparando los mejores planes de suscripción para ti.<br>Vuelve pronto para descubrirlos.</p>
             </div>
-            <div class="benefit">
-                <div class="benefit-icon"><i class="fas fa-globe"></i></div>
-                <h3>Acceso Global</h3>
-                <p>Compra desde cualquier lugar del mundo.</p>
+        </div>
+    </section>
+
+    <!-- ===== BENEFICIOS ===== -->
+    <section class="view" id="view-benefits">
+        <div class="benefits-view">
+            <button class="back-btn" onclick="showView('dashboard')" style="display:block; margin: 0 auto 2rem;"><i class="fas fa-arrow-left"></i> Volver a Categorías</button>
+            <div class="section-header">
+                <h2>¿Por qué elegirnos?</h2>
+                <p>Calidad, seguridad y satisfacción garantizada</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>100% Seguro</h3>
+                    <p>Transacciones protegidas y contenido verificado.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Entrega Inmediata</h3>
+                    <p>Recibe tu producto al instante después del pago.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Soporte Real</h3>
+                    <p>Atención personalizada por WhatsApp para resolver dudas.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon"><i class="fas fa-tags"></i></div>
+                    <h3>Precios Bajos</h3>
+                    <p>Contenido premium a precios accesibles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section class="view" id="view-contact">
+        <div class="contact-view">
+            <button class="back-btn" onclick="showView('dashboard')" style="display:block; margin: 0 auto 2rem;"><i class="fas fa-arrow-left"></i> Volver a Categorías</button>
+            <div class="section-header">
+                <h2>Contacto</h2>
+                <p>¿Tienes dudas? Escríbenos y te respondemos al instante</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>+58 412-9430088</p>
+                    <a href="https://wa.me/584129430088?text=Hola%20GeotterMiu,%20tengo%20una%20consulta." target="_blank" class="btn btn-whatsapp-sm" style="width:100%;"><i class="fab fa-whatsapp"></i> Escribir Ahora</a>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>geottermiu@proton.me</p>
+                    <span style="color: var(--text-muted); font-size: 0.8rem;">Respuesta en 24h</span>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer id="contacto">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>GeotterMiu Tienda Digital</h3>
-                <p>Tu tienda de confianza para productos digitales. Escríbenos por WhatsApp para comprar.</p>
-                <div class="social-links">
-                    <a href="https://wa.me/584129430088" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-telegram"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>Contacto</h3>
-                <div class="contact-info"><i class="fab fa-whatsapp"></i><span>+58 412-9430088</span></div>
-                <div class="contact-info"><i class="fas fa-envelope"></i><span>contacto@geottermiu.com</span></div>
-                <a href="https://wa.me/584129430088?text=Hola%20GeotterMiu,%20quiero%20hacer%20un%20pedido." target="_blank" class="btn-whatsapp" style="margin-top: 1rem; display: inline-flex;"><i class="fab fa-whatsapp"></i> Escribir por WhatsApp</a>
-            </div>
+    <footer>
+        <div class="footer-logo">GeotterMiu</div>
+        <div class="social-links">
+            <a href="https://wa.me/584129430088" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
         <div class="copyright">
             <p>&copy; 2026 Geotter Miu Universal. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <!-- MODAL DE DETALLES -->
+    <!-- MODAL -->
     <div class="modal" id="productModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
@@ -507,68 +630,186 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // WHATSAPP COMPRA
+        // ===== DATOS DE PRODUCTOS =====
+        const products = [
+            {
+                id: 'curso-musica', category: 'cursos', name: 'Curso Completo de Música',
+                price: 15.00, badge: 'Curso',
+                description: 'Aprende Bajo, Violín, Guitarra, Guitarra Flamenca, Batería y Ukelele desde cero.',
+                tags: ['Música', '6 Instrumentos', 'Desde Cero'],
+                features: ['Bajo eléctrico', 'Violín', 'Guitarra acústica', 'Guitarra flamenca', 'Batería', 'Ukelele', 'Método paso a paso'],
+                icon: 'fa-music'
+            },
+            {
+                id: 'curso-ia', category: 'cursos', name: 'IA y Deep Learning en Python',
+                price: 20.00, badge: 'Curso',
+                description: 'Inteligencia Artificial y Deep Learning desde cero con Python.',
+                tags: ['IA', 'Python', 'Deep Learning', 'Machine Learning'],
+                features: ['Fundamentos de IA', 'Redes neuronales', 'Deep Learning práctico', 'Proyectos reales en Python', 'TensorFlow y Keras'],
+                icon: 'fa-brain'
+            },
+            {
+                id: 'curso-ecommerce', category: 'cursos', name: 'eCommerce con Java EE',
+                price: 25.00, badge: 'Curso',
+                description: 'Desarrollo de tiendas online con Java EE, JSP y pasos en línea PSE, PayPal y PayU.',
+                tags: ['Java EE', 'JSP', 'Pagos Online', 'eCommerce'],
+                features: ['Java Enterprise Edition', 'JSP y Servlets', 'Integración PSE', 'Pasarela PayPal', 'Pasarela PayU', 'Carrito de compras completo'],
+                icon: 'fa-shopping-cart'
+            },
+            {
+                id: 'curso-illustrator', category: 'cursos', name: 'Adobe Illustrator Completo',
+                price: 18.00, badge: 'Curso',
+                description: 'Domina Adobe Illustrator desde lo básico hasta técnicas avanzadas de diseño vectorial.',
+                tags: ['Diseño', 'Vector', 'Adobe', 'Ilustración'],
+                features: ['Herramientas básicas y avanzadas', 'Diseño de logos', 'Ilustración vectorial', 'Tipografía creativa', 'Proyectos prácticos'],
+                icon: 'fa-pen-nib'
+            },
+            {
+                id: 'curso-community', category: 'cursos', name: 'Community Manager',
+                price: 12.00, badge: 'Curso',
+                description: 'Especialízate en redes sociales y trabaja desde casa gestionando comunidades.',
+                tags: ['Redes Sociales', 'Marketing', 'Remoto'],
+                features: ['Estrategia de contenidos', 'Gestión de comunidades', 'Meta Business Suite', 'Métricas y analytics', 'Monetización'],
+                icon: 'fa-users'
+            },
+            {
+                id: 'curso-tiktok', category: 'cursos', name: 'TikTok Ads Master',
+                price: 15.00, badge: 'Curso',
+                description: 'Aprende a crear campañas publicitarias efectivas en TikTok y escalar tu negocio.',
+                tags: ['TikTok', 'Publicidad', 'Marketing'],
+                features: ['Creación de anuncios', 'Segmentación avanzada', 'Presupuestos y pujas', 'Creatividades que venden', 'Análisis de resultados'],
+                icon: 'fa-mobile-alt'
+            },
+            {
+                id: 'curso-matematicas', category: 'cursos', name: 'Matemáticas Universitarias',
+                price: 10.00, badge: 'Curso',
+                description: 'Curso integral de varias ramas de matemáticas para universidad y preparación.',
+                tags: ['Matemáticas', 'Universidad', 'Cálculo', 'Álgebra'],
+                features: ['Cálculo diferencial e integral', 'Álgebra lineal', 'Ecuaciones diferenciales', 'Estadística', 'Matemática discreta'],
+                icon: 'fa-calculator'
+            },
+            {
+                id: 'curso-reparacion', category: 'cursos', name: 'Reparación de PCs y Celulares',
+                price: 22.00, badge: 'Curso',
+                description: 'Curso universitario de reparación de ordenadores y desbloqueo de teléfonos.',
+                tags: ['Hardware', 'Reparación', 'Desbloqueo', 'Técnico'],
+                features: ['Diagnóstico de hardware', 'Reparación de laptops', 'Mantenimiento preventivo', 'Desbloqueo de celulares', 'Recuperación de datos', 'Soldadura SMD'],
+                icon: 'fa-tools'
+            },
+            {
+                id: 'curso-photoshop', category: 'cursos', name: 'Photoshop 40hs + 59 Módulos',
+                price: 18.00, badge: 'Curso',
+                description: 'Super curso de Photoshop con 40 horas de clases, 59 módulos y material de práctica.',
+                tags: ['Photoshop', 'Edición', 'Diseño', 'Adobe'],
+                features: ['59 módulos completos', '40 horas de video', 'Ejercitarios incluidos', 'Folletos digitales', 'Retoque fotográfico', 'Diseño gráfico profesional'],
+                icon: 'fa-image'
+            },
+            {
+                id: 'curso-hacking', category: 'cursos', name: 'Hacking Ético + Pentesting',
+                price: 20.00, badge: 'Curso',
+                description: 'Aprende hacking ético y penetration testing enfocado en seguridad de redes sociales.',
+                tags: ['Hacking', 'Ciberseguridad', 'Pentesting', 'Redes'],
+                features: ['Footprinting y reconocimiento', 'Escaneo de vulnerabilidades', 'Explotación de sistemas', 'Pentesting en redes sociales', 'Informes de seguridad', 'Certificación práctica'],
+                icon: 'fa-user-secret'
+            },
+            {
+                id: 'curso-ciberseguridad', category: 'cursos', name: 'Hacking Ético y Ciberseguridad',
+                price: 20.00, badge: 'Curso',
+                description: 'Formación completa en ciberseguridad defensiva y ofensiva desde cero.',
+                tags: ['Ciberseguridad', 'Hacking Ético', 'Redes', 'Linux'],
+                features: ['Fundamentos de ciberseguridad', 'Kali Linux', 'Análisis de malware', 'Seguridad en redes', 'Criptografía', 'Respuesta a incidentes'],
+                icon: 'fa-lock'
+            }
+        ];
+
+        const categoryInfo = {
+            software: { title: 'Software y Aplicaciones', desc: 'Programas profesionales y herramientas de productividad' },
+            juegos: { title: 'Juegos y Licencias', desc: 'Juegos, DLCs y licencias para todas las plataformas' },
+            suscripciones: { title: 'Suscripciones', desc: 'Netflix, Spotify, Disney+, HBO Max y más' },
+            cursos: { title: 'Cursos y Capacitación', desc: 'Aprende música, diseño, programación, hacking y más' },
+            ebooks: { title: 'Ebooks', desc: 'Libros electrónicos y guías digitales' },
+            servicios: { title: 'Servicios en la Nube', desc: 'Hosting, dominios, VPN y almacenamiento' }
+        };
+
+        // ===== NAVEGACIÓN =====
+        function showView(viewName) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById('view-' + viewName).classList.add('active');
+            window.scrollTo(0, 0);
+
+            // Update nav active state
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+            const navMap = { 'dashboard': 'nav-dashboard', 'subscriptions': 'nav-suscripciones', 'benefits': 'nav-beneficios', 'contact': 'nav-contacto' };
+            if (navMap[viewName]) document.getElementById(navMap[viewName]).classList.add('active');
+
+            // Close mobile menu
+            document.getElementById('mainNav').classList.remove('active');
+            document.getElementById('hamburgerBtn').innerHTML = '<i class="fas fa-bars"></i>';
+        }
+
+        function showCategory(cat) {
+            const info = categoryInfo[cat] || { title: 'Productos', desc: '' };
+            document.getElementById('category-title').textContent = info.title;
+            document.getElementById('category-desc').textContent = info.desc;
+
+            const container = document.getElementById('category-products');
+            const catProducts = products.filter(p => p.category === cat);
+
+            if (catProducts.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:var(--text-muted); grid-column:1/-1; padding:3rem;">Próximamente nuevos productos en esta categoría.</p>';
+            } else {
+                container.innerHTML = catProducts.map(p => `
+                    <div class="product-card">
+                        <div class="product-badge">${p.badge}</div>
+                        <div class="product-image"><i class="fas ${p.icon}"></i></div>
+                        <div class="product-info">
+                            <h3>${p.name}</h3>
+                            <div class="product-price">$${p.price.toFixed(2)}${p.isSubscription ? '/mes' : ''}</div>
+                            <p class="product-description">${p.description}</p>
+                            <div class="product-tags">
+                                ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn btn-whatsapp-sm" onclick="buyOnWhatsApp('${p.name.replace(/'/g, "\\'")}', ${p.price})"><i class="fab fa-whatsapp"></i> Comprar</button>
+                                <button class="btn btn-secondary" onclick="showDetails('${p.id}')"><i class="fas fa-info-circle"></i> Info</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            showView('category');
+        }
+
+        // ===== WHATSAPP =====
         function buyOnWhatsApp(productName, price) {
             const phone = '584129430088';
             const message = `Hola GeotterMiu, quiero comprar: *${productName}* - Precio: *$${price.toFixed(2)}*. ¿Está disponible?`;
-            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // MODAL DE PRODUCTOS
-        function showDetails(productName) {
+        // ===== MODAL =====
+        function showDetails(productId) {
+            const p = products.find(x => x.id === productId);
+            if (!p) return;
+
             const modal = document.getElementById('productModal');
-            const modalBody = document.getElementById('modalBody');
-
-            const productDetails = {
-                'Windows 11 Pro': {
-                    title: 'Windows 11 Pro',
-                    price: 25.00,
-                    description: 'Licencia original de Windows 11 Professional con todas las funciones avanzadas.',
-                    features: ['Sistema operativo de 64 bits', 'Actualizaciones gratuitas', 'Soporte técnico', 'Compatible con la mayoría de hardware'],
-                    image: 'https://via.placeholder.com/400x300/1a1a2e/007BFF?text=Windows+11'
-                },
-                'FIFA 24': {
-                    title: 'FIFA 24 Ultimate Edition',
-                    price: 49.99,
-                    description: 'La edición definitiva del juego de fútbol más popular del mundo.',
-                    features: ['Juego base FIFA 24', '4600 FIFA Points', 'Acceso anticipado', 'Beneficios exclusivos'],
-                    image: 'https://via.placeholder.com/400x300/1a1a2e/007BFF?text=FIFA+24'
-                },
-                'Netflix Premium': {
-                    title: 'Netflix Premium',
-                    price: 12.99,
-                    description: 'El mejor plan de Netflix con calidad 4K Ultra HD.',
-                    features: ['Calidad 4K Ultra HD', '4 pantallas simultáneas', 'Catálogo completo', 'Sin anuncios'],
-                    image: 'https://via.placeholder.com/400x300/1a1a2e/007BFF?text=Netflix'
-                }
-            };
-
-            const product = productDetails[productName] || {
-                title: productName,
-                price: 0,
-                description: 'Información detallada del producto.',
-                features: ['Característica 1', 'Característica 2'],
-                image: 'https://via.placeholder.com/400x300/1a1a2e/007BFF?text=Producto'
-            };
-
-            modalBody.innerHTML = `
-                <img src="${product.image}" alt="${product.title}" style="width: 100%; max-height: 200px; object-fit: contain; margin-bottom: 1.5rem; border-radius: 10px;">
-                <h2 style="margin-bottom: 1rem;">${product.title}</h2>
-                <p style="font-size: 1.2rem; font-weight: bold; background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">$${product.price.toFixed(2)}</p>
-                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">${product.description}</p>
-                <h3 style="margin-bottom: 1rem; background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Características:</h3>
-                <ul style="list-style: none; padding-left: 0;">
-                    ${product.features.map(feature => `<li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(212, 175, 55, 0.2); color: var(--text-muted);">${feature}</li>`).join('')}
+            document.getElementById('modalBody').innerHTML = `
+                <div style="text-align:center; margin-bottom:1.5rem;">
+                    <i class="fas ${p.icon}" style="font-size:4rem; background: linear-gradient(135deg, var(--gold-primary), var(--digital-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                </div>
+                <h2 style="text-align:center; margin-bottom:0.5rem; font-family: var(--font-heading);">${p.name}</h2>
+                <p style="text-align:center; font-size:1.3rem; font-weight:700; color:var(--gold-primary); margin-bottom:1rem;">$${p.price.toFixed(2)}${p.isSubscription ? '/mes' : ''}</p>
+                <p style="color:var(--text-muted); margin-bottom:1.5rem; text-align:center;">${p.description}</p>
+                <h3 style="margin-bottom:1rem; color:var(--gold-primary); font-size:1rem;">Características:</h3>
+                <ul style="list-style:none; padding:0; margin-bottom:1.5rem;">
+                    ${p.features.map(f => `<li style="padding:0.4rem 0; border-bottom:1px solid rgba(212,175,55,0.1); color:var(--text-muted); font-size:0.9rem;"><i class="fas fa-check" style="color:var(--gold-primary); margin-right:8px;"></i>${f}</li>`).join('')}
                 </ul>
-                <div style="margin-top: 1.5rem; text-align: center;">
-                    <button class="btn btn-whatsapp" onclick="buyOnWhatsApp('${product.title}', ${product.price}); closeModal();" style="margin-right: 0.5rem;">
-                        <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
-                    </button>
-                    <button class="btn btn-secondary" onclick="closeModal()">Cerrar</button>
+                <div style="display:flex; gap:0.5rem;">
+                    <button class="btn btn-whatsapp-sm" onclick="buyOnWhatsApp('${p.name.replace(/'/g, "\\'")}', ${p.price}); closeModal();" style="flex:1;"><i class="fab fa-whatsapp"></i> Comprar por WhatsApp</button>
+                    <button class="btn btn-secondary" onclick="closeModal()" style="flex:1;">Cerrar</button>
                 </div>
             `;
-
             modal.classList.add('active');
         }
 
@@ -576,80 +817,17 @@
             document.getElementById('productModal').classList.remove('active');
         }
 
-        // FILTRO DE PRODUCTOS
-        function filterProducts(category) {
-            const products = document.querySelectorAll('.product-card');
-            products.forEach(product => {
-                if (category === 'todos' || product.dataset.category === category) {
-                    product.style.display = 'block';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-            document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // NOTIFICACIONES
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.textContent = message;
-            notification.style.cssText = `
-                position: fixed; bottom: 20px; right: 20px;
-                background: linear-gradient(135deg, var(--gold-dark), var(--digital-blue));
-                color: white; padding: 15px 25px; border-radius: 10px;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.3); z-index: 3000;
-                animation: slideIn 0.3s ease-out; font-weight: 500;
-            `;
-            document.body.appendChild(notification);
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease-out';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
-        }
-
-        // MENÚ MÓVIL
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const mainNav = document.getElementById('mainNav');
-        const menuOverlay = document.getElementById('menuOverlay');
-
-        hamburgerBtn.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            hamburgerBtn.innerHTML = mainNav.classList.contains('active') ?
+        // ===== MENÚ MÓVIL =====
+        document.getElementById('hamburgerBtn').addEventListener('click', () => {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+            document.getElementById('hamburgerBtn').innerHTML = nav.classList.contains('active') ?
                 '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
 
-        menuOverlay.addEventListener('click', () => {
-            mainNav.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            hamburgerBtn.innerHTML = '<i class="fas fa-bars"></i>';
-        });
-
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-                menuOverlay.classList.remove('active');
-                hamburgerBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-
-        // ANIMACIONES AL SCROLLEAR
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in-up');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        document.querySelectorAll('.category-card, .product-card, .benefit, .subscription-card, .footer-section').forEach(el => {
-            observer.observe(el);
-        });
-
-        // EFECTO PARALLAX
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            document.querySelector('.parallax-bg').style.transform = 'translateY(' + (scrolled * 0.5) + 'px)';
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('productModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('productModal')) closeModal();
         });
     </script>
 </body>
