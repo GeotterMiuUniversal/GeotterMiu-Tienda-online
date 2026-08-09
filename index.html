@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeotterMiu | Cursos Digitales</title>
+    <title>GeotterMiu | Cursos Digitales para Venezuela</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -140,16 +140,6 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 30px rgba(0, 86, 179, 0.5);
         }
-        .btn-whatsapp {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 14px 32px;
-            background: linear-gradient(135deg, #128C7E, var(--whatsapp-green));
-            color: white; text-decoration: none;
-            font-weight: 600; font-size: 1rem; border-radius: 50px;
-            transition: all 0.3s ease; border: none; cursor: pointer;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-        .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5); }
 
         /* Sección de cursos destacados */
         .featured-section {
@@ -340,6 +330,100 @@
             .courses-grid { grid-template-columns: 1fr; }
             .hero-buttons { flex-direction: column; align-items: center; }
         }
+
+        /* Estilo para la sección de gestión de cursos (oculta por defecto) */
+        .admin-section {
+            display: none;
+            padding: 2rem 5%;
+            background: var(--dark-bg);
+            border-top: var(--border-blue);
+        }
+        .admin-section h2 {
+            font-family: var(--font-heading);
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+        }
+        .course-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            border: var(--border-blue);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.7rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 86, 179, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-white);
+            font-family: var(--font-body);
+        }
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .btn-admin {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        .btn-admin:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .course-list-admin {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .course-item-admin {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            border: var(--border-blue);
+            position: relative;
+        }
+        .course-item-admin h4 {
+            color: var(--gold-primary);
+            margin-bottom: 0.5rem;
+        }
+        .course-item-admin p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+        .btn-delete {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .btn-delete:hover {
+            background: #cc0000;
+        }
     </style>
 </head>
 <body>
@@ -358,6 +442,8 @@
                 <li><a onclick="showView('courses')" id="nav-cursos">Cursos</a></li>
                 <li><a onclick="showView('benefits')" id="nav-beneficios">Beneficios</a></li>
                 <li><a onclick="showView('contact')" id="nav-contacto">Contacto</a></li>
+                <!-- Botón para acceder a la gestión de cursos (solo visible si estás logueado como admin) -->
+                <li><a onclick="showAdminSection()" id="nav-admin">Gestionar Cursos</a></li>
             </ul>
         </nav>
         <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
@@ -367,23 +453,13 @@
     <section class="view active" id="view-home">
         <div class="hero">
             <div class="hero-content">
-                <img src="https://raw.githubusercontent.com/GeotterMiuUniversal/GeotterMiu-Tienda-online/refs/heads/main/logo.jpg" alt="Introducción a la Bolsa de Valores de Venezuela">
-                <h1>Aprende sobre cualquier teme en Venezuela</h1>
-                <p>Cursos digitales prácticos y accesibles para que domines temas clave como la Bolsa de Valores, inversión, emprendimiento y más. ¡Empieza hoy!</p>
+                <img src="https://raw.githubusercontent.com/GeotterMiuUniversal/GeotterMiu-Tienda-online/refs/heads/main/logo.jpg" alt="GeotterMiu Logo">
+                <h1>Cursos Digitales para Venezuela</h1>
+                <p>Aprende habilidades prácticas para emprender, invertir y crecer en el contexto venezolano. ¡Accede a los mejores cursos con un solo clic!</p>
                 <div class="hero-buttons">
-                    <button class="cta-button" onclick="showView('courses')"><i class="fas fa-book"></i> Ver Cursos</button>
-                    <a href="https://app.komvii.com/checkout/JzP9v8xkfeEfiomLEJZbHkVrdcXsdMxy" target="_blank" class="btn-whatsapp"><i class="fas fa-shopping-cart"></i> Comprar E-book</a>
+                    <button class="cta-button" onclick="showView('courses')"><i class="fas fa-book"></i> Ver Todos los Cursos</button>
                 </div>
             </div>
-        </div>
-
-        <!-- Cursos destacados -->
-        <div class="featured-section">
-            <div class="section-header">
-                <h2>Cursos Destacados</h2>
-                <p>Los más populares entre nuestros estudiantes</p>
-            </div>
-            <div class="courses-grid" id="featured-courses"></div>
         </div>
     </section>
 
@@ -393,7 +469,7 @@
             <button class="back-btn" onclick="showView('home')"><i class="fas fa-arrow-left"></i> Volver al Inicio</button>
             <div class="section-header">
                 <h2>Todos los Cursos</h2>
-                <p>Selecciona el curso que más te interese</p>
+                <p>Selecciona el curso que más te interese y comienza a aprender hoy mismo</p>
             </div>
             <div class="courses-grid" id="all-courses"></div>
         </div>
@@ -411,7 +487,7 @@
                 <div class="benefit">
                     <div class="benefit-icon"><i class="fas fa-book-open"></i></div>
                     <h3>Contenido Práctico</h3>
-                    <p>Cursos diseñados para aplicar lo aprendido en la vida real.</p>
+                    <p>Cursos diseñados para aplicar lo aprendido en la vida real y en el contexto venezolano.</p>
                 </div>
                 <div class="benefit">
                     <div class="benefit-icon"><i class="fas fa-clock"></i></div>
@@ -478,103 +554,277 @@
         </div>
     </div>
 
+    <!-- SECCIÓN DE GESTIÓN DE CURSOS (OCULTA) -->
+    <div class="admin-section" id="admin-section">
+        <h2><i class="fas fa-cog"></i> Gestión de Cursos</h2>
+        <p>Aquí puedes agregar, editar o eliminar cursos de manera sencilla.</p>
+
+        <div class="course-form">
+            <h3>Agregar Nuevo Curso</h3>
+            <form id="newCourseForm">
+                <div class="form-group">
+                    <label for="course-id">ID del Curso (único, sin espacios):</label>
+                    <input type="text" id="course-id" required placeholder="Ej: negocio-cejas">
+                </div>
+                <div class="form-group">
+                    <label for="course-name">Nombre del Curso:</label>
+                    <input type="text" id="course-name" required placeholder="Ej: EL NEGOCIO DE LAS CEJAS">
+                </div>
+                <div class="form-group">
+                    <label for="course-price">Precio (USD):</label>
+                    <input type="number" id="course-price" step="0.01" required placeholder="Ej: 97.00">
+                </div>
+                <div class="form-group">
+                    <label for="course-badge">Etiqueta (Opcional):</label>
+                    <input type="text" id="course-badge" placeholder="Ej: Curso, E-book, MasterClass">
+                </div>
+                <div class="form-group">
+                    <label for="course-description">Descripción:</label>
+                    <textarea id="course-description" required placeholder="Descripción breve del curso..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="course-tags">Etiquetas (separadas por comas):</label>
+                    <input type="text" id="course-tags" placeholder="Ej: Dinero, Emprendimiento, Venezuela">
+                </div>
+                <div class="form-group">
+                    <label for="course-features">Características (una por línea):</label>
+                    <textarea id="course-features" placeholder="Ej: Alto margen de ganancia&#10;Baja inversión inicial&#10;Alta demanda"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="course-icon">Icono (Font Awesome):</label>
+                    <input type="text" id="course-icon" placeholder="Ej: fa-chart-line, fa-dollar-sign">
+                </div>
+                <div class="form-group">
+                    <label for="course-image">URL de la Imagen (Opcional):</label>
+                    <input type="url" id="course-image" placeholder="Ej: https://ejemplo.com/imagen.jpg">
+                </div>
+                <div class="form-group">
+                    <label for="course-komvii">Enlace de Komvii (Opcional):</label>
+                    <input type="url" id="course-komvii" placeholder="Ej: https://app.komvii.com/checkout/...">
+                </div>
+                <button type="button" class="btn-admin" onclick="addNewCourse()">
+                    <i class="fas fa-plus"></i> Agregar Curso
+                </button>
+            </form>
+        </div>
+
+        <div class="course-list-admin">
+            <h3>Lista de Cursos Actuales</h3>
+            <div id="admin-course-list"></div>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT -->
     <script>
         // ===== DATOS DE CURSOS =====
-        const courses = [
+        // Aquí puedes agregar, editar o eliminar cursos directamente.
+        // Cada curso es un objeto con las siguientes propiedades:
+        // - id: Identificador único (sin espacios, ej: "negocio-cejas")
+        // - name: Nombre del curso
+        // - price: Precio en USD (número, ej: 97.00)
+        // - badge: Etiqueta (opcional, ej: "Curso", "E-book")
+        // - description: Descripción breve
+        // - tags: Array de etiquetas (ej: ["Dinero", "Emprendimiento"])
+        // - features: Array de características (ej: ["Alto margen", "Baja inversión"])
+        // - icon: Icono de Font Awesome (ej: "fa-chart-line")
+        // - image: URL de la imagen (opcional)
+        // - komviiLink: Enlace de Komvii (opcional)
+        let courses = [
+            {
+                id: 'negocio-cejas',
+                name: 'EL NEGOCIO DE LAS CEJAS',
+                price: 97.00,
+                badge: 'Curso',
+                description: 'Aprende a montar tu negocio de cejas desde cero, con técnicas profesionales y estrategias de marketing para maximizar tus ganancias.',
+                tags: ['Dinero', 'Emprendimiento', 'Belleza', 'Venezuela'],
+                features: [
+                    'Técnicas profesionales de diseño de cejas',
+                    'Estrategias de marketing para atraer clientes',
+                    'Baja inversión inicial',
+                    'Alto margen de ganancia',
+                    'Acceso a comunidad de emprendedoras'
+                ],
+                icon: 'fa-eye',
+                image: 'https://via.placeholder.com/300x180/1a1a2e/ffffff?text=Negocio+de+Cejas',
+                komviiLink: '' // Añade aquí el enlace de Komvii cuando lo tengas
+            },
+            {
+                id: 'velas-desde-cero',
+                name: 'VELAS DESDE CERO',
+                price: 40.00,
+                badge: 'Curso',
+                description: 'Domina el arte de hacer velas aromáticas, decorativas y para eventos. Ideal para emprender con poco capital.',
+                tags: ['Dinero', 'Emprendimiento', 'Manualidades', 'Venezuela'],
+                features: [
+                    'Recetas para velas aromáticas y decorativas',
+                    'Técnicas de decoración y personalización',
+                    'Cómo vender en redes sociales',
+                    'Materiales accesibles en Venezuela',
+                    'Guía de precios y costos'
+                ],
+                icon: 'fa-candle-holder',
+                image: 'https://via.placeholder.com/300x180/1a1a2e/ffffff?text=Velas+desde+Cero',
+                komviiLink: ''
+            },
+            {
+                id: 'accesorios-resina',
+                name: 'Accesorios en Resina para Emprender',
+                price: 30.00,
+                badge: 'Curso',
+                description: 'Crea joyería, decoraciones y regalos con resina. Un negocio rentable y creativo con alta demanda.',
+                tags: ['Dinero', 'Emprendimiento', 'Manualidades', 'Venezuela'],
+                features: [
+                    'Técnicas básicas y avanzadas con resina',
+                    'Cómo evitar burbujas y errores comunes',
+                    'Ideas de productos para vender',
+                    'Dónde comprar materiales en Venezuela',
+                    'Estrategias de venta online'
+                ],
+                icon: 'fa-gem',
+                image: 'https://via.placeholder.com/300x180/1a1a2e/ffffff?text=Accesorios+en+Resina',
+                komviiLink: ''
+            },
+            {
+                id: 'alambrismo',
+                name: 'Accesorios en Alambrismo como Negocio',
+                price: 49.99,
+                badge: 'Curso',
+                description: 'Aprende a crear aretes, collares y pulseras con alambre. Un negocio con materiales económicos y alta rentabilidad.',
+                tags: ['Dinero', 'Emprendimiento', 'Manualidades', 'Venezuela'],
+                features: [
+                    'Técnicas de alambrismo para principiantes',
+                    'Diseños modernos y vendibles',
+                    'Cómo emprender con menos de $20',
+                    'Tips para vender en Instagram y Facebook',
+                    'Acceso a plantillas y guías'
+                ],
+                icon: 'fa-ring',
+                image: 'https://via.placeholder.com/300x180/1a1a2e/ffffff?text=Alambrismo',
+                komviiLink: ''
+            },
+            {
+                id: '7-pasos-finanzas',
+                name: '7 Pasos Sencillos para Organizar tus Finanzas',
+                price: 25.00,
+                badge: 'Curso',
+                description: 'Domina el arte de manejar tu dinero de forma inteligente, con estrategias adaptadas a la realidad económica de Venezuela.',
+                tags: ['Dinero', 'Finanzas Personales', 'Ahorro', 'Venezuela'],
+                features: [
+                    'Cómo crear un presupuesto realista',
+                    'Diferencias entre ahorro e inversión',
+                    'Manejo responsable de deudas',
+                    'Herramientas digitales para controlar tus finanzas',
+                    'Ejercicios prácticos y plantillas'
+                ],
+                icon: 'fa-piggy-bank',
+                image: 'https://via.placeholder.com/300x180/1a1a2e/ffffff?text=7+Pasos+Finanzas',
+                komviiLink: ''
+            },
+            {
+                id: 'courier-venezuela',
+                name: '¿CÓMO RECIBIR MIS COMPRAS POR COURIER O CONSOLIDACIÓN DE CARGA?',
+                price: 15.00,
+                badge: 'Guía',
+                description: 'Guía paso a paso para recibir tus compras internacionales sin pagar de más en impuestos o comisiones.',
+                tags: ['Dinero', 'Importaciones', 'Courier', 'Venezuela'],
+                features: [
+                    'Cómo elegir el mejor courier',
+                    'Trucos para evitar impuestos',
+                    'Listado de couriers confiables en Venezuela',
+                    'Cómo rastrear tus paquetes',
+                    'Consejos para comprar en Amazon, eBay y AliExpress'
+                ],
+                icon: 'fa-shipping-fast',
+                image: 'https://via.placeholder.com/300x180/1a1a2e/ffffff?text=Courier+Venezuela',
+                komviiLink: ''
+            },
+            {
+                id: 'enviar-carro-venezuela',
+                name: '¿CÓMO ENVIAR MI CARRO A VENEZUELA SIN PAGAR IMPUESTOS?',
+                price: 15.00,
+                badge: 'Guía',
+                description: 'Aprende los secretos para importar tu vehículo a Venezuela sin pagar impuestos innecesarios.',
+                tags: ['Dinero', 'Importaciones', 'Autos', 'Venezuela'],
+                features: [
+                    'Requisitos legales para importar un carro',
+                    'Cómo evitar multas y recargos',
+                    'Agencias de transporte recomendadas',
+                    'Documentación necesaria paso a paso',
+                    'Consejos para ahorrar en el proceso'
+                ],
+                icon: 'fa-car',
+                image: 'https://via.placeholder.com/300x180/1a1a2e/ffffff?text=Enviar+Carro',
+                komviiLink: ''
+            },
+            {
+                id: 'ia-contadores',
+                name: 'Inteligencia Artificial para Contadores',
+                price: 27.00,
+                badge: 'Curso',
+                description: 'Automatiza procesos contables y financiero con herramientas de IA. Ideal para contadores y emprendedores.',
+                tags: ['Dinero', 'Contabilidad', 'IA', 'Venezuela'],
+                features: [
+                    'Herramientas de IA para contadores',
+                    'Cómo automatizar facturación y nóminas',
+                    'Análisis financiero con inteligencia artificial',
+                    'Casos prácticos para pymes',
+                    'Acceso a plantillas y recursos'
+                ],
+                icon: 'fa-calculator',
+                image: 'https://via.placeholder.com/300x180/1a1a2e/ffffff?text=IA+para+Contadores',
+                komviiLink: ''
+            },
+            {
+                id: 'redes-sociales-pro',
+                name: 'Maneja las Redes Sociales como un Pro',
+                price: 19.99,
+                badge: 'Curso',
+                description: 'Domina Instagram, Facebook, TikTok y WhatsApp para vender cualquier producto o servicio en Venezuela.',
+                tags: ['Dinero', 'Marketing Digital', 'Redes Sociales', 'Venezuela'],
+                features: [
+                    'Estrategias para crecer en Instagram y TikTok',
+                    'Cómo crear contenido que vende',
+                    'Herramientas gratuitas para diseño y edición',
+                    'Técnicas para aumentar engagement',
+                    'Casos de éxito en Venezuela'
+                ],
+                icon: 'fa-share-alt',
+                image: 'https://via.placeholder.com/300x180/1a1a2e/ffffff?text=Redes+Sociales+Pro',
+                komviiLink: ''
+            },
             {
                 id: 'bolsa-venezuela',
-                name: 'Introducción a la Bolsa de Valores de Venezuela para Principiantes',
+                name: 'Introducción a la Bolsa de Valores de Venezuela',
                 price: 19.99,
                 badge: 'E-book',
-                description: 'Descubre cómo funciona la Bolsa de Valores en Venezuela con esta guía práctica para principiantes. Ideal para quienes quieren aprender sin complicaciones.',
-                tags: ['Bolsa de Valores', 'Finanzas', 'Venezuela', 'Principiantes'],
+                description: 'Descubre cómo funciona la Bolsa de Valores en Venezuela con esta guía práctica para principiantes.',
+                tags: ['Dinero', 'Bolsa de Valores', 'Finanzas', 'Venezuela'],
                 features: [
                     'Información verificada y adaptada al contexto venezolano',
                     'Conceptos clave explicados de forma sencilla',
                     'Ejemplos prácticos y claros',
                     'Formato PDF compatible con cualquier dispositivo',
-                    'Acceso a comunidad de aprendizaje',
-                    'Ideal para estudiantes y emprendedores'
+                    'Acceso a comunidad de aprendizaje'
                 ],
                 icon: 'fa-chart-line',
                 image: 'D9HbMJ0z9zbJVDk2WODCMNqJM36CprKCfmOcPGXA.jpg',
                 komviiLink: 'https://app.komvii.com/checkout/JzP9v8xkfeEfiomLEJZbHkVrdcXsdMxy'
-            },
-            {
-                id: 'inversion-basica',
-                name: 'Inversión para Principiantes',
-                price: 24.99,
-                badge: 'Curso',
-                description: 'Aprende los fundamentos de la inversión en mercados locales e internacionales, con estrategias adaptadas a la realidad venezolana.',
-                tags: ['Inversión', 'Finanzas Personales', 'Mercados'],
-                features: [
-                    'Introducción a activos financieros (acciones, bonos, etc.)',
-                    'Cómo empezar con poco capital',
-                    'Herramientas para analizar inversiones',
-                    'Riesgos y cómo mitigarlos',
-                    'Casos prácticos en Venezuela'
-                ],
-                icon: 'fa-chart-line',
-                image: 'D9HbMJ0z9zbJVDk2WODCMNqJM36CprKCfmOcPGXA.jpg'
-                komviiLink: 'https://app.komvii.com/checkout/JzP9v8xkfeEfiomLEJZbHkVrdcXsdMxy'
-
-            },
-            {
-                id: 'emprendimiento-digital',
-                name: 'Emprendimiento Digital en Venezuela',
-                price: 29.99,
-                badge: 'Curso',
-                description: 'Descubre cómo crear un negocio digital rentable desde Venezuela, incluso con recursos limitados.',
-                tags: ['Emprendimiento', 'Negocios Digitales', 'Venezuela'],
-                features: [
-                    'Modelos de negocio digital probados',
-                    'Cómo validar tu idea antes de invertir',
-                    'Estrategias de marketing low-cost',
-                    'Herramientas gratuitas para emprendedores',
-                    'Casos de éxito locales'
-                ],
-                icon: 'fa-laptop',
-                image: null
-            },
-            {
-                id: 'educacion-financiera',
-                name: 'Educación Financiera Básica',
-                price: 14.99,
-                badge: 'E-book',
-                description: 'Domina los conceptos esenciales para manejar tu dinero de forma inteligente: ahorro, presupuesto, deuda y más.',
-                tags: ['Finanzas Personales', 'Ahorro', 'Presupuesto'],
-                features: [
-                    'Cómo crear un presupuesto que funcione',
-                    'Diferencias entre ahorro e inversión',
-                    'Manejo responsable de deudas',
-                    'Errores comunes y cómo evitarlos',
-                    'Ejercicios prácticos'
-                ],
-                icon: 'fa-piggy-bank',
-                image: null
             }
         ];
 
         // ===== INICIALIZACIÓN =====
         document.addEventListener('DOMContentLoaded', () => {
-            renderFeaturedCourses();
             renderAllCourses();
+            renderAdminCourseList();
         });
 
-        function renderFeaturedCourses() {
-            const container = document.getElementById('featured-courses');
-            // Mostrar los 3 primeros cursos (o los que tengas)
-            const featured = courses.slice(0, 3);
-            container.innerHTML = featured.map(course => createCourseCard(course, true)).join('');
-        }
-
+        // ===== RENDERIZADO DE CURSOS =====
         function renderAllCourses() {
             const container = document.getElementById('all-courses');
-            container.innerHTML = courses.map(course => createCourseCard(course, false)).join('');
+            container.innerHTML = courses.map(course => createCourseCard(course)).join('');
         }
 
-        function createCourseCard(course, isFeatured) {
+        function createCourseCard(course) {
             const imageUrl = course.image || `https://via.placeholder.com/300x180/1a1a2e/ffffff?text=${encodeURIComponent(course.name)}`;
             return `
                 <div class="course-card">
@@ -584,7 +834,7 @@
                     </div>
                     <div class="course-info">
                         <h3>${course.name}</h3>
-                        <div class="course-price">$${course.price.toFixed(2)}</div>
+                        <div class="course-price">$${course.price.toFixed(2)} USD</div>
                         <p class="course-description">${course.description}</p>
                         <div class="course-tags">
                             ${course.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
@@ -592,7 +842,7 @@
                         <div class="course-actions">
                             ${course.komviiLink ?
                                 `<a href="${course.komviiLink}" target="_blank" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>` :
-                                `<button class="btn btn-primary" onclick="buyOnWhatsApp('${course.name.replace(/'/g, "\\'")}', ${course.price})"><i class="fas fa-shopping-cart"></i> Comprar</button>`
+                                `<button class="btn btn-primary" onclick="buyOnWhatsApp('${course.name.replace(/'/g, "\\'")}', ${course.price})"><i class="fab fa-whatsapp"></i> Consultar</button>`
                             }
                             <button class="btn btn-secondary" onclick="showCourseDetails('${course.id}')"><i class="fas fa-info-circle"></i> Más Info</button>
                         </div>
@@ -605,22 +855,19 @@
         function showView(viewName) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.getElementById('view-' + viewName).classList.add('active');
+            document.getElementById('admin-section').style.display = 'none';
             window.scrollTo(0, 0);
 
             // Actualizar estado activo del nav
             document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
             const navMap = { 'home': 'nav-home', 'courses': 'nav-cursos', 'benefits': 'nav-beneficios', 'contact': 'nav-contacto' };
             if (navMap[viewName]) document.getElementById(navMap[viewName]).classList.add('active');
-
-            // Cerrar menú móvil
-            document.getElementById('mainNav').classList.remove('active');
-            document.getElementById('hamburgerBtn').innerHTML = '<i class="fas fa-bars"></i>';
         }
 
         // ===== WHATSAPP =====
         function buyOnWhatsApp(productName, price) {
             const phone = '584129430088';
-            const message = `Hola GeotterMiu, quiero comprar: *${productName}* - Precio: *$${price.toFixed(2)}*. ¿Está disponible?`;
+            const message = `Hola GeotterMiu, estoy interesado en el curso: *${productName}* - Precio: *$${price.toFixed(2)} USD*. ¿Cómo puedo comprarlo?`;
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
@@ -637,7 +884,7 @@
                     <img src="${imageUrl}" alt="${course.name}" style="max-width:100%; border-radius:12px; box-shadow: var(--shadow-blue);">
                 </div>
                 <h2 style="text-align:center; margin-bottom:0.5rem; font-family: var(--font-heading);">${course.name}</h2>
-                <p style="text-align:center; font-size:1.3rem; font-weight:700; color:var(--gold-primary); margin-bottom:1rem;">$${course.price.toFixed(2)}</p>
+                <p style="text-align:center; font-size:1.3rem; font-weight:700; color:var(--gold-primary); margin-bottom:1rem;">$${course.price.toFixed(2)} USD</p>
                 <p style="color:var(--text-muted); margin-bottom:1.5rem; text-align:justify;">${course.description}</p>
 
                 <h3 style="margin:1.5rem 0 1rem; color:var(--gold-primary); font-size:1.1rem;">¿Qué incluye?</h3>
@@ -652,7 +899,7 @@
                 <div style="display:flex; gap:0.5rem; margin-top:1rem;">
                     ${course.komviiLink ?
                         `<a href="${course.komviiLink}" target="_blank" class="btn btn-primary" style="flex:1;"><i class="fas fa-shopping-cart"></i> Comprar Ahora</a>` :
-                        `<button class="btn btn-primary" onclick="buyOnWhatsApp('${course.name.replace(/'/g, "\\'")}', ${course.price}); closeModal();" style="flex:1;"><i class="fab fa-whatsapp"></i> Comprar por WhatsApp</button>`
+                        `<button class="btn btn-primary" onclick="buyOnWhatsApp('${course.name.replace(/'/g, "\\'")}', ${course.price}); closeModal();" style="flex:1;"><i class="fab fa-whatsapp"></i> Consultar por WhatsApp</button>`
                     }
                     <button class="btn btn-secondary" onclick="closeModal()" style="flex:1;">Cerrar</button>
                 </div>
@@ -662,6 +909,164 @@
 
         function closeModal() {
             document.getElementById('courseModal').classList.remove('active');
+        }
+
+        // ===== GESTIÓN DE CURSOS =====
+        function showAdminSection() {
+            // Ocultar todas las vistas
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            // Mostrar la sección de administración
+            document.getElementById('admin-section').style.display = 'block';
+            window.scrollTo(0, 0);
+            renderAdminCourseList();
+        }
+
+        function renderAdminCourseList() {
+            const container = document.getElementById('admin-course-list');
+            container.innerHTML = courses.map(course => `
+                <div class="course-item-admin">
+                    <button class="btn-delete" onclick="deleteCourse('${course.id}')">X</button>
+                    <h4>${course.name}</h4>
+                    <p><strong>Precio:</strong> $${course.price.toFixed(2)} USD</p>
+                    <p><strong>ID:</strong> ${course.id}</p>
+                    <p><strong>Enlace:</strong> ${course.komviiLink || 'No tiene'}</p>
+                    <button class="btn btn-secondary" onclick="editCourse('${course.id}')" style="margin-top: 0.5rem; width: 100%;">
+                        <i class="fas fa-edit"></i> Editar
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function addNewCourse() {
+            const id = document.getElementById('course-id').value.trim();
+            const name = document.getElementById('course-name').value.trim();
+            const price = parseFloat(document.getElementById('course-price').value);
+            const badge = document.getElementById('course-badge').value.trim();
+            const description = document.getElementById('course-description').value.trim();
+            const tags = document.getElementById('course-tags').value.split(',').map(tag => tag.trim());
+            const features = document.getElementById('course-features').value.split('\n').map(f => f.trim()).filter(f => f);
+            const icon = document.getElementById('course-icon').value.trim();
+            const image = document.getElementById('course-image').value.trim();
+            const komviiLink = document.getElementById('course-komvii').value.trim();
+
+            // Validar campos obligatorios
+            if (!id || !name || isNaN(price) || !description) {
+                alert('Por favor, completa los campos obligatorios: ID, Nombre, Precio y Descripción.');
+                return;
+            }
+
+            // Verificar si el ID ya existe
+            if (courses.some(c => c.id === id)) {
+                alert('Ya existe un curso con este ID. Usa uno diferente.');
+                return;
+            }
+
+            // Crear el nuevo curso
+            const newCourse = {
+                id,
+                name,
+                price,
+                badge: badge || null,
+                description,
+                tags: tags.filter(t => t),
+                features: features.length > 0 ? features : ['Contenido de calidad', 'Acceso inmediato', 'Soporte personalizado'],
+                icon: icon || 'fa-book',
+                image: image || null,
+                komviiLink: komviiLink || null
+            };
+
+            // Agregar al array de cursos
+            courses.push(newCourse);
+
+            // Limpiar el formulario
+            document.getElementById('newCourseForm').reset();
+
+            // Actualizar las vistas
+            renderAllCourses();
+            renderAdminCourseList();
+
+            alert(`¡Curso "${name}" agregado correctamente!`);
+        }
+
+        function deleteCourse(courseId) {
+            if (confirm(`¿Estás seguro de que quieres eliminar el curso con ID: ${courseId}?`)) {
+                courses = courses.filter(c => c.id !== courseId);
+                renderAllCourses();
+                renderAdminCourseList();
+                alert('Curso eliminado correctamente.');
+            }
+        }
+
+        function editCourse(courseId) {
+            const course = courses.find(c => c.id === courseId);
+            if (!course) return;
+
+            // Llenar el formulario con los datos del curso
+            document.getElementById('course-id').value = course.id;
+            document.getElementById('course-name').value = course.name;
+            document.getElementById('course-price').value = course.price;
+            document.getElementById('course-badge').value = course.badge || '';
+            document.getElementById('course-description').value = course.description;
+            document.getElementById('course-tags').value = course.tags.join(', ');
+            document.getElementById('course-features').value = course.features.join('\n');
+            document.getElementById('course-icon').value = course.icon || '';
+            document.getElementById('course-image').value = course.image || '';
+            document.getElementById('course-komvii').value = course.komviiLink || '';
+
+            // Cambiar el botón de "Agregar" a "Guardar Cambios"
+            const submitBtn = document.querySelector('.course-form button[type="button"]');
+            submitBtn.innerHTML = '<i class="fas fa-save"></i> Guardar Cambios';
+            submitBtn.onclick = function() {
+                saveEditedCourse(courseId);
+            };
+        }
+
+        function saveEditedCourse(oldId) {
+            const id = document.getElementById('course-id').value.trim();
+            const name = document.getElementById('course-name').value.trim();
+            const price = parseFloat(document.getElementById('course-price').value);
+            const badge = document.getElementById('course-badge').value.trim();
+            const description = document.getElementById('course-description').value.trim();
+            const tags = document.getElementById('course-tags').value.split(',').map(tag => tag.trim());
+            const features = document.getElementById('course-features').value.split('\n').map(f => f.trim()).filter(f => f);
+            const icon = document.getElementById('course-icon').value.trim();
+            const image = document.getElementById('course-image').value.trim();
+            const komviiLink = document.getElementById('course-komvii').value.trim();
+
+            // Validar campos obligatorios
+            if (!id || !name || isNaN(price) || !description) {
+                alert('Por favor, completa los campos obligatorios: ID, Nombre, Precio y Descripción.');
+                return;
+            }
+
+            // Actualizar el curso en el array
+            const index = courses.findIndex(c => c.id === oldId);
+            if (index !== -1) {
+                courses[index] = {
+                    id,
+                    name,
+                    price,
+                    badge: badge || null,
+                    description,
+                    tags: tags.filter(t => t),
+                    features: features.length > 0 ? features : ['Contenido de calidad', 'Acceso inmediato', 'Soporte personalizado'],
+                    icon: icon || 'fa-book',
+                    image: image || null,
+                    komviiLink: komviiLink || null
+                };
+            }
+
+            // Restablecer el formulario y el botón
+            document.getElementById('newCourseForm').reset();
+            const submitBtn = document.querySelector('.course-form button[type="button"]');
+            submitBtn.innerHTML = '<i class="fas fa-plus"></i> Agregar Curso';
+            submitBtn.onclick = addNewCourse;
+
+            // Actualizar las vistas
+            renderAllCourses();
+            renderAdminCourseList();
+
+            alert(`¡Curso "${name}" actualizado correctamente!`);
         }
 
         // ===== MENÚ MÓVIL =====
