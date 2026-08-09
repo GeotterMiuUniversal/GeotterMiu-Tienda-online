@@ -47,7 +47,7 @@
         .dark-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: rgba(0, 0, 0, de 0.8);
+            background: rgba(0, 0, 0, 0.8);
         }
         .view { display: none; animation: fadeIn 0.5s ease; }
         .view.active { display: block; }
@@ -465,7 +465,7 @@
             transform: translateY(-2px);
         }
 
-        /* ===== ESTILOS PARA CATEGORÍAS Y FILTROS ===== */
+        /* ===== NUEVO: ESTILOS PARA CATEGORÍAS ===== */
         .category-section {
             margin-bottom: 3.5rem;
         }
@@ -491,44 +491,6 @@
             font-size: 1.1rem;
         }
 
-        /* Filtros de categoría */
-        .category-filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.7rem;
-            justify-content: center;
-            margin-bottom: 2.5rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .filter-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 86, 179, 0.4);
-            color: var(--text-muted);
-            padding: 0.55rem 1.3rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: var(--font-body);
-        }
-        .filter-btn:hover {
-            border-color: var(--secondary-blue);
-            color: var(--text-white);
-            background: rgba(0, 123, 255, 0.1);
-        }
-        .filter-btn.active {
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            border-color: transparent;
-            color: white;
-            box-shadow: 0 4px 15px rgba(0, 86, 179, 0.35);
-        }
-        .filter-btn.active:hover {
-            transform: translateY(-2px);
-        }
-
         @media (max-width: 992px) {
             nav ul {
                 display: none; position: absolute; top: 100%; left: 0;
@@ -543,13 +505,6 @@
         @media (max-width: 768px) {
             .courses-grid { grid-template-columns: 1fr; }
             .hero-buttons { flex-direction: column; align-items: center; }
-            .category-filters {
-                gap: 0.5rem;
-            }
-            .filter-btn {
-                font-size: 0.8rem;
-                padding: 0.5rem 1rem;
-            }
         }
     </style>
 </head>
@@ -590,10 +545,6 @@
                 <h2>Todos los Cursos</h2>
                 <p>Selecciona el curso que más te interese y comienza a aprender hoy mismo</p>
             </div>
-
-            <!-- FILTROS DE CATEGORÍA -->
-            <div class="category-filters" id="category-filters"></div>
-
             <div id="all-courses"></div>
         </div>
     </section>
@@ -747,11 +698,9 @@
     </div>
     <script>
         let courses = [];
-        let currentFilter = 'all'; // Filtro actual
 
         document.addEventListener('DOMContentLoaded', () => {
             loadCourses();
-            renderCategoryFilters();
             renderAllCourses();
             renderAdminCourseList();
             document.addEventListener('keydown', (e) => {
@@ -834,56 +783,17 @@
             localStorage.setItem('geottermiu-courses', JSON.stringify(courses));
         }
 
-        // ===== FILTROS DE CATEGORÍA =====
-        function getUniqueCategories() {
-            const cats = courses.map(c => c.category || 'Sin categoría');
-            return [...new Set(cats)].sort((a, b) => a.localeCompare(b));
-        }
-
-        function renderCategoryFilters() {
-            const container = document.getElementById('category-filters');
-            const categories = getUniqueCategories();
-
-            let html = `
-                <button class="filter-btn ${currentFilter === 'all' ? 'active' : ''}" onclick="filterByCategory('all')">
-                    Todos
-                </button>
-            `;
-
-            categories.forEach(cat => {
-                html += `
-                    <button class="filter-btn ${currentFilter === cat ? 'active' : ''}" onclick="filterByCategory('${cat.replace(/'/g, "\\'")}')">
-                        ${cat}
-                    </button>
-                `;
-            });
-
-            container.innerHTML = html;
-        }
-
-        function filterByCategory(category) {
-            currentFilter = category;
-            renderCategoryFilters();
-            renderAllCourses();
-        }
-
         function renderAllCourses() {
             const container = document.getElementById('all-courses');
             
-            // Filtrar cursos según el filtro actual
-            let filteredCourses = courses;
-            if (currentFilter !== 'all') {
-                filteredCourses = courses.filter(c => (c.category || 'Sin categoría') === currentFilter);
-            }
-
-            if (filteredCourses.length === 0) {
-                container.innerHTML = '<div class="no-courses">No hay cursos en esta categoría.</div>';
+            if (courses.length === 0) {
+                container.innerHTML = '<div class="no-courses">No hay cursos disponibles por el momento.</div>';
                 return;
             }
 
-            // Agrupar cursos filtrados por categoría
+            // Agrupar cursos por categoría
             const grouped = {};
-            filteredCourses.forEach(course => {
+            courses.forEach(course => {
                 const cat = course.category || 'Sin categoría';
                 if (!grouped[cat]) grouped[cat] = [];
                 grouped[cat].push(course);
@@ -894,26 +804,16 @@
 
             let html = '';
             sortedCategories.forEach(category => {
-                // Solo mostrar el título de categoría si el filtro es "Todos"
-                if (currentFilter === 'all') {
-                    html += `
-                        <div class="category-section">
-                            <h3 class="category-title">
-                                <i class="fas fa-folder-open"></i> ${category}
-                            </h3>
-                            <div class="courses-grid">
-                                ${grouped[category].map(course => createCourseCard(course)).join('')}
-                            </div>
-                        </div>
-                    `;
-                } else {
-                    // Si se filtró por una categoría específica, solo mostramos las tarjetas
-                    html += `
+                html += `
+                    <div class="category-section">
+                        <h3 class="category-title">
+                            <i class="fas fa-folder-open"></i> ${category}
+                        </h3>
                         <div class="courses-grid">
                             ${grouped[category].map(course => createCourseCard(course)).join('')}
                         </div>
-                    `;
-                }
+                    </div>
+                `;
             });
 
             container.innerHTML = html;
@@ -1064,7 +964,6 @@
 
             courses.push(newCourse);
             saveCoursesToLocalStorage();
-            renderCategoryFilters();
             renderAllCourses();
             renderAdminCourseList();
             document.getElementById('newCourseForm').reset();
@@ -1075,7 +974,6 @@
             if (confirm(`¿Estás seguro de que quieres eliminar el curso con ID: ${courseId}?`)) {
                 courses = courses.filter(c => c.id !== courseId);
                 saveCoursesToLocalStorage();
-                renderCategoryFilters();
                 renderAllCourses();
                 renderAdminCourseList();
                 alert('Curso eliminado correctamente.');
@@ -1144,7 +1042,6 @@
             const submitBtn = document.querySelector('.course-form button[type="button"]');
             submitBtn.innerHTML = '<i class="fas fa-plus"></i> Agregar Curso';
             submitBtn.onclick = addNewCourse;
-            renderCategoryFilters();
             renderAllCourses();
             renderAdminCourseList();
             alert(`¡Curso "${name}" actualizado correctamente!`);
@@ -1169,16 +1066,11 @@
             html += bodyClone.innerHTML + '\n';
             // 3. Script limpio
             html += '<script>\n';
-            html += 'let courses = ' + currentCourses + ';\n';
-            html += 'let currentFilter = "all";\n\n';
+            html += 'let courses = ' + currentCourses + ';\n\n';
             html += 'document.addEventListener("DOMContentLoaded", function() {\n';
-            html += '    renderCategoryFilters();\n';
-            html += '    renderAllCourses();\n';
+            html += ' renderAllCourses();\n';
             html += '});\n\n';
             // Funciones esenciales
-            html += getUniqueCategories.toString() + '\n\n';
-            html += renderCategoryFilters.toString() + '\n\n';
-            html += filterByCategory.toString() + '\n\n';
             html += renderAllCourses.toString() + '\n\n';
             html += createCourseCard.toString() + '\n\n';
             html += showView.toString() + '\n\n';
