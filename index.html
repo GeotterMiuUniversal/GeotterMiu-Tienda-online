@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeotterMiu | Cursos Digitales para Venezuela</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Montserrat:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600&amp;display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #0056b3;
@@ -495,8 +496,10 @@
             .hero-buttons { flex-direction: column; align-items: center; }
         }
     </style>
+
 </head>
 <body>
+
     <div class="parallax-bg"></div>
     <div class="dark-overlay"></div>
 
@@ -507,16 +510,16 @@
         </div>
         <nav id="mainNav">
             <ul>
-                <li><a onclick="showView('home')" id="nav-home">Inicio</a></li>
-                <li><a onclick="showView('courses')" id="nav-cursos">Cursos</a></li>
-                <li><a onclick="showView('benefits')" id="nav-beneficios">Beneficios</a></li>
-                <li><a onclick="showView('contact')" id="nav-contacto">Contacto</a></li>
+                <li><a onclick="showView('home')" id="nav-home" class="">Inicio</a></li>
+                <li><a onclick="showView('courses')" id="nav-cursos" class="active">Cursos</a></li>
+                <li><a onclick="showView('benefits')" id="nav-beneficios" class="">Beneficios</a></li>
+                <li><a onclick="showView('contact')" id="nav-contacto" class="">Contacto</a></li>
             </ul>
         </nav>
         <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
     </header>
 
-    <section class="view active" id="view-home">
+    <section class="view" id="view-home">
         <div class="hero">
             <div class="hero-content">
                 <img src="https://raw.githubusercontent.com/GeotterMiuUniversal/GeotterMiu-Tienda-online/refs/heads/main/logo.jpg" alt="GeotterMiu Logo">
@@ -529,14 +532,168 @@
         </div>
     </section>
 
-    <section class="view" id="view-courses">
+    <section class="view active" id="view-courses">
         <div class="category-view">
             <button class="back-btn" onclick="showView('home')"><i class="fas fa-arrow-left"></i> Volver al Inicio</button>
             <div class="section-header">
                 <h2>Todos los Cursos</h2>
                 <p>Selecciona el curso que más te interese y comienza a aprender hoy mismo</p>
             </div>
-            <div class="courses-grid" id="all-courses"></div>
+            <div class="courses-grid" id="all-courses">
+                <div class="course-card">
+                    <div class="course-badge">Curso</div>
+                    <div class="course-image" style="background-image: url('https://cdn.komvii.com/products/gPWgvMksytRO4XSwj9vcO7xDOZuGdl3xK9r8N7NX.jpg'); background-size: cover; background-position: center;">
+                        
+                    </div>
+                    <div class="course-info">
+                        <h3>EL NEGOCIO DE LAS CEJAS</h3>
+                        <div class="course-price">$97.00 USD</div>
+                        <p class="course-description">Aprende a montar tu negocio de cejas desde cero, con técnicas profesionales y estrategias de marketing para maximizar tus ganancias.</p>
+                        <div class="course-tags">
+                            <span class="tag">Dinero</span><span class="tag">Emprendimiento</span><span class="tag">Belleza</span><span class="tag">Venezuela</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="https://app.komvii.com/checkout/v8mvTuUMAMhzGvlTRQbwKHt0iyUfVNqU" target="_blank" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>
+                            <button class="btn btn-secondary" onclick="showCourseDetails('negocio-cejas')"><i class="fas fa-info-circle"></i> Más Info</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="course-card">
+                    <div class="course-badge">Curso</div>
+                    <div class="course-image" style="background-image: url('https://cdn2.roaslatam.com/products/ENEtG3Qt5iSZIWuxY2yQkGrrbCLSZH4FrJdfYnLe.png'); background-size: cover; background-position: center;">
+                        
+                    </div>
+                    <div class="course-info">
+                        <h3>VELAS DESDE CERO</h3>
+                        <div class="course-price">$25.00 USD</div>
+                        <p class="course-description">Domina el arte de hacer velas aromáticas, decorativas y para eventos. Ideal para emprender con poco capital.</p>
+                        <div class="course-tags">
+                            <span class="tag">Dinero</span><span class="tag">Emprendimiento</span><span class="tag">Manualidades</span><span class="tag">Venezuela</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="https://app.komvii.com/checkout/RHt6DFF2iN0oCCUxMMebKZIPSnfyzHK0" target="_blank" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>
+                            <button class="btn btn-secondary" onclick="showCourseDetails('velas-desde-cero')"><i class="fas fa-info-circle"></i> Más Info</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="course-card">
+                    <div class="course-badge">E-book</div>
+                    <div class="course-image" style="background-image: url('D9HbMJ0z9zbJVDk2WODCMNqJM36CprKCfmOcPGXA.jpg'); background-size: cover; background-position: center;">
+                        
+                    </div>
+                    <div class="course-info">
+                        <h3>Introducción a la Bolsa de Valores de Venezuela</h3>
+                        <div class="course-price">$13.50 USD</div>
+                        <p class="course-description">Descubre cómo funciona la Bolsa de Valores en Venezuela con esta guía práctica para principiantes.</p>
+                        <div class="course-tags">
+                            <span class="tag">Dinero</span><span class="tag">Bolsa de Valores</span><span class="tag">Finanzas</span><span class="tag">Venezuela</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="https://app.komvii.com/checkout/JzP9v8xkfeEfiomLEJZbHkVrdcXsdMxy" target="_blank" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>
+                            <button class="btn btn-secondary" onclick="showCourseDetails('bolsa-venezuela')"><i class="fas fa-info-circle"></i> Más Info</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="course-card">
+                    <div class="course-badge">Curso</div>
+                    <div class="course-image" style="background-image: url('https://cdn.komvii.com/products/ylykFsEXL0u2RtB25BFIynJ43jrWhIta3Ql4Wl6R.png'); background-size: cover; background-position: center;">
+                        
+                    </div>
+                    <div class="course-info">
+                        <h3>Ebook: NEURO-DREAMING Transforma tus Pensamientos en Realidad</h3>
+                        <div class="course-price">$5.99 USD</div>
+                        <p class="course-description">Este ebook es una guía práctica y científica sobre visualización mental aplicada a la vida real. Presenta de forma clara qué es la visualización, cómo funciona en el cerebro y por qué puede mejorar el rendimiento, la salud y el bienestar emocional. A lo largo de los capítulos ofrece ejercicios paso a paso, ejemplos por contextos (deporte, empresa, salud, estudio), plantillas y recursos para que el lector entrene su imaginación de manera estructurada y mida sus avances en el tiempo. Su enfoque combina neurociencia, psicología aplicada y herramientas muy prácticas, de modo que cualquier persona pueda aprender a crear imágenes mentales más vívidas, realistas y emocionales, y convertirlas en acciones concretas y resultados visibles en su vida diaria.</p>
+                        <div class="course-tags">
+                            <span class="tag">Desarrollo mental</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="https://app.komvii.com/checkout/vThR7Om5zOaZrGWy3Ska8sops8W34TQ0" target="_blank" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>
+                            <button class="btn btn-secondary" onclick="showCourseDetails('neutro-dreaming')"><i class="fas fa-info-circle"></i> Más Info</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="course-card">
+                    <div class="course-badge">Curso</div>
+                    <div class="course-image" style="background-image: url('https://cdn.komvii.com/products/lpFewCbxv4ywekDXRgFX0NXClDqdp5JSFJFe4yXn.jpg'); background-size: cover; background-position: center;">
+                        
+                    </div>
+                    <div class="course-info">
+                        <h3>Vende y Multiplica tus Ingresos con SHEIN - AMAZON - TEMU - ALIEXPRESS</h3>
+                        <div class="course-price">$30.00 USD</div>
+                        <p class="course-description">🚀 Desbloquea el Superpoder de la Importación B2C: Tu Curso Definitivo para Ganar Dinero con Productos de China
+
+
+¡Basta de Soñar! Es Hora de Importar, Vender y Multiplicar tus Ingresos
+
+
+¿Cansado de ver a otros ganar dinero con el comercio electrónico mientras tú sigues buscando la fórmula mágica? La fórmula no es mágica, es logística B2C inteligente y está esperando por ti.
+
+
+Este no es otro curso teórico. Es el mapa de ruta directo y sin rodeos para que, sin grandes inversiones iniciales ni contenedores, empieces a vender productos de China de alta demanda directamente a tus clientes, maximizando tu margen de ganancia desde el primer día.
+
+
+⏳ Deja de perder tiempo y empieza a construir tu patrimonio
+
+
+Este curso grabado te da la flexibilidad para aprender a tu propio ritmo y la claridad que necesitas para actuar. No más prueba y error. Tendrás el conocimiento condensado y listo para implementar en menos de 48 horas.
+
+
+Si estás listo para transformar:
+
+    Tiempo libre en pedidos rentables llegando a tu puerta.
+    Dudas y miedos en ganancias demostrables en tu cuenta bancaria.
+
+
+¡Inscríbete hoy! Tu independencia financiera comienza con la primera importación exitosa.</p>
+                        <div class="course-tags">
+                            <span class="tag">Emprendimiento</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="https://app.komvii.com/checkout/qi1DvF6jGQ9nKLkn42PgQ07FPtAywNz0" target="_blank" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>
+                            <button class="btn btn-secondary" onclick="showCourseDetails('negocio')"><i class="fas fa-info-circle"></i> Más Info</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="course-card">
+                    <div class="course-badge">curso</div>
+                    <div class="course-image" style="background-image: url('https://cdn.komvii.com/products/XoWIEviABYYwvmT3APgUzF413nOIkLwQ2tOhSGcn.png'); background-size: cover; background-position: center;">
+                        
+                    </div>
+                    <div class="course-info">
+                        <h3>Conquista la cámara, vence tus límites</h3>
+                        <div class="course-price">$4.99 USD</div>
+                        <p class="course-description">¿Te da miedo aparecer frente a la cámara? ¿Sientes que no sabes cómo conectar con tu audiencia a través de videos o historias? Este ebook es tu guía definitiva para perder el miedo a mostrarse frente a la cámara y comenzar a crear contenido auténtico que realmente impacte.
+
+En “Conquista la cámara, vence tus límites” aprenderás:
+
+Por qué es clave mostrarse frente a la cámara.
+
+10 pasos para superar el miedo y hablar con naturalidad.
+
+Un reto de 5 días para empezar a grabar hoy mismo.
+
+Recursos prácticos: ejercicios, guiones.
+
+Bonus: 50 ideas de contenido para historias
+
+Este ebook no solo te enseñará a grabar videos, sino a conectar de manera auténtica con tu audiencia, generando confianza, cercanía y resultados reales.
+
+¡Es hora de dar el primer paso, mostrarte tal como eres y conquistar la cámara sin miedo!</p>
+                        <div class="course-tags">
+                            <span class="tag">Emprendimiento</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="https://app.komvii.com/checkout/XQIs9WYw9I11eTvCQ4CM2oiP1TFthgMq" target="_blank" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>
+                            <button class="btn btn-secondary" onclick="showCourseDetails('Conquista-la-cámara')"><i class="fas fa-info-circle"></i> Más Info</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -604,182 +761,198 @@
             <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
         <div class="copyright">
-            <p>&copy; 2026 GeotterMiu. Todos los derechos reservados.</p>
+            <p>© 2026 GeotterMiu. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <div class="modal" id="courseModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-            <div id="modalBody"></div>
+            <div id="modalBody">
+                <div style="text-align:center; margin-bottom:1.5rem;">
+                    <img src="https://cdn.komvii.com/products/gPWgvMksytRO4XSwj9vcO7xDOZuGdl3xK9r8N7NX.jpg" alt="EL NEGOCIO DE LAS CEJAS" style="max-width:100%; border-radius:12px; box-shadow: var(--shadow-blue);">
+                </div>
+                <h2 style="text-align:center; margin-bottom:0.5rem; font-family: var(--font-heading);">EL NEGOCIO DE LAS CEJAS</h2>
+                <p style="text-align:center; font-size:1.3rem; font-weight:700; color:var(--gold-primary); margin-bottom:1rem;">$97.00 USD</p>
+                <p style="color:var(--text-muted); margin-bottom:1.5rem; text-align:justify;">Aprende a montar tu negocio de cejas desde cero, con técnicas profesionales y estrategias de marketing para maximizar tus ganancias.</p>
+
+                <h3 style="margin:1.5rem 0 1rem; color:var(--gold-primary); font-size:1.1rem;">¿Qué incluye?</h3>
+                <ul style="list-style:none; padding:0; margin-bottom:1.5rem;">
+                    
+                        <li style="padding:0.5rem 0; border-bottom:1px solid rgba(0, 86, 179, 0.1); color:var(--text-muted); font-size:0.9rem;">
+                            <i class="fas fa-check" style="color:var(--gold-primary); margin-right:8px;"></i>Técnicas profesionales de diseño de cejas
+                        </li>
+                    
+                        <li style="padding:0.5rem 0; border-bottom:1px solid rgba(0, 86, 179, 0.1); color:var(--text-muted); font-size:0.9rem;">
+                            <i class="fas fa-check" style="color:var(--gold-primary); margin-right:8px;"></i>Estrategias de marketing para atraer clientes
+                        </li>
+                    
+                        <li style="padding:0.5rem 0; border-bottom:1px solid rgba(0, 86, 179, 0.1); color:var(--text-muted); font-size:0.9rem;">
+                            <i class="fas fa-check" style="color:var(--gold-primary); margin-right:8px;"></i>Baja inversión inicial
+                        </li>
+                    
+                        <li style="padding:0.5rem 0; border-bottom:1px solid rgba(0, 86, 179, 0.1); color:var(--text-muted); font-size:0.9rem;">
+                            <i class="fas fa-check" style="color:var(--gold-primary); margin-right:8px;"></i>Alto margen de ganancia
+                        </li>
+                    
+                        <li style="padding:0.5rem 0; border-bottom:1px solid rgba(0, 86, 179, 0.1); color:var(--text-muted); font-size:0.9rem;">
+                            <i class="fas fa-check" style="color:var(--gold-primary); margin-right:8px;"></i>Acceso a comunidad de emprendedoras
+                        </li>
+                    
+                </ul>
+
+                <div style="display:flex; gap:0.5rem; margin-top:1rem;">
+                    <a href="https://app.komvii.com/checkout/v8mvTuUMAMhzGvlTRQbwKHt0iyUfVNqU" target="_blank" class="btn btn-primary" style="flex:1;"><i class="fas fa-shopping-cart"></i> Comprar Ahora</a>
+                    <button class="btn btn-secondary" onclick="closeModal()" style="flex:1;">Cerrar</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="admin-section" id="admin-section">
-        <div class="admin-header">
-            <h2><i class="fas fa-cog"></i> Gestión de Cursos</h2>
-            <button class="admin-close" onclick="closeAdminSection()"><i class="fas fa-times"></i></button>
-        </div>
-        <p>Edita los cursos aquí. Los cambios se guardan en tu navegador. Para actualizar GitHub, usa el botón <strong>Generar Código HTML</strong> abajo.</p>
+    
 
-        <div class="course-form">
-            <h3>Agregar Nuevo Curso</h3>
-            <form id="newCourseForm">
-                <div class="form-group">
-                    <label for="course-id">ID del Curso (único, sin espacios):</label>
-                    <input type="text" id="course-id" required placeholder="Ej: negocio-cejas">
-                </div>
-                <div class="form-group">
-                    <label for="course-name">Nombre del Curso:</label>
-                    <input type="text" id="course-name" required placeholder="Ej: EL NEGOCIO DE LAS CEJAS">
-                </div>
-                <div class="form-group">
-                    <label for="course-price">Precio (USD):</label>
-                    <input type="number" id="course-price" step="0.01" required placeholder="Ej: 97.00">
-                </div>
-                <div class="form-group">
-                    <label for="course-badge">Etiqueta (Opcional):</label>
-                    <input type="text" id="course-badge" placeholder="Ej: Curso, E-book">
-                </div>
-                <div class="form-group">
-                    <label for="course-description">Descripción:</label>
-                    <textarea id="course-description" required placeholder="Descripción breve del curso..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="course-tags">Etiquetas (separadas por comas):</label>
-                    <input type="text" id="course-tags" placeholder="Ej: Dinero, Emprendimiento, Venezuela">
-                </div>
-                <div class="form-group">
-                    <label for="course-features">Características (una por línea):</label>
-                    <textarea id="course-features" placeholder="Ej: Alto margen de ganancia&#10;Baja inversión inicial"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="course-icon">Icono (Font Awesome):</label>
-                    <input type="text" id="course-icon" placeholder="Ej: fa-eye, fa-dollar-sign">
-                </div>
-                <div class="form-group">
-                    <label for="course-image">URL de la Imagen (Opcional):</label>
-                    <input type="url" id="course-image" placeholder="Ej: https://ejemplo.com/imagen.jpg">
-                </div>
-                <div class="form-group">
-                    <label for="course-komvii">Enlace de Komvii (Opcional):</label>
-                    <input type="url" id="course-komvii" placeholder="Ej: https://app.komvii.com/checkout/...">
-                </div>
-                <button type="button" class="btn-admin" onclick="addNewCourse()">
-                    <i class="fas fa-plus"></i> Agregar Curso
-                </button>
-            </form>
-        </div>
+    
 
-        <div class="course-list-admin">
-            <h3>Lista de Cursos Actuales</h3>
-            <div id="admin-course-list"></div>
-        </div>
 
-        <div class="code-generator-section">
-            <h3><i class="fas fa-code"></i> Generar Código para GitHub</h3>
-            <p>Haz clic en el botón abajo para generar el código HTML completo con tus cursos actualizados. Luego, copia el código y pégalo en tu archivo <code>index.html</code> de GitHub.</p>
-            <button class="btn-generate" onclick="generateHTMLCode()">
-                <i class="fas fa-file-code"></i> Generar Código HTML
-            </button>
-            <button class="btn-copy" onclick="copyGeneratedCode()">
-                <i class="fas fa-copy"></i> Copiar Código
-            </button>
-            <textarea id="generated-code" readonly></textarea>
-        </div>
-    </div>
+<protonpass-root-8e3b data-protonpass-role="root" data-protonpass-theme="os"></protonpass-root-8e3b>
+<script>
+let courses = [
+    {
+        "id": "negocio-cejas",
+        "name": "EL NEGOCIO DE LAS CEJAS",
+        "price": 97,
+        "badge": "Curso",
+        "description": "Aprende a montar tu negocio de cejas desde cero, con técnicas profesionales y estrategias de marketing para maximizar tus ganancias.",
+        "tags": [
+            "Dinero",
+            "Emprendimiento",
+            "Belleza",
+            "Venezuela"
+        ],
+        "features": [
+            "Técnicas profesionales de diseño de cejas",
+            "Estrategias de marketing para atraer clientes",
+            "Baja inversión inicial",
+            "Alto margen de ganancia",
+            "Acceso a comunidad de emprendedoras"
+        ],
+        "icon": "fa-eye",
+        "image": "https://cdn.komvii.com/products/gPWgvMksytRO4XSwj9vcO7xDOZuGdl3xK9r8N7NX.jpg",
+        "komviiLink": "https://app.komvii.com/checkout/v8mvTuUMAMhzGvlTRQbwKHt0iyUfVNqU"
+    },
+    {
+        "id": "velas-desde-cero",
+        "name": "VELAS DESDE CERO",
+        "price": 25,
+        "badge": "Curso",
+        "description": "Domina el arte de hacer velas aromáticas, decorativas y para eventos. Ideal para emprender con poco capital.",
+        "tags": [
+            "Dinero",
+            "Emprendimiento",
+            "Manualidades",
+            "Venezuela"
+        ],
+        "features": [
+            "Recetas para velas aromáticas y decorativas",
+            "Técnicas de decoración y personalización",
+            "Cómo vender en redes sociales",
+            "Materiales accesibles en Venezuela",
+            "Guía de precios y costos"
+        ],
+        "icon": "fa-candle-holder",
+        "image": "https://cdn2.roaslatam.com/products/ENEtG3Qt5iSZIWuxY2yQkGrrbCLSZH4FrJdfYnLe.png",
+        "komviiLink": "https://app.komvii.com/checkout/RHt6DFF2iN0oCCUxMMebKZIPSnfyzHK0"
+    },
+    {
+        "id": "bolsa-venezuela",
+        "name": "Introducción a la Bolsa de Valores de Venezuela",
+        "price": 13.5,
+        "badge": "E-book",
+        "description": "Descubre cómo funciona la Bolsa de Valores en Venezuela con esta guía práctica para principiantes.",
+        "tags": [
+            "Dinero",
+            "Bolsa de Valores",
+            "Finanzas",
+            "Venezuela"
+        ],
+        "features": [
+            "Información verificada y adaptada al contexto venezolano",
+            "Conceptos clave explicados de forma sencilla",
+            "Ejemplos prácticos y claros",
+            "Formato PDF compatible con cualquier dispositivo",
+            "Acceso a comunidad de aprendizaje"
+        ],
+        "icon": "fa-chart-line",
+        "image": "D9HbMJ0z9zbJVDk2WODCMNqJM36CprKCfmOcPGXA.jpg",
+        "komviiLink": "https://app.komvii.com/checkout/JzP9v8xkfeEfiomLEJZbHkVrdcXsdMxy"
+    },
+    {
+        "id": "neutro-dreaming",
+        "name": "Ebook: NEURO-DREAMING Transforma tus Pensamientos en Realidad",
+        "price": 5.99,
+        "badge": "Curso",
+        "description": "Este ebook es una guía práctica y científica sobre visualización mental aplicada a la vida real. Presenta de forma clara qué es la visualización, cómo funciona en el cerebro y por qué puede mejorar el rendimiento, la salud y el bienestar emocional. A lo largo de los capítulos ofrece ejercicios paso a paso, ejemplos por contextos (deporte, empresa, salud, estudio), plantillas y recursos para que el lector entrene su imaginación de manera estructurada y mida sus avances en el tiempo. Su enfoque combina neurociencia, psicología aplicada y herramientas muy prácticas, de modo que cualquier persona pueda aprender a crear imágenes mentales más vívidas, realistas y emocionales, y convertirlas en acciones concretas y resultados visibles en su vida diaria.",
+        "tags": [
+            "Desarrollo mental"
+        ],
+        "features": [
+            "Contenido de calidad",
+            "Acceso inmediato",
+            "Soporte personalizado"
+        ],
+        "icon": "fa-book",
+        "image": "https://cdn.komvii.com/products/ylykFsEXL0u2RtB25BFIynJ43jrWhIta3Ql4Wl6R.png",
+        "komviiLink": "https://app.komvii.com/checkout/vThR7Om5zOaZrGWy3Ska8sops8W34TQ0"
+    },
+    {
+        "id": "negocio",
+        "name": "Vende y Multiplica tus Ingresos con SHEIN - AMAZON - TEMU - ALIEXPRESS",
+        "price": 30,
+        "badge": "Curso",
+        "description": "🚀 Desbloquea el Superpoder de la Importación B2C: Tu Curso Definitivo para Ganar Dinero con Productos de China\n\n\n¡Basta de Soñar! Es Hora de Importar, Vender y Multiplicar tus Ingresos\n\n\n¿Cansado de ver a otros ganar dinero con el comercio electrónico mientras tú sigues buscando la fórmula mágica? La fórmula no es mágica, es logística B2C inteligente y está esperando por ti.\n\n\nEste no es otro curso teórico. Es el mapa de ruta directo y sin rodeos para que, sin grandes inversiones iniciales ni contenedores, empieces a vender productos de China de alta demanda directamente a tus clientes, maximizando tu margen de ganancia desde el primer día.\n\n\n⏳ Deja de perder tiempo y empieza a construir tu patrimonio\n\n\nEste curso grabado te da la flexibilidad para aprender a tu propio ritmo y la claridad que necesitas para actuar. No más prueba y error. Tendrás el conocimiento condensado y listo para implementar en menos de 48 horas.\n\n\nSi estás listo para transformar:\n\n    Tiempo libre en pedidos rentables llegando a tu puerta.\n    Dudas y miedos en ganancias demostrables en tu cuenta bancaria.\n\n\n¡Inscríbete hoy! Tu independencia financiera comienza con la primera importación exitosa.",
+        "tags": [
+            "Emprendimiento"
+        ],
+        "features": [
+            "Contenido de calidad",
+            "Acceso inmediato",
+            "Soporte personalizado"
+        ],
+        "icon": "fa-book",
+        "image": "https://cdn.komvii.com/products/lpFewCbxv4ywekDXRgFX0NXClDqdp5JSFJFe4yXn.jpg",
+        "komviiLink": "https://app.komvii.com/checkout/qi1DvF6jGQ9nKLkn42PgQ07FPtAywNz0"
+    },
+    {
+        "id": "Conquista-la-cámara",
+        "name": "Conquista la cámara, vence tus límites",
+        "price": 4.99,
+        "badge": "curso",
+        "description": "¿Te da miedo aparecer frente a la cámara? ¿Sientes que no sabes cómo conectar con tu audiencia a través de videos o historias? Este ebook es tu guía definitiva para perder el miedo a mostrarse frente a la cámara y comenzar a crear contenido auténtico que realmente impacte.\n\nEn “Conquista la cámara, vence tus límites” aprenderás:\n\nPor qué es clave mostrarse frente a la cámara.\n\n10 pasos para superar el miedo y hablar con naturalidad.\n\nUn reto de 5 días para empezar a grabar hoy mismo.\n\nRecursos prácticos: ejercicios, guiones.\n\nBonus: 50 ideas de contenido para historias\n\nEste ebook no solo te enseñará a grabar videos, sino a conectar de manera auténtica con tu audiencia, generando confianza, cercanía y resultados reales.\n\n¡Es hora de dar el primer paso, mostrarte tal como eres y conquistar la cámara sin miedo!",
+        "tags": [
+            "Emprendimiento"
+        ],
+        "features": [
+            "10 pasos para superar el miedo y hablar con naturalidad.",
+            "Un reto de 5 días para empezar a grabar hoy mismo.",
+            "Recursos prácticos: ejercicios, guiones.",
+            "Bonus: 50 ideas de contenido para historias"
+        ],
+        "icon": "fa-book",
+        "image": "https://cdn.komvii.com/products/XoWIEviABYYwvmT3APgUzF413nOIkLwQ2tOhSGcn.png",
+        "komviiLink": "https://app.komvii.com/checkout/XQIs9WYw9I11eTvCQ4CM2oiP1TFthgMq"
+    }
+];
 
-    <script>
-        let courses = [];
+document.addEventListener("DOMContentLoaded", function() {
+    renderAllCourses();
+});
 
-        document.addEventListener('DOMContentLoaded', () => {
-            loadCourses();
-            renderAllCourses();
-            renderAdminCourseList();
-
-            document.addEventListener('keydown', (e) => {
-                if (e.ctrlKey && e.shiftKey && e.keyCode === 65) {
-                    e.preventDefault();
-                    showAdminSection();
-                }
-            });
-        });
-
-        function loadCourses() {
-            const savedCourses = localStorage.getItem('geottermiu-courses');
-            if (savedCourses) {
-                courses = JSON.parse(savedCourses);
-            } else {
-                courses = [
-                    {
-                        id: 'negocio-cejas',
-                        name: 'EL NEGOCIO DE LAS CEJAS',
-                        price: 97.00,
-                        badge: 'Curso',
-                        description: 'Aprende a montar tu negocio de cejas desde cero, con técnicas profesionales y estrategias de marketing para maximizar tus ganancias.',
-                        tags: ['Dinero', 'Emprendimiento', 'Belleza', 'Venezuela'],
-                        features: [
-                            'Técnicas profesionales de diseño de cejas',
-                            'Estrategias de marketing para atraer clientes',
-                            'Baja inversión inicial',
-                            'Alto margen de ganancia',
-                            'Acceso a comunidad de emprendedoras'
-                        ],
-                        icon: 'fa-eye',
-                        image: 'https://via.placeholder.com/300x180/1a1a2e/ffffff?text=Negocio+de+Cejas',
-                        komviiLink: ''
-                    },
-                    {
-                        id: 'velas-desde-cero',
-                        name: 'VELAS DESDE CERO',
-                        price: 40.00,
-                        badge: 'Curso',
-                        description: 'Domina el arte de hacer velas aromáticas, decorativas y para eventos. Ideal para emprender con poco capital.',
-                        tags: ['Dinero', 'Emprendimiento', 'Manualidades', 'Venezuela'],
-                        features: [
-                            'Recetas para velas aromáticas y decorativas',
-                            'Técnicas de decoración y personalización',
-                            'Cómo vender en redes sociales',
-                            'Materiales accesibles en Venezuela',
-                            'Guía de precios y costos'
-                        ],
-                        icon: 'fa-candle-holder',
-                        image: 'https://via.placeholder.com/300x180/1a1a2e/ffffff?text=Velas+desde+Cero',
-                        komviiLink: ''
-                    },
-                    {
-                        id: 'bolsa-venezuela',
-                        name: 'Introducción a la Bolsa de Valores de Venezuela',
-                        price: 19.99,
-                        badge: 'E-book',
-                        description: 'Descubre cómo funciona la Bolsa de Valores en Venezuela con esta guía práctica para principiantes.',
-                        tags: ['Dinero', 'Bolsa de Valores', 'Finanzas', 'Venezuela'],
-                        features: [
-                            'Información verificada y adaptada al contexto venezolano',
-                            'Conceptos clave explicados de forma sencilla',
-                            'Ejemplos prácticos y claros',
-                            'Formato PDF compatible con cualquier dispositivo',
-                            'Acceso a comunidad de aprendizaje'
-                        ],
-                        icon: 'fa-chart-line',
-                        image: 'D9HbMJ0z9zbJVDk2WODCMNqJM36CprKCfmOcPGXA.jpg',
-                        komviiLink: 'https://app.komvii.com/checkout/JzP9v8xkfeEfiomLEJZbHkVrdcXsdMxy'
-                    }
-                ];
-                saveCoursesToLocalStorage();
-            }
-        }
-
-        function saveCoursesToLocalStorage() {
-            localStorage.setItem('geottermiu-courses', JSON.stringify(courses));
-        }
-
-        function renderAllCourses() {
+function renderAllCourses() {
             const container = document.getElementById('all-courses');
             container.innerHTML = courses.map(course => createCourseCard(course)).join('');
         }
 
-        function createCourseCard(course) {
+function createCourseCard(course) {
             const imageUrl = course.image || `https://via.placeholder.com/300x180/1a1a2e/ffffff?text=${encodeURIComponent(course.name)}`;
             return `
                 <div class="course-card">
@@ -806,7 +979,7 @@
             `;
         }
 
-        function showView(viewName) {
+function showView(viewName) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.getElementById('view-' + viewName).classList.add('active');
             document.getElementById('admin-section').classList.remove('active');
@@ -817,13 +990,13 @@
             if (navMap[viewName]) document.getElementById(navMap[viewName]).classList.add('active');
         }
 
-        function buyOnWhatsApp(productName, price) {
+function buyOnWhatsApp(productName, price) {
             const phone = '584129430088';
             const message = `Hola GeotterMiu, estoy interesado en el curso: *${productName}* - Precio: *$${price.toFixed(2)} USD*. ¿Cómo puedo comprarlo?`;
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        function showCourseDetails(courseId) {
+function showCourseDetails(courseId) {
             const course = courses.find(c => c.id === courseId);
             if (!course) return;
 
@@ -858,209 +1031,13 @@
             modal.classList.add('active');
         }
 
-        function closeModal() {
+function closeModal() {
             document.getElementById('courseModal').classList.remove('active');
         }
 
-        function showAdminSection() {
-            document.getElementById('admin-section').classList.add('active');
-            renderAdminCourseList();
-        }
-
-        function closeAdminSection() {
-            document.getElementById('admin-section').classList.remove('active');
-        }
-
-        function renderAdminCourseList() {
-            const container = document.getElementById('admin-course-list');
-            container.innerHTML = courses.map(course => `
-                <div class="course-item-admin">
-                    <button class="btn-delete" onclick="deleteCourse('${course.id}')">X</button>
-                    <h4>${course.name}</h4>
-                    <p><strong>Precio:</strong> $${course.price.toFixed(2)} USD</p>
-                    <p><strong>ID:</strong> ${course.id}</p>
-                    <p><strong>Enlace:</strong> ${course.komviiLink || 'No tiene'}</p>
-                    <button class="btn btn-secondary" onclick="editCourse('${course.id}')" style="margin-top: 0.5rem; width: 100%;">
-                        <i class="fas fa-edit"></i> Editar
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        function addNewCourse() {
-            const id = document.getElementById('course-id').value.trim();
-            const name = document.getElementById('course-name').value.trim();
-            const price = parseFloat(document.getElementById('course-price').value);
-            const badge = document.getElementById('course-badge').value.trim();
-            const description = document.getElementById('course-description').value.trim();
-            const tags = document.getElementById('course-tags').value.split(',').map(tag => tag.trim());
-            const features = document.getElementById('course-features').value.split('\n').map(f => f.trim()).filter(f => f);
-            const icon = document.getElementById('course-icon').value.trim();
-            const image = document.getElementById('course-image').value.trim();
-            const komviiLink = document.getElementById('course-komvii').value.trim();
-
-            if (!id || !name || isNaN(price) || !description) {
-                alert('Por favor, completa los campos obligatorios: ID, Nombre, Precio y Descripción.');
-                return;
-            }
-
-            if (courses.some(c => c.id === id)) {
-                alert('Ya existe un curso con este ID. Usa uno diferente.');
-                return;
-            }
-
-            const newCourse = {
-                id,
-                name,
-                price,
-                badge: badge || null,
-                description,
-                tags: tags.filter(t => t),
-                features: features.length > 0 ? features : ['Contenido de calidad', 'Acceso inmediato', 'Soporte personalizado'],
-                icon: icon || 'fa-book',
-                image: image || null,
-                komviiLink: komviiLink || null
-            };
-
-            courses.push(newCourse);
-            saveCoursesToLocalStorage();
-            renderAllCourses();
-            renderAdminCourseList();
-            document.getElementById('newCourseForm').reset();
-            alert(`¡Curso "${name}" agregado correctamente!`);
-        }
-
-        function deleteCourse(courseId) {
-            if (confirm(`¿Estás seguro de que quieres eliminar el curso con ID: ${courseId}?`)) {
-                courses = courses.filter(c => c.id !== courseId);
-                saveCoursesToLocalStorage();
-                renderAllCourses();
-                renderAdminCourseList();
-                alert('Curso eliminado correctamente.');
-            }
-        }
-
-        function editCourse(courseId) {
-            const course = courses.find(c => c.id === courseId);
-            if (!course) return;
-
-            document.getElementById('course-id').value = course.id;
-            document.getElementById('course-name').value = course.name;
-            document.getElementById('course-price').value = course.price;
-            document.getElementById('course-badge').value = course.badge || '';
-            document.getElementById('course-description').value = course.description;
-            document.getElementById('course-tags').value = course.tags.join(', ');
-            document.getElementById('course-features').value = course.features.join('\n');
-            document.getElementById('course-icon').value = course.icon || '';
-            document.getElementById('course-image').value = course.image || '';
-            document.getElementById('course-komvii').value = course.komviiLink || '';
-
-            const submitBtn = document.querySelector('.course-form button[type="button"]');
-            submitBtn.innerHTML = '<i class="fas fa-save"></i> Guardar Cambios';
-            submitBtn.onclick = function() {
-                saveEditedCourse(courseId);
-            };
-        }
-
-        function saveEditedCourse(oldId) {
-            const id = document.getElementById('course-id').value.trim();
-            const name = document.getElementById('course-name').value.trim();
-            const price = parseFloat(document.getElementById('course-price').value);
-            const badge = document.getElementById('course-badge').value.trim();
-            const description = document.getElementById('course-description').value.trim();
-            const tags = document.getElementById('course-tags').value.split(',').map(tag => tag.trim());
-            const features = document.getElementById('course-features').value.split('\n').map(f => f.trim()).filter(f => f);
-            const icon = document.getElementById('course-icon').value.trim();
-            const image = document.getElementById('course-image').value.trim();
-            const komviiLink = document.getElementById('course-komvii').value.trim();
-
-            if (!id || !name || isNaN(price) || !description) {
-                alert('Por favor, completa los campos obligatorios: ID, Nombre, Precio y Descripción.');
-                return;
-            }
-
-            const index = courses.findIndex(c => c.id === oldId);
-            if (index !== -1) {
-                courses[index] = {
-                    id,
-                    name,
-                    price,
-                    badge: badge || null,
-                    description,
-                    tags: tags.filter(t => t),
-                    features: features.length > 0 ? features : ['Contenido de calidad', 'Acceso inmediato', 'Soporte personalizado'],
-                    icon: icon || 'fa-book',
-                    image: image || null,
-                    komviiLink: komviiLink || null
-                };
-            }
-
-            saveCoursesToLocalStorage();
-            document.getElementById('newCourseForm').reset();
-            const submitBtn = document.querySelector('.course-form button[type="button"]');
-            submitBtn.innerHTML = '<i class="fas fa-plus"></i> Agregar Curso';
-            submitBtn.onclick = addNewCourse;
-            renderAllCourses();
-            renderAdminCourseList();
-            alert(`¡Curso "${name}" actualizado correctamente!`);
-        }
-
-        // ===== GENERADOR DE CÓDIGO HTML =====
-        function generateHTMLCode() {
-            const currentCourses = JSON.stringify(courses, null, 4);
-
-            // 1. Head
-            let html = '<!DOCTYPE html>\n<html lang="es">\n<head>\n';
-            html += document.head.innerHTML + '\n</head>\n<body>\n';
-
-            // 2. Body sin admin
-            const bodyClone = document.body.cloneNode(true);
-            const admin = bodyClone.querySelector('.admin-section');
-            if (admin) {
-                if (admin.previousSibling && admin.previousSibling.nodeType === 8) {
-                    admin.previousSibling.remove();
-                }
-                admin.remove();
-            }
-            bodyClone.querySelectorAll('script').forEach(s => s.remove());
-            html += bodyClone.innerHTML + '\n';
-
-            // 3. Script limpio
-            html += '<script>\n';
-            html += 'let courses = ' + currentCourses + ';\n\n';
-            html += 'document.addEventListener("DOMContentLoaded", function() {\n';
-            html += '    renderAllCourses();\n';
-            html += '});\n\n';
-
-            // Funciones esenciales (auto-copiadas)
-            html += renderAllCourses.toString() + '\n\n';
-            html += createCourseCard.toString() + '\n\n';
-            html += showView.toString() + '\n\n';
-            html += buyOnWhatsApp.toString() + '\n\n';
-            html += showCourseDetails.toString() + '\n\n';
-            html += closeModal.toString() + '\n\n';
-
-            // Menú hamburguesa
-            html += `document.getElementById('hamburgerBtn').addEventListener('click', function() {
+document.getElementById('hamburgerBtn').addEventListener('click', function() {
     document.getElementById('mainNav').classList.toggle('active');
-});\n`;
-
-            html += '<\/script>\n</body>\n</html>';
-
-            document.getElementById('generated-code').value = html;
-        }
-
-        function copyGeneratedCode() {
-            const textarea = document.getElementById('generated-code');
-            textarea.select();
-            document.execCommand('copy');
-            alert('¡Código copiado al portapapeles! Ahora pégalo en tu index.html de GitHub.');
-        }
-
-        // Menú hamburguesa
-        document.getElementById('hamburgerBtn').addEventListener('click', function() {
-            document.getElementById('mainNav').classList.toggle('active');
-        });
-    </script>
+});
+</script>
 </body>
 </html>
