@@ -1,39 +1,1342 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeotterMiu | Cursos Digitales para Venezuela</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Montserrat:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #0056b3;
             --secondary-blue: #007BFF;
             --gold-primary: #D4AF37;
-            --gold-light: #F4E4BC;
             --black-bg: #0a0a0a;
             --dark-bg: #121212;
-            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-bg: rgba(255,255,255,0.05);
             --text-white: #ffffff;
             --text-muted: #cccccc;
             --font-elegant: 'Great Vibes', cursive;
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
-            --shadow-blue: 0 4px 20px rgba(0, 86, 179, 0.3);
-            --border-blue: 1px solid rgba(0, 86, 179, 0.4);
-            --whatsapp-green: #25D366;
+            --shadow-blue: 0 4px 20px rgba(0,86,179,0.3);
+            --border-blue: 1px solid rgba(0,86,179,0.4);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: var(--font-body);
-            background-color: var(--black-bg);
+            background: var(--black-bg);
             color: var(--text-white);
             line-height: 1.6;
             overflow-x: hidden;
         }
         .parallax-bg {
+            position: fixed; inset: 0; z-index: -2;
+            background: linear-gradient(135deg, var(--black-bg) 0%, #1a1a2e 50%, var(--black-bg) 100%);
+        }
+        .parallax-bg::before {
+            content: ''; position: absolute; inset: 0;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(0,86,179,0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(212,175,55,0.05) 0%, transparent 50%);
+        }
+        .dark-overlay {
+            position: fixed; inset: 0; z-index: -1;
+            background: rgba(0,0,0,0.8);
+        }
+        .view { display: none; animation: fadeIn 0.5s ease; }
+        .view.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 1rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: var(--border-blue);
+        }
+        .logo {
+            display: flex; align-items: center; gap: 10px;
+            color: var(--text-white); cursor: pointer;
+        }
+        .logo-icon {
+            width: 45px; height: 45px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--primary-blue));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; font-weight: bold; color: var(--black-bg);
+        }
+        .logo-text {
+            font-family: var(--font-elegant);
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, var(--gold-primary), var(--primary-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        nav ul { display: flex; list-style: none; gap: 1.5rem; }
+        nav a {
+            color: var(--text-muted); text-decoration: none;
+            font-weight: 500; font-size: 0.85rem;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            transition: all 0.3s ease; position: relative; white-space: nowrap;
+            cursor: pointer;
+        }
+        nav a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0;
+            width: 0; height: 2px; background: var(--gold-primary); transition: width 0.3s ease;
+        }
+        nav a:hover, nav a.active { color: var(--gold-primary); }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        .hamburger {
+            display: none; font-size: 1.5rem; cursor: pointer;
+            color: var(--text-white); background: none; border: none;
+        }
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 6rem 2rem 4rem;
+        }
+        .hero-content { max-width: 900px; }
+        .hero-content img {
+            max-width: 200px; height: auto; border-radius: 20px;
+            box-shadow: var(--shadow-blue); margin-bottom: 2rem;
+            border: 2px solid rgba(0,86,179,0.3);
+        }
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 600; margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gold-primary), var(--primary-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero-content p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--text-muted); max-width: 700px;
+            margin: 0 auto 2.5rem; font-weight: 300;
+        }
+        .cta-button {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 45px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white; font-weight: 600; font-size: 1.1rem;
+            border-radius: 50px; border: none; cursor: pointer;
+            box-shadow: var(--shadow-blue); transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,86,179,0.5);
+        }
+        .section-header { margin-bottom: 3rem; text-align: center; }
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            background: linear-gradient(135deg, var(--gold-primary), var(--primary-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .section-header p {
+            color: var(--text-muted);
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            max-width: 600px; margin: 0 auto;
+        }
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem; max-width: 1200px; margin: 0 auto;
+        }
+        .course-card {
+            background: var(--card-bg); border: var(--border-blue);
+            border-radius: 16px; overflow: hidden;
+            transition: all 0.3s ease; backdrop-filter: blur(10px);
+            position: relative; display: flex; flex-direction: column;
+        }
+        .course-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--secondary-blue);
+            box-shadow: 0 10px 30px rgba(0,123,255,0.2);
+        }
+        .course-image {
+            width: 100%; height: 180px;
+            background: linear-gradient(135deg, #1a1a2e, #2a2a3a);
+            background-size: cover; background-position: center;
+        }
+        .course-badge {
+            position: absolute; top: 12px; right: 12px;
+            background: var(--secondary-blue); color: white;
+            padding: 5px 12px; border-radius: 20px;
+            font-size: 0.7rem; font-weight: bold;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .course-info {
+            padding: 1.3rem; flex: 1;
+            display: flex; flex-direction: column;
+        }
+        .course-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem; margin-bottom: 0.4rem;
+        }
+        .course-price {
+            font-size: 1.2rem; font-weight: 700;
+            color: var(--gold-primary); margin-bottom: 0.6rem;
+        }
+        .course-description {
+            color: var(--text-muted); font-size: 0.9rem;
+            margin-bottom: 1rem; line-height: 1.6; flex: 1;
+        }
+        .course-tags {
+            display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;
+        }
+        .tag {
+            background: rgba(0,123,255,0.15);
+            color: var(--secondary-blue);
+            padding: 3px 10px; border-radius: 4px;
+            font-size: 0.7rem; font-weight: 500;
+        }
+        .course-actions { display: flex; gap: 0.5rem; }
+        .btn {
+            padding: 0.7rem 1rem; border-radius: 8px; font-weight: 500;
+            text-decoration: none; display: inline-flex;
+            align-items: center; justify-content: center; gap: 6px;
+            transition: all 0.3s ease; cursor: pointer;
+            border: none; font-size: 0.8rem; flex: 1;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+        }
+        .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+        }
+        .btn-secondary:hover {
+            background: var(--gold-primary); color: var(--black-bg);
+        }
+        .btn-danger {
+            background: #ff4444; color: white; padding: 0.4rem 0.7rem;
+            border-radius: 6px; font-size: 0.75rem;
+        }
+        .btn-danger:hover { background: #cc0000; }
+        .category-view { padding: 7rem 5% 4rem; min-height: 100vh; }
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: transparent;
+            border: 1px solid rgba(0,86,179,0.4);
+            color: var(--secondary-blue);
+            padding: 10px 20px; border-radius: 30px;
+            font-size: 0.9rem; cursor: pointer; margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: var(--secondary-blue); color: white;
+        }
+        .benefits-view, .contact-view { padding: 5rem 5% 3rem; }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem; max-width: 1000px; margin: 0 auto;
+        }
+        .benefit {
+            text-align: center; padding: 2rem 1.5rem;
+            background: var(--card-bg); border: var(--border-blue);
+            border-radius: 16px; transition: all 0.3s ease;
+        }
+        .benefit:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-blue);
+        }
+        .benefit-icon {
+            font-size: 2.2rem; margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gold-primary), var(--secondary-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .benefit h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem; margin-bottom: 0.5rem;
+        }
+        .benefit p { color: var(--text-muted); font-size: 0.9rem; }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem; max-width: 800px; margin: 0 auto;
+        }
+        .contact-card {
+            background: var(--card-bg); border: var(--border-blue);
+            border-radius: 16px; padding: 2rem; text-align: center;
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            border-color: var(--secondary-blue);
+            transform: translateY(-5px);
+        }
+        .contact-card i {
+            font-size: 2.5rem; margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gold-primary), var(--secondary-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .contact-card h3 {
+            font-family: var(--font-heading); margin-bottom: 0.5rem;
+        }
+        .contact-card p {
+            color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;
+        }
+        footer {
+            padding: 3rem 5% 2rem;
+            background: var(--dark-bg);
+            border-top: var(--border-blue);
+            text-align: center;
+        }
+        .footer-logo {
+            font-family: var(--font-elegant);
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--gold-primary), var(--secondary-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        .social-links {
+            display: flex; gap: 1.2rem; justify-content: center; margin-bottom: 1.5rem;
+        }
+        .social-links a {
+            font-size: 1.5rem; color: var(--text-muted); transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--gold-primary); transform: translateY(-3px);
+        }
+        .copyright { color: var(--text-muted); font-size: 0.85rem; }
+        .modal {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.95); z-index: 2000;
+            align-items: center; justify-content: center; padding: 20px;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: var(--dark-bg); border-radius: 20px; padding: 2rem;
+            max-width: 600px; width: 100%; max-height: 85vh;
+            overflow-y: auto; position: relative; border: var(--border-blue);
+        }
+        .modal-close {
+            position: absolute; top: 15px; right: 15px;
+            background: none; border: none; color: var(--text-muted);
+            font-size: 1.5rem; cursor: pointer;
+        }
+        .modal-close:hover { color: var(--gold-primary); }
+        .category-section { margin-bottom: 3.5rem; }
+        .category-title {
+            font-family: var(--font-heading);
+            font-size: 1.6rem; color: var(--gold-primary);
+            margin-bottom: 1.5rem; padding-bottom: 0.6rem;
+            border-bottom: 1px solid rgba(212,175,55,0.3);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .no-courses {
+            text-align: center; color: var(--text-muted);
+            padding: 3rem; font-size: 1.1rem;
+        }
+        .category-filters {
+            display: flex; flex-wrap: wrap; gap: 0.7rem;
+            justify-content: center; margin-bottom: 2.5rem;
+            max-width: 900px; margin-left: auto; margin-right: auto;
+        }
+        .filter-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(0,86,179,0.4);
+            color: var(--text-muted);
+            padding: 0.55rem 1.3rem; border-radius: 30px;
+            font-size: 0.85rem; font-weight: 500;
+            cursor: pointer; transition: all 0.3s ease;
+            font-family: var(--font-body);
+        }
+        .filter-btn:hover {
+            border-color: var(--secondary-blue);
+            color: white; background: rgba(0,123,255,0.1);
+        }
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-color: transparent; color: white;
+            box-shadow: 0 4px 15px rgba(0,86,179,0.35);
+        }
+
+        /* ===== ADMIN PANEL ===== */
+        #adminOverlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.98); z-index: 3000;
+            overflow-y: auto; padding: 1.5rem;
+        }
+        #adminOverlay.active { display: block; }
+        .admin-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 1.5rem; padding-bottom: 1rem;
+            border-bottom: var(--border-blue); max-width: 1100px; margin-left: auto; margin-right: auto;
+        }
+        .admin-header h2 {
+            font-family: var(--font-heading); color: var(--gold-primary); font-size: 1.5rem;
+        }
+        .admin-close {
+            background: none; border: none; color: var(--text-muted);
+            font-size: 1.5rem; cursor: pointer;
+        }
+        .admin-close:hover { color: #ff4444; }
+        .admin-tabs {
+            display: flex; gap: 0.5rem; margin-bottom: 1.5rem;
+            max-width: 1100px; margin-left: auto; margin-right: auto; flex-wrap: wrap;
+        }
+        .admin-tab {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(0,86,179,0.3);
+            color: var(--text-muted); padding: 0.6rem 1.2rem;
+            border-radius: 8px; cursor: pointer; font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .admin-tab.active, .admin-tab:hover {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white; border-color: transparent;
+        }
+        .admin-panel { display: none; max-width: 1100px; margin: 0 auto; }
+        .admin-panel.active { display: block; }
+        .course-form {
+            background: var(--card-bg); padding: 1.5rem;
+            border-radius: 12px; border: var(--border-blue); margin-bottom: 1.5rem;
+        }
+        .form-row {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;
+        }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label {
+            display: block; margin-bottom: 0.4rem;
+            color: var(--text-muted); font-size: 0.85rem;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 0.65rem;
+            border-radius: 8px; border: 1px solid rgba(0,86,179,0.3);
+            background: rgba(255,255,255,0.05);
+            color: var(--text-white); font-family: var(--font-body); font-size: 0.9rem;
+        }
+        .form-group textarea { min-height: 90px; resize: vertical; }
+        .btn-admin {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white; border: none; padding: 0.7rem 1.4rem;
+            border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem;
+        }
+        .btn-admin:hover { opacity: 0.9; }
+        .btn-green {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white; border: none; padding: 0.7rem 1.4rem;
+            border-radius: 8px; cursor: pointer; font-weight: 600;
+        }
+        .admin-table {
+            width: 100%; border-collapse: collapse; font-size: 0.85rem;
+        }
+        .admin-table th, .admin-table td {
+            padding: 0.7rem; text-align: left;
+            border-bottom: 1px solid rgba(0,86,179,0.2);
+        }
+        .admin-table th { color: var(--gold-primary); font-weight: 600; }
+        .admin-table .cname { max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .admin-table .cprice { color: var(--gold-primary); font-weight: 600; }
+        .admin-table .cactions { display: flex; gap: 0.4rem; }
+        .cbadge {
+            background: rgba(0,123,255,0.2); color: var(--secondary-blue);
+            padding: 2px 8px; border-radius: 4px; font-size: 0.75rem;
+        }
+        .cat-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--card-bg); border: var(--border-blue);
+            padding: 0.4rem 0.8rem; border-radius: 20px;
+            margin: 0.3rem; font-size: 0.85rem;
+        }
+        .cat-chip .ccount {
+            background: var(--secondary-blue); color: white;
+            border-radius: 10px; padding: 0 6px; font-size: 0.75rem;
+        }
+        .cat-chip .cdel {
+            background: none; border: none; color: #ff6666;
+            cursor: pointer; font-size: 0.8rem;
+        }
+        .export-box {
+            background: var(--card-bg); border: var(--border-blue);
+            border-radius: 12px; padding: 1.5rem; margin-top: 1rem;
+        }
+        .export-box h3 { color: var(--gold-primary); margin-bottom: 0.8rem; }
+        .export-box p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+        #exportCode {
+            width: 100%; min-height: 180px;
+            background: #1e1e1e; border: 1px solid rgba(0,86,179,0.3);
+            border-radius: 8px; padding: 1rem;
+            color: #d4d4d4; font-family: 'Courier New', monospace;
+            font-size: 0.75rem; resize: vertical;
+        }
+        .export-actions {
+            display: flex; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap;
+        }
+        .toast {
+            position: fixed; bottom: 30px; left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #222; color: white;
+            padding: 0.8rem 1.5rem; border-radius: 8px;
+            font-size: 0.9rem; z-index: 9999;
+            opacity: 0; transition: all 0.3s ease;
+            border: 1px solid rgba(0,86,179,0.4);
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .toast.ok { border-color: #28a745; }
+        .toast.err { border-color: #ff4444; }
+        .toast.info { border-color: var(--secondary-blue); }
+
+        @media (max-width: 992px) {
+            nav ul {
+                display: none; position: absolute; top: 100%; left: 0;
+                width: 100%; background: rgba(10,10,10,0.98);
+                flex-direction: column; padding: 1rem; gap: 0;
+            }
+            nav ul li { width: 100%; text-align: center; }
+            nav ul a { padding: 1rem; display: block; font-size: 1rem; }
+            .hamburger { display: block; }
+            nav.active ul { display: flex; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .courses-grid { grid-template-columns: 1fr; }
+            .category-filters { gap: 0.5rem; }
+            .filter-btn { font-size: 0.8rem; padding: 0.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="parallax-bg"></div>
+    <div class="dark-overlay"></div>
+
+    <header>
+        <div class="logo" onclick="showView('home')">
+            <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+            <span class="logo-text">GeotterMiu</span>
+        </div>
+        <nav id="mainNav">
+            <ul>
+                <li><a onclick="showView('home')" id="nav-home">Inicio</a></li>
+                <li><a onclick="showView('courses')" id="nav-cursos" class="active">Cursos</a></li>
+                <li><a onclick="showView('benefits')" id="nav-beneficios">Beneficios</a></li>
+                <li><a onclick="showView('contact')" id="nav-contacto">Contacto</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+    </header>
+
+    <!-- HOME -->
+    <section class="view" id="view-home">
+        <div class="hero">
+            <div class="hero-content">
+                <img src="https://raw.githubusercontent.com/GeotterMiuUniversal/GeotterMiu-Tienda-online/refs/heads/main/logo.jpg" alt="GeotterMiu Logo">
+                <h1>Cursos Digitales para Venezuela</h1>
+                <p>Aprende habilidades prácticas para emprender, invertir y crecer en el contexto venezolano. ¡Accede a los mejores cursos con un solo clic!</p>
+                <button class="cta-button" onclick="showView('courses')"><i class="fas fa-book"></i> Ver Todos los Cursos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- COURSES -->
+    <section class="view active" id="view-courses">
+        <div class="category-view">
+            <button class="back-btn" onclick="showView('home')"><i class="fas fa-arrow-left"></i> Volver al Inicio</button>
+            <div class="section-header">
+                <h2>Todos los Cursos</h2>
+                <p>Selecciona el curso que más te interese y comienza a aprender hoy mismo</p>
+            </div>
+            <div class="category-filters" id="category-filters"></div>
+            <div id="all-courses"></div>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="view" id="view-benefits">
+        <div class="benefits-view">
+            <button class="back-btn" onclick="showView('home')" style="display:block;margin:0 auto 2rem"><i class="fas fa-arrow-left"></i> Volver al Inicio</button>
+            <div class="section-header">
+                <h2>¿Por qué elegirnos?</h2>
+                <p>Ventajas de aprender con GeotterMiu</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <div class="benefit-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Contenido Práctico</h3>
+                    <p>Cursos diseñados para aplicar lo aprendido en la vida real y en el contexto venezolano.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Acceso Inmediato</h3>
+                    <p>Descarga tu curso al instante después de la compra.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Soporte Personalizado</h3>
+                    <p>Resolvemos tus dudas por WhatsApp o email.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <h3>Precios Accesibles</h3>
+                    <p>Calidad premium a precios justos para Venezuela.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="view" id="view-contact">
+        <div class="contact-view">
+            <button class="back-btn" onclick="showView('home')" style="display:block;margin:0 auto 2rem"><i class="fas fa-arrow-left"></i> Volver al Inicio</button>
+            <div class="section-header">
+                <h2>Contáctanos</h2>
+                <p>¿Preguntas? Estamos aquí para ayudarte</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>+58 412-9430088</p>
+                    <a href="https://wa.me/584129430088?text=Hola%20GeotterMiu,%20tengo%20una%20consulta%20sobre%20un%20curso." target="_blank" class="btn btn-primary" style="width:100%"><i class="fab fa-whatsapp"></i> Escribir Ahora</a>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>geottermiu@proton.me</p>
+                    <span style="color:var(--text-muted);font-size:0.8rem">Respuesta en 24h</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">GeotterMiu</div>
+        <div class="social-links">
+            <a href="https://wa.me/584129430088" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="copyright"><p>© 2026 GeotterMiu. Todos los derechos reservados.</p></div>
+    </footer>
+
+    <!-- COURSE MODAL -->
+    <div class="modal" id="courseModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- ===== ADMIN OVERLAY ===== -->
+    <div id="adminOverlay">
+        <div class="admin-header">
+            <h2><i class="fas fa-cog"></i> Panel de Administración</h2>
+            <button class="admin-close" onclick="closeAdmin()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="admin-tabs">
+            <button class="admin-tab active" id="atab-courses" onclick="switchTab('courses')">Cursos</button>
+            <button class="admin-tab" id="atab-categories" onclick="switchTab('categories')">Categorías</button>
+            <button class="admin-tab" id="atab-export" onclick="switchTab('export')">Exportar / Descargar</button>
+        </div>
+
+        <!-- TAB CURSOS -->
+        <div class="admin-panel active" id="apanel-courses">
+            <div class="course-form">
+                <h3 id="formTitle" style="color:var(--gold-primary);margin-bottom:1rem">Agregar Curso</h3>
+                <input type="hidden" id="editId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre *</label>
+                        <input type="text" id="cName" placeholder="Nombre del curso">
+                    </div>
+                    <div class="form-group">
+                        <label>Precio (USD) *</label>
+                        <input type="number" id="cPrice" step="0.01" min="0" placeholder="19.99">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Categoría *</label>
+                        <select id="cCategory"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nueva categoría (opcional)</label>
+                        <input type="text" id="cNewCat" placeholder="Si no existe en la lista">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Badge</label>
+                        <select id="cBadge">
+                            <option value="Curso">Curso</option>
+                            <option value="E-book">E-book</option>
+                            <option value="Recursos">Recursos</option>
+                            <option value="Pack">Pack</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Icono (Font Awesome)</label>
+                        <input type="text" id="cIcon" value="fa-book" placeholder="fa-book">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Descripción *</label>
+                    <textarea id="cDesc" placeholder="Descripción del curso"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>URL de imagen</label>
+                    <input type="text" id="cImage" placeholder="https://...">
+                </div>
+                <div class="form-group">
+                    <label>Link de compra (Komvii)</label>
+                    <input type="text" id="cKomvii" placeholder="https://app.komvii.com/checkout/...">
+                </div>
+                <div class="form-group">
+                    <label>Tags (separados por coma)</label>
+                    <input type="text" id="cTags" placeholder="Emprendimiento, Dinero, Venezuela">
+                </div>
+                <div class="form-group">
+                    <label>Qué incluye (uno por línea)</label>
+                    <textarea id="cFeatures" placeholder="Acceso inmediato&#10;Soporte por WhatsApp&#10;Material descargable"></textarea>
+                </div>
+                <div style="display:flex;gap:0.8rem;flex-wrap:wrap">
+                    <button class="btn-admin" id="btnSave" onclick="saveCourse()"><i class="fas fa-save"></i> Guardar</button>
+                    <button class="btn-admin" style="background:#555" onclick="resetForm()"><i class="fas fa-undo"></i> Limpiar</button>
+                </div>
+            </div>
+
+            <h3 style="color:var(--gold-primary);margin-bottom:1rem">Cursos actuales</h3>
+            <div style="overflow-x:auto">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Badge</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTbody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB CATEGORÍAS -->
+        <div class="admin-panel" id="apanel-categories">
+            <div class="course-form">
+                <h3 style="color:var(--gold-primary);margin-bottom:1rem">Gestionar Categorías</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nueva categoría</label>
+                        <input type="text" id="newCatName" placeholder="Nombre de la categoría">
+                    </div>
+                    <div class="form-group" style="display:flex;align-items:flex-end">
+                        <button class="btn-admin" onclick="addCategory()"><i class="fas fa-plus"></i> Agregar</button>
+                    </div>
+                </div>
+                <div id="catList" style="margin-top:1rem"></div>
+            </div>
+        </div>
+
+        <!-- TAB EXPORT -->
+        <div class="admin-panel" id="apanel-export">
+            <div class="export-box">
+                <h3><i class="fas fa-download"></i> Descargar HTML para GitHub Pages</h3>
+                <p>
+                    Genera el archivo completo listo para subir a GitHub Pages.<br>
+                    <strong>Recomendado:</strong> usa <b>Descargar HTML</b> (evita problemas de pegado y límites de tamaño).
+                </p>
+                <div class="export-actions">
+                    <button class="btn-green" onclick="downloadHTML()"><i class="fas fa-download"></i> Descargar HTML</button>
+                    <button class="btn-admin" onclick="generateExport()"><i class="fas fa-code"></i> Generar código (vista previa)</button>
+                    <button class="btn-admin" style="background:#555" onclick="copyExport()"><i class="fas fa-copy"></i> Copiar código</button>
+                </div>
+                <textarea id="exportCode" readonly placeholder="Aquí aparecerá el código generado..." style="margin-top:1rem"></textarea>
+            </div>
+            <div class="export-box" style="margin-top:1.5rem">
+                <h3>Instrucciones para GitHub Pages</h3>
+                <ol style="color:var(--text-muted);font-size:0.9rem;line-height:1.8;padding-left:1.2rem">
+                    <li>Edita los cursos en la pestaña <b>Cursos</b>.</li>
+                    <li>Haz clic en <b>Descargar HTML</b>.</li>
+                    <li>Renombra el archivo descargado a <code>index.html</code>.</li>
+                    <li>Súbelo a la raíz de tu repositorio de GitHub Pages (reemplaza el anterior).</li>
+                    <li>Espera 1-2 minutos y recarga tu sitio.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+<script>
+/* ========== DATOS ========== */
+let courses = [
+    {
+        id: "negocio-cejas",
+        name: "EL NEGOCIO DE LAS CEJAS",
+        price: 97,
+        category: "Belleza",
+        badge: "Curso",
+        description: "Aprende a montar tu negocio de cejas desde cero, con técnicas profesionales y estrategias de marketing para maximizar tus ganancias.",
+        tags: ["Dinero", "Emprendimiento", "Belleza", "Venezuela"],
+        features: [
+            "Técnicas profesionales de diseño de cejas",
+            "Estrategias de marketing para atraer clientes",
+            "Baja inversión inicial",
+            "Alto margen de ganancia",
+            "Acceso a comunidad de emprendedoras"
+        ],
+        icon: "fa-book",
+        image: "https://cdn.komvii.com/products/gPWgvMksytRO4XSwj9vcO7xDOZuGdl3xK9r8N7NX.jpg",
+        komviiLink: "https://app.komvii.com/checkout/v8mvTuUMAMhzGvlTRQbwKHt0iyUfVNqU"
+    },
+    {
+        id: "velas-desde-cero",
+        name: "VELAS DESDE CERO",
+        price: 25,
+        category: "Emprendimiento",
+        badge: "Curso",
+        description: "Domina el arte de hacer velas aromáticas, decorativas y para eventos. Ideal para emprender con poco capital.",
+        tags: ["Dinero", "Emprendimiento", "Manualidades", "Venezuela"],
+        features: [
+            "Recetas para velas aromáticas y decorativas",
+            "Técnicas de decoración y personalización",
+            "Cómo vender en redes sociales",
+            "Materiales accesibles en Venezuela",
+            "Guía de precios y costos"
+        ],
+        icon: "fa-book",
+        image: "https://cdn2.roaslatam.com/products/ENEtG3Qt5iSZIWuxY2yQkGrrbCLSZH4FrJdfYnLe.png",
+        komviiLink: "https://app.komvii.com/checkout/RHt6DFF2iN0oCCUxMMebKZIPSnfyzHK0"
+    },
+    {
+        id: "bolsa-venezuela",
+        name: "Introducción a la Bolsa de Valores de Venezuela",
+        price: 19.99,
+        category: "Emprendimiento",
+        badge: "E-book",
+        description: "Descubre cómo funciona la Bolsa de Valores en Venezuela con esta guía práctica para principiantes.",
+        tags: ["Dinero", "Bolsa de Valores", "Finanzas", "Venezuela"],
+        features: [
+            "Información verificada y adaptada al contexto venezolano",
+            "Conceptos clave explicados de forma sencilla",
+            "Ejemplos prácticos y claros",
+            "Formato PDF compatible con cualquier dispositivo",
+            "Acceso a comunidad de aprendizaje"
+        ],
+        icon: "fa-chart-line",
+        image: "D9HbMJ0z9zbJVDk2WODCMNqJM36CprKCfmOcPGXA.jpg",
+        komviiLink: "https://app.komvii.com/checkout/JzP9v8xkfeEfiomLEJZbHkVrdcXsdMxy"
+    },
+    {
+        id: "Conquista-la-camara",
+        name: "Conquista la cámara, vence tus límites",
+        price: 4.99,
+        category: "Emprendimiento",
+        badge: "Curso",
+        description: "¿Te bloquea la cámara? Deja atrás el miedo y empieza a crear historias y videos con confianza.\n\nEn “Conquista la cámara, vence tus límites” vas a descubrir por qué mostrarse frente a cámara es clave, cómo hablar de forma natural con una guía de 10 pasos, y arrancar de inmediato con un reto de 5 días.\n\nAdemás, tendrás ejercicios y guiones prácticos para entrenarte y 50 ideas de contenido listas para tus historias.\n\nEs tu plan para conectar auténticamente, ganar cercanía con tu audiencia y lograr resultados reales.",
+        tags: ["Emprendimiento"],
+        features: [
+            "10 pasos para superar el miedo y hablar con naturalidad",
+            "Un reto de 5 días para empezar a grabar hoy mismo",
+            "Recursos prácticos: ejercicios, guiones",
+            "Bonus: 50 ideas de contenido para historias"
+        ],
+        icon: "fa-book",
+        image: "https://cdn.komvii.com/products/XoWIEviABYYwvmT3APgUzF413nOIkLwQ2tOhSGcn.png",
+        komviiLink: "https://app.komvii.com/checkout/XQIs9WYw9I11eTvCQ4CM2oiP1TFthgMq"
+    },
+    {
+        id: "Vende-y-Multiplica",
+        name: "Vende y Multiplica tus Ingresos con SHEIN - AMAZON - TEMU - ALIEXPRESS",
+        price: 30,
+        category: "Emprendimiento",
+        badge: "Curso",
+        description: "Convierte tu comercio en ingresos reales con el curso grabado “Superpoder de la Importación B2C”: una guía práctica para importar productos de China y vender sin grandes inversiones ni contenedores, con alta demanda y mejor margen desde el primer día. Aprende a tu ritmo, implementa en menos de 48 horas y pasa de perder tiempo a generar pedidos rentables y resultados en tu cuenta. Inscríbete hoy y da tu primera importación exitosa.",
+        tags: ["Emprendimiento"],
+        features: [
+            "Importar productos de China sin contenedores",
+            "Vender en SHEIN, Amazon, Temu y AliExpress",
+            "Implementación en menos de 48 horas",
+            "Alta demanda y mejor margen"
+        ],
+        icon: "fa-book",
+        image: "https://cdn.komvii.com/products/lpFewCbxv4ywekDXRgFX0NXClDqdp5JSFJFe4yXn.jpg",
+        komviiLink: "https://app.komvii.com/checkout/qi1DvF6jGQ9nKLkn42PgQ07FPtAywNz0"
+    },
+    {
+        id: "Pack-IA-Contadores",
+        name: "Pack Completo de IA para Contadores: 300 Prompts + 10 Asistentes Especializados",
+        price: 17,
+        category: "IA",
+        badge: "Recursos",
+        description: "Pack Completo de IA para Contadores en Venezuela. 300 Prompts Profesionales + 10 Asistentes Especializados. Edición 2025–2026.",
+        tags: ["Recursos"],
+        features: [
+            "Acceso inmediato tras la compra",
+            "Pago único (NO es suscripción)",
+            "Actualizaciones incluidas",
+            "Uso personal e intransferible"
+        ],
+        icon: "fa-book",
+        image: "https://cdn2.roaslatam.com/products/FvpFi5QXHrnfV2lZI2UWNLydIYtO3R4jNMM7pCFS.png",
+        komviiLink: "https://app.komvii.com/checkout/9JIgHOkSyd5O5wkdMbuk1AewXah1fpo5"
+    },
+    {
+        id: "Trading-desde-cero",
+        name: "Curso de Trading desde cero",
+        price: 8,
+        category: "Emprendimiento",
+        badge: "Curso",
+        description: "Aprende Trading de forma profesional. Estrategias probadas, análisis técnico y mentalidad ganadora. Todo lo que necesitas para operar en los mercados financieros con confianza. Domina el mercado y alcanza tu libertad financiera. Sin rodeos, desde cero y a tu ritmo.",
+        tags: ["Emprendimiento"],
+        features: [
+            "Contenido de calidad",
+            "Acceso inmediato",
+            "Soporte personalizado"
+        ],
+        icon: "fa-book",
+        image: "https://cdn.komvii.com/products/oG8ojVS8tIJ1w4NnD3QEluaJuQwThEMXmBeJH6VH.jpg",
+        komviiLink: "https://app.komvii.com/checkout/zyxyPP9Y8IiknoMmU8libAbVIyknhjQh"
+    }
+];
+
+let currentFilter = "all";
+let editingId = null;
+window.customCats = [];
+
+/* ========== INIT ========== */
+document.addEventListener("DOMContentLoaded", function () {
+    renderCategoryFilters();
+    renderAllCourses();
+});
+
+/* ========== VIEWS ========== */
+function showView(viewName) {
+    document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+    document.getElementById("view-" + viewName).classList.add("active");
+    window.scrollTo(0, 0);
+    document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
+    const map = { home: "nav-home", courses: "nav-cursos", benefits: "nav-beneficios", contact: "nav-contacto" };
+    if (map[viewName]) document.getElementById(map[viewName]).classList.add("active");
+    document.getElementById("mainNav").classList.remove("active");
+}
+
+document.getElementById("hamburgerBtn").addEventListener("click", function () {
+    document.getElementById("mainNav").classList.toggle("active");
+});
+
+/* ========== COURSES RENDER ========== */
+function getUniqueCategories() {
+    const cats = courses.map(c => c.category || "Sin categoría");
+    const set = new Set(cats);
+    if (window.customCats) window.customCats.forEach(c => set.add(c));
+    return [...set].sort((a, b) => a.localeCompare(b));
+}
+
+function renderCategoryFilters() {
+    const container = document.getElementById("category-filters");
+    const categories = getUniqueCategories();
+    let html = `<button class="filter-btn ${currentFilter === "all" ? "active" : ""}" onclick="filterByCategory('all')">Todos</button>`;
+    categories.forEach(cat => {
+        html += `<button class="filter-btn ${currentFilter === cat ? "active" : ""}" onclick="filterByCategory('${escAttr(cat)}')">${escHtml(cat)}</button>`;
+    });
+    container.innerHTML = html;
+}
+
+function filterByCategory(category) {
+    currentFilter = category;
+    renderCategoryFilters();
+    renderAllCourses();
+}
+
+function renderAllCourses() {
+    const container = document.getElementById("all-courses");
+    let filtered = courses;
+    if (currentFilter !== "all") {
+        filtered = courses.filter(c => (c.category || "Sin categoría") === currentFilter);
+    }
+    if (filtered.length === 0) {
+        container.innerHTML = '<div class="no-courses">No hay cursos en esta categoría.</div>';
+        return;
+    }
+    const grouped = {};
+    filtered.forEach(c => {
+        const cat = c.category || "Sin categoría";
+        if (!grouped[cat]) grouped[cat] = [];
+        grouped[cat].push(c);
+    });
+    const sorted = Object.keys(grouped).sort((a, b) => a.localeCompare(b));
+    let html = "";
+    sorted.forEach(cat => {
+        if (currentFilter === "all") {
+            html += `<div class="category-section"><h3 class="category-title"><i class="fas fa-folder-open"></i> ${escHtml(cat)}</h3><div class="courses-grid">${grouped[cat].map(createCourseCard).join("")}</div></div>`;
+        } else {
+            html += `<div class="courses-grid">${grouped[cat].map(createCourseCard).join("")}</div>`;
+        }
+    });
+    container.innerHTML = html;
+}
+
+function createCourseCard(course) {
+    const img = course.image || "";
+    const tags = (course.tags || []).map(t => `<span class="tag">${escHtml(t)}</span>`).join("");
+    const buy = course.komviiLink
+        ? `<a href="${escAttr(course.komviiLink)}" target="_blank" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>`
+        : `<button class="btn btn-primary" onclick="buyOnWhatsApp('${escAttr(course.name)}', ${course.price})"><i class="fab fa-whatsapp"></i> Consultar</button>`;
+    return `
+    <div class="course-card">
+        ${course.badge ? `<div class="course-badge">${escHtml(course.badge)}</div>` : ""}
+        <div class="course-image" style="background-image:url('${escAttr(img)}')"></div>
+        <div class="course-info">
+            <h3>${escHtml(course.name)}</h3>
+            <div class="course-price">$${Number(course.price).toFixed(2)} USD</div>
+            <p class="course-description">${escHtml(course.description)}</p>
+            <div class="course-tags">${tags}</div>
+            <div class="course-actions">
+                ${buy}
+                <button class="btn btn-secondary" onclick="showCourseDetails('${escAttr(course.id)}')"><i class="fas fa-info-circle"></i> Más Info</button>
+            </div>
+        </div>
+    </div>`;
+}
+
+function showCourseDetails(courseId) {
+    const course = courses.find(c => c.id === courseId);
+    if (!course) return;
+    const img = course.image || "";
+    const features = (course.features || []).map(f =>
+        `<li style="padding:0.5rem 0;border-bottom:1px solid rgba(0,86,179,0.1);color:var(--text-muted);font-size:0.9rem"><i class="fas fa-check" style="color:var(--gold-primary);margin-right:8px"></i>${escHtml(f)}</li>`
+    ).join("");
+    const buy = course.komviiLink
+        ? `<a href="${escAttr(course.komviiLink)}" target="_blank" class="btn btn-primary" style="flex:1"><i class="fas fa-shopping-cart"></i> Comprar Ahora</a>`
+        : `<button class="btn btn-primary" onclick="buyOnWhatsApp('${escAttr(course.name)}', ${course.price});closeModal()" style="flex:1"><i class="fab fa-whatsapp"></i> Consultar por WhatsApp</button>`;
+    document.getElementById("modalBody").innerHTML = `
+        <div style="text-align:center;margin-bottom:1.5rem">
+            <img src="${escAttr(img)}" alt="${escAttr(course.name)}" style="max-width:100%;border-radius:12px;box-shadow:var(--shadow-blue)">
+        </div>
+        <h2 style="text-align:center;margin-bottom:0.5rem;font-family:var(--font-heading)">${escHtml(course.name)}</h2>
+        <p style="text-align:center;font-size:1.3rem;font-weight:700;color:var(--gold-primary);margin-bottom:1rem">$${Number(course.price).toFixed(2)} USD</p>
+        <p style="text-align:center;color:var(--secondary-blue);margin-bottom:1rem;font-size:0.95rem">
+            <i class="fas fa-folder"></i> ${escHtml(course.category || "Sin categoría")}
+        </p>
+        <p style="color:var(--text-muted);margin-bottom:1.5rem;text-align:justify;white-space:pre-line">${escHtml(course.description)}</p>
+        <h3 style="margin:1.5rem 0 1rem;color:var(--gold-primary);font-size:1.1rem">¿Qué incluye?</h3>
+        <ul style="list-style:none;padding:0;margin-bottom:1.5rem">${features}</ul>
+        <div style="display:flex;gap:0.5rem;margin-top:1rem">
+            ${buy}
+            <button class="btn btn-secondary" onclick="closeModal()" style="flex:1">Cerrar</button>
+        </div>`;
+    document.getElementById("courseModal").classList.add("active");
+}
+
+function closeModal() {
+    document.getElementById("courseModal").classList.remove("active");
+}
+
+function buyOnWhatsApp(name, price) {
+    const msg = `Hola GeotterMiu, estoy interesado en el curso: *${name}* - Precio: *$${Number(price).toFixed(2)} USD*. ¿Cómo puedo comprarlo?`;
+    window.open(`https://wa.me/584129430088?text=${encodeURIComponent(msg)}`, "_blank");
+}
+
+/* ========== ADMIN ========== */
+document.addEventListener("keydown", function (e) {
+    if (e.ctrlKey && e.shiftKey && e.key === "A") {
+        e.preventDefault();
+        toggleAdmin();
+    }
+    if (e.key === "Escape") {
+        closeAdmin();
+        closeModal();
+    }
+});
+
+function toggleAdmin() {
+    const o = document.getElementById("adminOverlay");
+    o.classList.toggle("active");
+    if (o.classList.contains("active")) {
+        renderAdminTable();
+        renderAdminCats();
+        populateCatSelect();
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "";
+    }
+}
+
+function closeAdmin() {
+    document.getElementById("adminOverlay").classList.remove("active");
+    document.body.style.overflow = "";
+}
+
+function switchTab(tab) {
+    document.querySelectorAll(".admin-tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".admin-panel").forEach(p => p.classList.remove("active"));
+    document.getElementById("atab-" + tab).classList.add("active");
+    document.getElementById("apanel-" + tab).classList.add("active");
+    if (tab === "courses") { renderAdminTable(); populateCatSelect(); }
+    if (tab === "categories") renderAdminCats();
+}
+
+function genId(name) {
+    return name.toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u030f]/g, "")
+        .replace(/[^a-z0-9\s]/g, "").trim().replace(/\s+/g, "-")
+        .substring(0, 40) + "-" + Date.now().toString(36).slice(-4);
+}
+
+function saveCourse() {
+    const name = document.getElementById("cName").value.trim();
+    const price = parseFloat(document.getElementById("cPrice").value);
+    let cat = document.getElementById("cCategory").value.trim();
+    const newCat = document.getElementById("cNewCat").value.trim();
+    const badge = document.getElementById("cBadge").value;
+    const icon = document.getElementById("cIcon").value.trim() || "fa-book";
+    const desc = document.getElementById("cDesc").value.trim();
+    const img = document.getElementById("cImage").value.trim();
+    const link = document.getElementById("cKomvii").value.trim();
+    const tagsStr = document.getElementById("cTags").value.trim();
+    const featStr = document.getElementById("cFeatures").value.trim();
+
+    if (!name || isNaN(price) || !desc) { toast("Completa los campos obligatorios", "err"); return; }
+    if (newCat) cat = newCat;
+    if (!cat) { toast("Selecciona o escribe una categoría", "err"); return; }
+
+    const tags = tagsStr ? tagsStr.split(",").map(t => t.trim()).filter(Boolean) : [];
+    const features = featStr ? featStr.split("\n").map(f => f.trim().replace(/^[-•]\s*/, "")).filter(Boolean) : [];
+
+    if (editingId) {
+        const idx = courses.findIndex(c => c.id === editingId);
+        if (idx !== -1) {
+            courses[idx] = { id: courses[idx].id, name, price, category: cat, badge, icon, description: desc, image: img, komviiLink: link, tags, features };
+            toast("Curso actualizado", "ok");
+        }
+    } else {
+        courses.push({ id: genId(name), name, price, category: cat, badge, icon, description: desc, image: img, komviiLink: link, tags, features });
+        toast("Curso creado", "ok");
+    }
+    resetForm();
+    renderAllCourses();
+    renderCategoryFilters();
+    renderAdminTable();
+    renderAdminCats();
+    populateCatSelect();
+}
+
+function editCourse(id) {
+    const c = courses.find(x => x.id === id);
+    if (!c) return;
+    editingId = id;
+    document.getElementById("formTitle").textContent = "Editar Curso";
+    document.getElementById("btnSave").innerHTML = '<i class="fas fa-save"></i> Actualizar';
+    document.getElementById("cName").value = c.name;
+    document.getElementById("cPrice").value = c.price;
+    document.getElementById("cCategory").value = c.category || "";
+    document.getElementById("cNewCat").value = "";
+    document.getElementById("cBadge").value = c.badge || "Curso";
+    document.getElementById("cIcon").value = c.icon || "fa-book";
+    document.getElementById("cDesc").value = c.description;
+    document.getElementById("cImage").value = c.image || "";
+    document.getElementById("cKomvii").value = c.komviiLink || "";
+    document.getElementById("cTags").value = (c.tags || []).join(", ");
+    document.getElementById("cFeatures").value = (c.features || []).join("\n");
+    switchTab("courses");
+    toast("Editando: " + c.name, "info");
+}
+
+function deleteCourse(id) {
+    const c = courses.find(x => x.id === id);
+    if (!c) return;
+    if (!confirm('¿Eliminar "' + c.name + '"?')) return;
+    courses = courses.filter(x => x.id !== id);
+    if (editingId === id) resetForm();
+    renderAllCourses();
+    renderCategoryFilters();
+    renderAdminTable();
+    renderAdminCats();
+    populateCatSelect();
+    toast("Curso eliminado", "ok");
+}
+
+function resetForm() {
+    editingId = null;
+    document.getElementById("formTitle").textContent = "Agregar Curso";
+    document.getElementById("btnSave").innerHTML = '<i class="fas fa-save"></i> Guardar';
+    document.getElementById("cName").value = "";
+    document.getElementById("cPrice").value = "";
+    document.getElementById("cCategory").value = "";
+    document.getElementById("cNewCat").value = "";
+    document.getElementById("cBadge").value = "Curso";
+    document.getElementById("cIcon").value = "fa-book";
+    document.getElementById("cDesc").value = "";
+    document.getElementById("cImage").value = "";
+    document.getElementById("cKomvii").value = "";
+    document.getElementById("cTags").value = "";
+    document.getElementById("cFeatures").value = "";
+}
+
+function renderAdminTable() {
+    const tbody = document.getElementById("adminTbody");
+    if (courses.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:2rem">No hay cursos</td></tr>';
+        return;
+    }
+    tbody.innerHTML = courses.map(c =>
+        `<tr>
+            <td class="cname">${escHtml(c.name)}</td>
+            <td><span class="cbadge">${escHtml(c.category || "Sin cat")}</span></td>
+            <td class="cprice">$${Number(c.price).toFixed(2)}</td>
+            <td>${escHtml(c.badge || "Curso")}</td>
+            <td class="cactions">
+                <button class="btn btn-primary" style="flex:0;padding:0.4rem 0.6rem" onclick="editCourse('${escAttr(c.id)}')"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger" onclick="deleteCourse('${escAttr(c.id)}')"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>`
+    ).join("");
+}
+
+function populateCatSelect() {
+    const sel = document.getElementById("cCategory");
+    const cats = getUniqueCategories();
+    let html = '<option value="">-- Selecciona --</option>';
+    cats.forEach(c => { html += `<option value="${escAttr(c)}">${escHtml(c)}</option>`; });
+    sel.innerHTML = html;
+}
+
+function addCategory() {
+    const inp = document.getElementById("newCatName");
+    const name = inp.value.trim();
+    if (!name) { toast("Escribe un nombre", "err"); return; }
+    if (getUniqueCategories().includes(name)) { toast("Ya existe", "err"); return; }
+    if (!window.customCats) window.customCats = [];
+    window.customCats.push(name);
+    inp.value = "";
+    renderAdminCats();
+    populateCatSelect();
+    renderCategoryFilters();
+    toast("Categoría creada", "ok");
+}
+
+function deleteCategory(name) {
+    const count = courses.filter(c => c.category === name).length;
+    if (count > 0) {
+        if (!confirm('"' + name + '" tiene ' + count + ' curso(s). Pasarán a "Sin categoría". ¿Continuar?')) return;
+        courses.forEach(c => { if (c.category === name) c.category = "Sin categoría"; });
+    }
+    if (window.customCats) window.customCats = window.customCats.filter(c => c !== name);
+    renderAllCourses();
+    renderCategoryFilters();
+    renderAdminCats();
+    populateCatSelect();
+    renderAdminTable();
+    toast("Categoría eliminada", "ok");
+}
+
+function renderAdminCats() {
+    const container = document.getElementById("catList");
+    const cats = getUniqueCategories();
+    if (cats.length === 0) {
+        container.innerHTML = '<span style="color:var(--text-muted)">Sin categorías</span>';
+        return;
+    }
+    container.innerHTML = cats.map(cat => {
+        const count = courses.filter(c => c.category === cat).length;
+        return `<div class="cat-chip">${escHtml(cat)}<span class="ccount">${count}</span><button class="cdel" onclick="deleteCategory('${escAttr(cat)}')" title="Eliminar"><i class="fas fa-times"></i></button></div>`;
+    }).join("");
+}
+
+function toast(msg, type) {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.className = "toast " + (type || "info") + " show";
+    setTimeout(() => t.classList.remove("show"), 3000);
+}
+
+/* ========== EXPORT / DOWNLOAD ========== */
+function escHtml(s) {
+    if (!s) return "";
+    return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+}
+
+function escAttr(s) {
+    if (!s) return "";
+    return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
+
+function generateExport() {
+    const code = buildFullHTML();
+    document.getElementById("exportCode").value = code;
+    toast("Código generado", "ok");
+}
+
+function copyExport() {
+    const ta = document.getElementById("exportCode");
+    if (!ta.value.trim()) {
+        ta.value = buildFullHTML();
+    }
+    ta.select();
+    try {
+        document.execCommand("copy");
+        toast("Copiado al portapapeles", "ok");
+    } catch (e) {
+        navigator.clipboard.writeText(ta.value).then(() => toast("Copiado", "ok")).catch(() => toast("No se pudo copiar", "err"));
+    }
+}
+
+function downloadHTML() {
+    const code = buildFullHTML();
+    document.getElementById("exportCode").value = code;
+    const blob = new Blob([code], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "index.html";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    toast("Archivo descargado: index.html", "ok");
+}
+
+/**
+ * Genera un HTML completo y funcional (standalone) para GitHub Pages.
+ * Incluye: CSS, datos de cursos actuales, lógica de tienda + admin.
+ */
+function buildFullHTML() {
+    // Reutilizamos el documento actual como base y solo actualizamos el array de cursos
+    // para que el export sea 100% idéntico a lo que el usuario está viendo/editando.
+    const coursesJson = JSON.stringify(courses, null, 4);
+
+    // Tomamos el HTML actual del documento y reemplazamos el array de cursos
+    // Esto garantiza que el archivo descargado tenga exactamente la misma estructura
+    // y estilos que la versión que estás usando ahora.
+    let html = document.documentElement.outerHTML;
+
+    // Reemplazar el array courses por la versión actualizada
+    // Buscamos el bloque let courses = [ ... ];
+    const coursesRegex = /let courses = \[[\s\S]*?\];/;
+    if (coursesRegex.test(html)) {
+        html = html.replace(coursesRegex, "let courses = " + coursesJson + ";");
+    }
+
+    // Asegurar doctype
+    if (!html.startsWith("<!DOCTYPE") && !html.startsWith("<!doctype")) {
+        html = "<!DOCTYPE html>\n" + html;
+    }
+
+    return html;
+}
+</script>
+</body>
+</html>
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -2;
             background: linear-gradient(135deg, var(--black-bg) 0%, #1a1a2e 50%, var(--black-bg) 100%);
