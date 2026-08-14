@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeotterMiu | Cursos Digitales para Venezuela</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap">
     <style>
         :root {
             --primary-blue: #0056b3;
@@ -504,7 +503,7 @@
         }
     </style>
 </head>
-<body>
+<body style="overflow: hidden;">
     <div class="parallax-bg"></div>
     <div class="dark-overlay"></div>
 
@@ -515,7 +514,7 @@
         </div>
         <nav id="mainNav">
             <ul>
-                <li><a onclick="showView('home')" id="nav-home">Inicio</a></li>
+                <li><a onclick="showView('home')" id="nav-home" class="">Inicio</a></li>
                 <li><a onclick="showView('courses')" id="nav-cursos" class="active">Cursos</a></li>
                 <li><a onclick="showView('benefits')" id="nav-beneficios">Beneficios</a></li>
                 <li><a onclick="showView('contact')" id="nav-contacto">Contacto</a></li>
@@ -528,7 +527,7 @@
     <section class="view" id="view-home">
         <div class="hero">
             <div class="hero-content">
-                <img src="https://raw.githubusercontent.com/GeotterMiuUniversal/GeotterMiu-Tienda-online/refs/heads/main/logo.jpg" alt="GeotterMiu Logo">
+                <img src="logo.jpg" alt="GeotterMiu Logo">
                 <h1>Cursos Digitales para Venezuela</h1>
                 <p>Aprende habilidades prácticas para emprender, invertir y crecer en el contexto venezolano. ¡Accede a los mejores cursos con un solo clic!</p>
                 <button class="cta-button" onclick="showView('courses')"><i class="fas fa-book"></i> Ver Todos los Cursos</button>
@@ -544,8 +543,112 @@
                 <h2>Todos los Cursos</h2>
                 <p>Selecciona el curso que más te interese y comienza a aprender hoy mismo</p>
             </div>
-            <div class="category-filters" id="category-filters"></div>
-            <div id="all-courses"></div>
+            <div class="category-filters" id="category-filters"><button class="filter-btn active" onclick="filterByCategory('all')">Todos</button><button class="filter-btn " onclick="filterByCategory('Belleza')">Belleza</button><button class="filter-btn " onclick="filterByCategory('Emprendimiento')">Emprendimiento</button><button class="filter-btn " onclick="filterByCategory('IA')">IA</button></div>
+            <div id="all-courses"><div class="category-section"><h3 class="category-title"><i class="fas fa-folder-open"></i> Belleza</h3><div class="courses-grid">
+    <div class="course-card">
+        <div class="course-badge">Curso</div>
+        <div class="course-image" style="background-image:url('https://cdn.komvii.com/products/gPWgvMksytRO4XSwj9vcO7xDOZuGdl3xK9r8N7NX.jpg')"></div>
+        <div class="course-info">
+            <h3>EL NEGOCIO DE LAS CEJAS</h3>
+            <div class="course-price">$97.00 USD</div>
+            <p class="course-description">Aprende a montar tu negocio de cejas desde cero, con técnicas profesionales y estrategias de marketing para maximizar tus ganancias.</p>
+            <div class="course-tags"><span class="tag">Dinero</span><span class="tag">Emprendimiento</span><span class="tag">Belleza</span><span class="tag">Venezuela</span></div>
+            <div class="course-actions">
+                <a href="https://app.komvii.com/checkout/v8mvTuUMAMhzGvlTRQbwKHt0iyUfVNqU" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>
+                <button class="btn btn-secondary" onclick="showCourseDetails('negocio-cejas')"><i class="fas fa-info-circle"></i> Más Info</button>
+            </div>
+        </div>
+    </div></div></div><div class="category-section"><h3 class="category-title"><i class="fas fa-folder-open"></i> Emprendimiento</h3><div class="courses-grid">
+    <div class="course-card">
+        <div class="course-badge">Curso</div>
+        <div class="course-image" style="background-image:url('https://cdn2.roaslatam.com/products/ENEtG3Qt5iSZIWuxY2yQkGrrbCLSZH4FrJdfYnLe.png')"></div>
+        <div class="course-info">
+            <h3>VELAS DESDE CERO</h3>
+            <div class="course-price">$25.00 USD</div>
+            <p class="course-description">Domina el arte de hacer velas aromáticas, decorativas y para eventos. Ideal para emprender con poco capital.</p>
+            <div class="course-tags"><span class="tag">Dinero</span><span class="tag">Emprendimiento</span><span class="tag">Manualidades</span><span class="tag">Venezuela</span></div>
+            <div class="course-actions">
+                <a href="https://app.komvii.com/checkout/RHt6DFF2iN0oCCUxMMebKZIPSnfyzHK0" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>
+                <button class="btn btn-secondary" onclick="showCourseDetails('velas-desde-cero')"><i class="fas fa-info-circle"></i> Más Info</button>
+            </div>
+        </div>
+    </div>
+    <div class="course-card">
+        <div class="course-badge">E-book</div>
+        <div class="course-image" style="background-image:url('marketing/volsa%20de%20valores.jpg')"></div>
+        <div class="course-info">
+            <h3>Introducción a la Bolsa de Valores de Venezuela</h3>
+            <div class="course-price">$19.99 USD</div>
+            <p class="course-description">Descubre cómo funciona la Bolsa de Valores en Venezuela con esta guía práctica para principiantes.</p>
+            <div class="course-tags"><span class="tag">Dinero</span><span class="tag">Bolsa de Valores</span><span class="tag">Finanzas</span><span class="tag">Venezuela</span></div>
+            <div class="course-actions">
+                <a href="https://app.komvii.com/checkout/JzP9v8xkfeEfiomLEJZbHkVrdcXsdMxy" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>
+                <button class="btn btn-secondary" onclick="showCourseDetails('bolsa-venezuela')"><i class="fas fa-info-circle"></i> Más Info</button>
+            </div>
+        </div>
+    </div>
+    <div class="course-card">
+        <div class="course-badge">Curso</div>
+        <div class="course-image" style="background-image:url('https://cdn.komvii.com/products/XoWIEviABYYwvmT3APgUzF413nOIkLwQ2tOhSGcn.png')"></div>
+        <div class="course-info">
+            <h3>Conquista la cámara, vence tus límites</h3>
+            <div class="course-price">$4.99 USD</div>
+            <p class="course-description">¿Te bloquea la cámara? Deja atrás el miedo y empieza a crear historias y videos con confianza.
+
+En “Conquista la cámara, vence tus límites” vas a descubrir por qué mostrarse frente a cámara es clave, cómo hablar de forma natural con una guía de 10 pasos, y arrancar de inmediato con un reto de 5 días.
+
+Además, tendrás ejercicios y guiones prácticos para entrenarte y 50 ideas de contenido listas para tus historias.
+
+Es tu plan para conectar auténticamente, ganar cercanía con tu audiencia y lograr resultados reales.</p>
+            <div class="course-tags"><span class="tag">Emprendimiento</span></div>
+            <div class="course-actions">
+                <a href="https://app.komvii.com/checkout/XQIs9WYw9I11eTvCQ4CM2oiP1TFthgMq" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>
+                <button class="btn btn-secondary" onclick="showCourseDetails('Conquista-la-camara')"><i class="fas fa-info-circle"></i> Más Info</button>
+            </div>
+        </div>
+    </div>
+    <div class="course-card">
+        <div class="course-badge">Curso</div>
+        <div class="course-image" style="background-image:url('https://cdn.komvii.com/products/lpFewCbxv4ywekDXRgFX0NXClDqdp5JSFJFe4yXn.jpg')"></div>
+        <div class="course-info">
+            <h3>Vende y Multiplica tus Ingresos con SHEIN - AMAZON - TEMU - ALIEXPRESS</h3>
+            <div class="course-price">$30.00 USD</div>
+            <p class="course-description">Convierte tu comercio en ingresos reales con el curso grabado “Superpoder de la Importación B2C”: una guía práctica para importar productos de China y vender sin grandes inversiones ni contenedores, con alta demanda y mejor margen desde el primer día. Aprende a tu ritmo, implementa en menos de 48 horas y pasa de perder tiempo a generar pedidos rentables y resultados en tu cuenta. Inscríbete hoy y da tu primera importación exitosa.</p>
+            <div class="course-tags"><span class="tag">Emprendimiento</span></div>
+            <div class="course-actions">
+                <a href="https://app.komvii.com/checkout/qi1DvF6jGQ9nKLkn42PgQ07FPtAywNz0" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>
+                <button class="btn btn-secondary" onclick="showCourseDetails('Vende-y-Multiplica')"><i class="fas fa-info-circle"></i> Más Info</button>
+            </div>
+        </div>
+    </div>
+    <div class="course-card">
+        <div class="course-badge">Curso</div>
+        <div class="course-image" style="background-image:url('https://cdn.komvii.com/products/oG8ojVS8tIJ1w4NnD3QEluaJuQwThEMXmBeJH6VH.jpg')"></div>
+        <div class="course-info">
+            <h3>Curso de Trading desde cero</h3>
+            <div class="course-price">$8.00 USD</div>
+            <p class="course-description">Aprende Trading de forma profesional. Estrategias probadas, análisis técnico y mentalidad ganadora. Todo lo que necesitas para operar en los mercados financieros con confianza. Domina el mercado y alcanza tu libertad financiera. Sin rodeos, desde cero y a tu ritmo.</p>
+            <div class="course-tags"><span class="tag">Emprendimiento</span></div>
+            <div class="course-actions">
+                <a href="https://app.komvii.com/checkout/zyxyPP9Y8IiknoMmU8libAbVIyknhjQh" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>
+                <button class="btn btn-secondary" onclick="showCourseDetails('Trading-desde-cero')"><i class="fas fa-info-circle"></i> Más Info</button>
+            </div>
+        </div>
+    </div></div></div><div class="category-section"><h3 class="category-title"><i class="fas fa-folder-open"></i> IA</h3><div class="courses-grid">
+    <div class="course-card">
+        <div class="course-badge">Recursos</div>
+        <div class="course-image" style="background-image:url('https://cdn2.roaslatam.com/products/FvpFi5QXHrnfV2lZI2UWNLydIYtO3R4jNMM7pCFS.png')"></div>
+        <div class="course-info">
+            <h3>Pack Completo de IA para Contadores: 300 Prompts + 10 Asistentes Especializados</h3>
+            <div class="course-price">$17.00 USD</div>
+            <p class="course-description">Pack Completo de IA para Contadores en Venezuela. 300 Prompts Profesionales + 10 Asistentes Especializados. Edición 2025–2026.</p>
+            <div class="course-tags"><span class="tag">Recursos</span></div>
+            <div class="course-actions">
+                <a href="https://app.komvii.com/checkout/9JIgHOkSyd5O5wkdMbuk1AewXah1fpo5" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>
+                <button class="btn btn-secondary" onclick="showCourseDetails('Pack-IA-Contadores')"><i class="fas fa-info-circle"></i> Más Info</button>
+            </div>
+        </div>
+    </div></div></div></div>
         </div>
     </section>
 
@@ -595,7 +698,7 @@
                     <i class="fab fa-whatsapp"></i>
                     <h3>WhatsApp</h3>
                     <p>+58 412-9430088</p>
-                    <a href="https://wa.me/584129430088?text=Hola%20GeotterMiu,%20tengo%20una%20consulta%20sobre%20un%20curso." target="_blank" class="btn btn-primary" style="width:100%"><i class="fab fa-whatsapp"></i> Escribir Ahora</a>
+                    <a href="https://wa.me/584129430088?text=Hola%20GeotterMiu,%20tengo%20una%20consulta%20sobre%20un%20curso." target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%"><i class="fab fa-whatsapp"></i> Escribir Ahora</a>
                 </div>
                 <div class="contact-card">
                     <i class="fas fa-envelope"></i>
@@ -610,9 +713,9 @@
     <footer>
         <div class="footer-logo">GeotterMiu</div>
         <div class="social-links">
-            <a href="https://wa.me/584129430088" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-telegram"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/584129430088" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://geottermiuuniversal.github.io/GeotterMiu-Tienda-online/#"><i class="fab fa-telegram"></i></a>
+            <a href="https://geottermiuuniversal.github.io/GeotterMiu-Tienda-online/#"><i class="fab fa-instagram"></i></a>
         </div>
         <div class="copyright"><p>© 2026 GeotterMiu. Todos los derechos reservados.</p></div>
     </footer>
@@ -621,7 +724,22 @@
     <div class="modal" id="courseModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-            <div id="modalBody"></div>
+            <div id="modalBody">
+        <div style="text-align:center;margin-bottom:1.5rem">
+            <img src="https://cdn2.roaslatam.com/products/ENEtG3Qt5iSZIWuxY2yQkGrrbCLSZH4FrJdfYnLe.png" alt="VELAS DESDE CERO" style="max-width:100%;border-radius:12px;box-shadow:var(--shadow-blue)">
+        </div>
+        <h2 style="text-align:center;margin-bottom:0.5rem;font-family:var(--font-heading)">VELAS DESDE CERO</h2>
+        <p style="text-align:center;font-size:1.3rem;font-weight:700;color:var(--gold-primary);margin-bottom:1rem">$25.00 USD</p>
+        <p style="text-align:center;color:var(--secondary-blue);margin-bottom:1rem;font-size:0.95rem">
+            <i class="fas fa-folder"></i> Emprendimiento
+        </p>
+        <p style="color:var(--text-muted);margin-bottom:1.5rem;text-align:justify;white-space:pre-line">Domina el arte de hacer velas aromáticas, decorativas y para eventos. Ideal para emprender con poco capital.</p>
+        <h3 style="margin:1.5rem 0 1rem;color:var(--gold-primary);font-size:1.1rem">¿Qué incluye?</h3>
+        <ul style="list-style:none;padding:0;margin-bottom:1.5rem"><li style="padding:0.5rem 0;border-bottom:1px solid rgba(0,86,179,0.1);color:var(--text-muted);font-size:0.9rem"><i class="fas fa-check" style="color:var(--gold-primary);margin-right:8px"></i>Recetas para velas aromáticas y decorativas</li><li style="padding:0.5rem 0;border-bottom:1px solid rgba(0,86,179,0.1);color:var(--text-muted);font-size:0.9rem"><i class="fas fa-check" style="color:var(--gold-primary);margin-right:8px"></i>Técnicas de decoración y personalización</li><li style="padding:0.5rem 0;border-bottom:1px solid rgba(0,86,179,0.1);color:var(--text-muted);font-size:0.9rem"><i class="fas fa-check" style="color:var(--gold-primary);margin-right:8px"></i>Cómo vender en redes sociales</li><li style="padding:0.5rem 0;border-bottom:1px solid rgba(0,86,179,0.1);color:var(--text-muted);font-size:0.9rem"><i class="fas fa-check" style="color:var(--gold-primary);margin-right:8px"></i>Materiales accesibles en Venezuela</li><li style="padding:0.5rem 0;border-bottom:1px solid rgba(0,86,179,0.1);color:var(--text-muted);font-size:0.9rem"><i class="fas fa-check" style="color:var(--gold-primary);margin-right:8px"></i>Guía de precios y costos</li></ul>
+        <div style="display:flex;gap:0.5rem;margin-top:1rem">
+            <a href="https://app.komvii.com/checkout/RHt6DFF2iN0oCCUxMMebKZIPSnfyzHK0" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex:1"><i class="fas fa-shopping-cart"></i> Comprar Ahora</a>
+            <button class="btn btn-secondary" onclick="closeModal()" style="flex:1">Cerrar</button>
+        </div></div>
         </div>
     </div>
 
@@ -632,13 +750,13 @@
             <button class="admin-close" onclick="closeAdmin()"><i class="fas fa-times"></i></button>
         </div>
         <div class="admin-tabs">
-            <button class="admin-tab active" id="atab-courses" onclick="switchTab('courses')">Cursos</button>
+            <button class="admin-tab" id="atab-courses" onclick="switchTab('courses')">Cursos</button>
             <button class="admin-tab" id="atab-categories" onclick="switchTab('categories')">Categorías</button>
-            <button class="admin-tab" id="atab-export" onclick="switchTab('export')">Exportar / Descargar</button>
+            <button class="admin-tab active" id="atab-export" onclick="switchTab('export')">Exportar / Descargar</button>
         </div>
 
         <!-- TAB CURSOS -->
-        <div class="admin-panel active" id="apanel-courses">
+        <div class="admin-panel" id="apanel-courses">
             <div class="course-form">
                 <h3 id="formTitle" style="color:var(--gold-primary);margin-bottom:1rem">Agregar Curso</h3>
                 <input type="hidden" id="editId">
@@ -655,7 +773,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Categoría *</label>
-                        <select id="cCategory"></select>
+                        <select id="cCategory"><option value="">-- Selecciona --</option><option value="Belleza">Belleza</option><option value="Emprendimiento">Emprendimiento</option><option value="IA">IA</option></select>
                     </div>
                     <div class="form-group">
                         <label>Nueva categoría (opcional)</label>
@@ -695,7 +813,9 @@
                 </div>
                 <div class="form-group">
                     <label>Qué incluye (uno por línea)</label>
-                    <textarea id="cFeatures" placeholder="Acceso inmediato&#10;Soporte por WhatsApp&#10;Material descargable"></textarea>
+                    <textarea id="cFeatures" placeholder="Acceso inmediato
+Soporte por WhatsApp
+Material descargable"></textarea>
                 </div>
                 <div style="display:flex;gap:0.8rem;flex-wrap:wrap">
                     <button class="btn-admin" id="btnSave" onclick="saveCourse()"><i class="fas fa-save"></i> Guardar</button>
@@ -715,7 +835,70 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="adminTbody"></tbody>
+                    <tbody id="adminTbody"><tr>
+            <td class="cname">EL NEGOCIO DE LAS CEJAS</td>
+            <td><span class="cbadge">Belleza</span></td>
+            <td class="cprice">$97.00</td>
+            <td>Curso</td>
+            <td class="cactions">
+                <button class="btn btn-primary" style="flex:0;padding:0.4rem 0.6rem" onclick="editCourse('negocio-cejas')"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger" onclick="deleteCourse('negocio-cejas')"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr><tr>
+            <td class="cname">VELAS DESDE CERO</td>
+            <td><span class="cbadge">Emprendimiento</span></td>
+            <td class="cprice">$25.00</td>
+            <td>Curso</td>
+            <td class="cactions">
+                <button class="btn btn-primary" style="flex:0;padding:0.4rem 0.6rem" onclick="editCourse('velas-desde-cero')"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger" onclick="deleteCourse('velas-desde-cero')"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr><tr>
+            <td class="cname">Introducción a la Bolsa de Valores de Venezuela</td>
+            <td><span class="cbadge">Emprendimiento</span></td>
+            <td class="cprice">$19.99</td>
+            <td>E-book</td>
+            <td class="cactions">
+                <button class="btn btn-primary" style="flex:0;padding:0.4rem 0.6rem" onclick="editCourse('bolsa-venezuela')"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger" onclick="deleteCourse('bolsa-venezuela')"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr><tr>
+            <td class="cname">Conquista la cámara, vence tus límites</td>
+            <td><span class="cbadge">Emprendimiento</span></td>
+            <td class="cprice">$4.99</td>
+            <td>Curso</td>
+            <td class="cactions">
+                <button class="btn btn-primary" style="flex:0;padding:0.4rem 0.6rem" onclick="editCourse('Conquista-la-camara')"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger" onclick="deleteCourse('Conquista-la-camara')"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr><tr>
+            <td class="cname">Vende y Multiplica tus Ingresos con SHEIN - AMAZON - TEMU - ALIEXPRESS</td>
+            <td><span class="cbadge">Emprendimiento</span></td>
+            <td class="cprice">$30.00</td>
+            <td>Curso</td>
+            <td class="cactions">
+                <button class="btn btn-primary" style="flex:0;padding:0.4rem 0.6rem" onclick="editCourse('Vende-y-Multiplica')"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger" onclick="deleteCourse('Vende-y-Multiplica')"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr><tr>
+            <td class="cname">Pack Completo de IA para Contadores: 300 Prompts + 10 Asistentes Especializados</td>
+            <td><span class="cbadge">IA</span></td>
+            <td class="cprice">$17.00</td>
+            <td>Recursos</td>
+            <td class="cactions">
+                <button class="btn btn-primary" style="flex:0;padding:0.4rem 0.6rem" onclick="editCourse('Pack-IA-Contadores')"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger" onclick="deleteCourse('Pack-IA-Contadores')"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr><tr>
+            <td class="cname">Curso de Trading desde cero</td>
+            <td><span class="cbadge">Emprendimiento</span></td>
+            <td class="cprice">$8.00</td>
+            <td>Curso</td>
+            <td class="cactions">
+                <button class="btn btn-primary" style="flex:0;padding:0.4rem 0.6rem" onclick="editCourse('Trading-desde-cero')"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger" onclick="deleteCourse('Trading-desde-cero')"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr></tbody>
                 </table>
             </div>
         </div>
@@ -733,12 +916,12 @@
                         <button class="btn-admin" onclick="addCategory()"><i class="fas fa-plus"></i> Agregar</button>
                     </div>
                 </div>
-                <div id="catList" style="margin-top:1rem"></div>
+                <div id="catList" style="margin-top:1rem"><div class="cat-chip">Belleza<span class="ccount">1</span><button class="cdel" onclick="deleteCategory('Belleza')" title="Eliminar"><i class="fas fa-times"></i></button></div><div class="cat-chip">Emprendimiento<span class="ccount">5</span><button class="cdel" onclick="deleteCategory('Emprendimiento')" title="Eliminar"><i class="fas fa-times"></i></button></div><div class="cat-chip">IA<span class="ccount">1</span><button class="cdel" onclick="deleteCategory('IA')" title="Eliminar"><i class="fas fa-times"></i></button></div></div>
             </div>
         </div>
 
         <!-- TAB EXPORT -->
-        <div class="admin-panel" id="apanel-export">
+        <div class="admin-panel active" id="apanel-export">
             <div class="export-box">
                 <h3><i class="fas fa-download"></i> Descargar HTML para GitHub Pages</h3>
                 <p>
@@ -750,7 +933,7 @@
                     <button class="btn-admin" onclick="generateExport()"><i class="fas fa-code"></i> Generar código (vista previa)</button>
                     <button class="btn-admin" style="background:#555" onclick="copyExport()"><i class="fas fa-copy"></i> Copiar código</button>
                 </div>
-                <textarea id="exportCode" readonly placeholder="Aquí aparecerá el código generado..." style="margin-top:1rem"></textarea>
+                <textarea id="exportCode" readonly="" placeholder="Aquí aparecerá el código generado..." style="margin-top:1rem"></textarea>
             </div>
             <div class="export-box" style="margin-top:1.5rem">
                 <h3>Instrucciones para GitHub Pages</h3>
@@ -765,138 +948,161 @@
         </div>
     </div>
 
-    <div class="toast" id="toast"></div>
+    <div class="toast ok" id="toast">Curso creado</div>
 
 <script>
 /* ========== DATOS ========== */
 let courses = [
     {
-        id: "negocio-cejas",
-        name: "EL NEGOCIO DE LAS CEJAS",
-        price: 97,
-        category: "Belleza",
-        badge: "Curso",
-        description: "Aprende a montar tu negocio de cejas desde cero, con técnicas profesionales y estrategias de marketing para maximizar tus ganancias.",
-        tags: ["Dinero", "Emprendimiento", "Belleza", "Venezuela"],
-        features: [
+        "id": "negocio-cejas",
+        "name": "EL NEGOCIO DE LAS CEJAS",
+        "price": 97,
+        "category": "Belleza",
+        "badge": "Curso",
+        "description": "Aprende a montar tu negocio de cejas desde cero, con técnicas profesionales y estrategias de marketing para maximizar tus ganancias.",
+        "tags": [
+            "Dinero",
+            "Emprendimiento",
+            "Belleza",
+            "Venezuela"
+        ],
+        "features": [
             "Técnicas profesionales de diseño de cejas",
             "Estrategias de marketing para atraer clientes",
             "Baja inversión inicial",
             "Alto margen de ganancia",
             "Acceso a comunidad de emprendedoras"
         ],
-        icon: "fa-book",
-        image: "https://cdn.komvii.com/products/gPWgvMksytRO4XSwj9vcO7xDOZuGdl3xK9r8N7NX.jpg",
-        komviiLink: "https://app.komvii.com/checkout/v8mvTuUMAMhzGvlTRQbwKHt0iyUfVNqU"
+        "icon": "fa-book",
+        "image": "https://cdn.komvii.com/products/gPWgvMksytRO4XSwj9vcO7xDOZuGdl3xK9r8N7NX.jpg",
+        "komviiLink": "https://app.komvii.com/checkout/v8mvTuUMAMhzGvlTRQbwKHt0iyUfVNqU"
     },
     {
-        id: "velas-desde-cero",
-        name: "VELAS DESDE CERO",
-        price: 25,
-        category: "Emprendimiento",
-        badge: "Curso",
-        description: "Domina el arte de hacer velas aromáticas, decorativas y para eventos. Ideal para emprender con poco capital.",
-        tags: ["Dinero", "Emprendimiento", "Manualidades", "Venezuela"],
-        features: [
+        "id": "velas-desde-cero",
+        "name": "VELAS DESDE CERO",
+        "price": 25,
+        "category": "Emprendimiento",
+        "badge": "Curso",
+        "description": "Domina el arte de hacer velas aromáticas, decorativas y para eventos. Ideal para emprender con poco capital.",
+        "tags": [
+            "Dinero",
+            "Emprendimiento",
+            "Manualidades",
+            "Venezuela"
+        ],
+        "features": [
             "Recetas para velas aromáticas y decorativas",
             "Técnicas de decoración y personalización",
             "Cómo vender en redes sociales",
             "Materiales accesibles en Venezuela",
             "Guía de precios y costos"
         ],
-        icon: "fa-book",
-        image: "https://cdn2.roaslatam.com/products/ENEtG3Qt5iSZIWuxY2yQkGrrbCLSZH4FrJdfYnLe.png",
-        komviiLink: "https://app.komvii.com/checkout/RHt6DFF2iN0oCCUxMMebKZIPSnfyzHK0"
+        "icon": "fa-book",
+        "image": "https://cdn2.roaslatam.com/products/ENEtG3Qt5iSZIWuxY2yQkGrrbCLSZH4FrJdfYnLe.png",
+        "komviiLink": "https://app.komvii.com/checkout/RHt6DFF2iN0oCCUxMMebKZIPSnfyzHK0"
     },
     {
-        id: "bolsa-venezuela",
-        name: "Introducción a la Bolsa de Valores de Venezuela",
-        price: 19.99,
-        category: "Emprendimiento",
-        badge: "E-book",
-        description: "Descubre cómo funciona la Bolsa de Valores en Venezuela con esta guía práctica para principiantes.",
-        tags: ["Dinero", "Bolsa de Valores", "Finanzas", "Venezuela"],
-        features: [
+        "id": "bolsa-venezuela",
+        "name": "Introducción a la Bolsa de Valores de Venezuela",
+        "price": 19.99,
+        "category": "Emprendimiento",
+        "badge": "E-book",
+        "description": "Descubre cómo funciona la Bolsa de Valores en Venezuela con esta guía práctica para principiantes.",
+        "tags": [
+            "Dinero",
+            "Bolsa de Valores",
+            "Finanzas",
+            "Venezuela"
+        ],
+        "features": [
             "Información verificada y adaptada al contexto venezolano",
             "Conceptos clave explicados de forma sencilla",
             "Ejemplos prácticos y claros",
             "Formato PDF compatible con cualquier dispositivo",
             "Acceso a comunidad de aprendizaje"
         ],
-        icon: "fa-chart-line",
-        image: "D9HbMJ0z9zbJVDk2WODCMNqJM36CprKCfmOcPGXA.jpg",
-        komviiLink: "https://app.komvii.com/checkout/JzP9v8xkfeEfiomLEJZbHkVrdcXsdMxy"
+        "icon": "fa-chart-line",
+        "image": "marketing/volsa%20de%20valores.jpg",
+        "komviiLink": "https://app.komvii.com/checkout/JzP9v8xkfeEfiomLEJZbHkVrdcXsdMxy"
     },
     {
-        id: "Conquista-la-camara",
-        name: "Conquista la cámara, vence tus límites",
-        price: 4.99,
-        category: "Emprendimiento",
-        badge: "Curso",
-        description: "¿Te bloquea la cámara? Deja atrás el miedo y empieza a crear historias y videos con confianza.\n\nEn “Conquista la cámara, vence tus límites” vas a descubrir por qué mostrarse frente a cámara es clave, cómo hablar de forma natural con una guía de 10 pasos, y arrancar de inmediato con un reto de 5 días.\n\nAdemás, tendrás ejercicios y guiones prácticos para entrenarte y 50 ideas de contenido listas para tus historias.\n\nEs tu plan para conectar auténticamente, ganar cercanía con tu audiencia y lograr resultados reales.",
-        tags: ["Emprendimiento"],
-        features: [
+        "id": "Conquista-la-camara",
+        "name": "Conquista la cámara, vence tus límites",
+        "price": 4.99,
+        "category": "Emprendimiento",
+        "badge": "Curso",
+        "description": "¿Te bloquea la cámara? Deja atrás el miedo y empieza a crear historias y videos con confianza.\n\nEn “Conquista la cámara, vence tus límites” vas a descubrir por qué mostrarse frente a cámara es clave, cómo hablar de forma natural con una guía de 10 pasos, y arrancar de inmediato con un reto de 5 días.\n\nAdemás, tendrás ejercicios y guiones prácticos para entrenarte y 50 ideas de contenido listas para tus historias.\n\nEs tu plan para conectar auténticamente, ganar cercanía con tu audiencia y lograr resultados reales.",
+        "tags": [
+            "Emprendimiento"
+        ],
+        "features": [
             "10 pasos para superar el miedo y hablar con naturalidad",
             "Un reto de 5 días para empezar a grabar hoy mismo",
             "Recursos prácticos: ejercicios, guiones",
             "Bonus: 50 ideas de contenido para historias"
         ],
-        icon: "fa-book",
-        image: "https://cdn.komvii.com/products/XoWIEviABYYwvmT3APgUzF413nOIkLwQ2tOhSGcn.png",
-        komviiLink: "https://app.komvii.com/checkout/XQIs9WYw9I11eTvCQ4CM2oiP1TFthgMq"
+        "icon": "fa-book",
+        "image": "https://cdn.komvii.com/products/XoWIEviABYYwvmT3APgUzF413nOIkLwQ2tOhSGcn.png",
+        "komviiLink": "https://app.komvii.com/checkout/XQIs9WYw9I11eTvCQ4CM2oiP1TFthgMq"
     },
     {
-        id: "Vende-y-Multiplica",
-        name: "Vende y Multiplica tus Ingresos con SHEIN - AMAZON - TEMU - ALIEXPRESS",
-        price: 30,
-        category: "Emprendimiento",
-        badge: "Curso",
-        description: "Convierte tu comercio en ingresos reales con el curso grabado “Superpoder de la Importación B2C”: una guía práctica para importar productos de China y vender sin grandes inversiones ni contenedores, con alta demanda y mejor margen desde el primer día. Aprende a tu ritmo, implementa en menos de 48 horas y pasa de perder tiempo a generar pedidos rentables y resultados en tu cuenta. Inscríbete hoy y da tu primera importación exitosa.",
-        tags: ["Emprendimiento"],
-        features: [
+        "id": "Vende-y-Multiplica",
+        "name": "Vende y Multiplica tus Ingresos con SHEIN - AMAZON - TEMU - ALIEXPRESS",
+        "price": 30,
+        "category": "Emprendimiento",
+        "badge": "Curso",
+        "description": "Convierte tu comercio en ingresos reales con el curso grabado “Superpoder de la Importación B2C”: una guía práctica para importar productos de China y vender sin grandes inversiones ni contenedores, con alta demanda y mejor margen desde el primer día. Aprende a tu ritmo, implementa en menos de 48 horas y pasa de perder tiempo a generar pedidos rentables y resultados en tu cuenta. Inscríbete hoy y da tu primera importación exitosa.",
+        "tags": [
+            "Emprendimiento"
+        ],
+        "features": [
             "Importar productos de China sin contenedores",
             "Vender en SHEIN, Amazon, Temu y AliExpress",
             "Implementación en menos de 48 horas",
             "Alta demanda y mejor margen"
         ],
-        icon: "fa-book",
-        image: "https://cdn.komvii.com/products/lpFewCbxv4ywekDXRgFX0NXClDqdp5JSFJFe4yXn.jpg",
-        komviiLink: "https://app.komvii.com/checkout/qi1DvF6jGQ9nKLkn42PgQ07FPtAywNz0"
+        "icon": "fa-book",
+        "image": "https://cdn.komvii.com/products/lpFewCbxv4ywekDXRgFX0NXClDqdp5JSFJFe4yXn.jpg",
+        "komviiLink": "https://app.komvii.com/checkout/qi1DvF6jGQ9nKLkn42PgQ07FPtAywNz0"
     },
     {
-        id: "Pack-IA-Contadores",
-        name: "Pack Completo de IA para Contadores: 300 Prompts + 10 Asistentes Especializados",
-        price: 17,
-        category: "IA",
-        badge: "Recursos",
-        description: "Pack Completo de IA para Contadores en Venezuela. 300 Prompts Profesionales + 10 Asistentes Especializados. Edición 2025–2026.",
-        tags: ["Recursos"],
-        features: [
+        "id": "Pack-IA-Contadores",
+        "name": "Pack Completo de IA para Contadores: 300 Prompts + 10 Asistentes Especializados",
+        "price": 17,
+        "category": "IA",
+        "badge": "Recursos",
+        "description": "Pack Completo de IA para Contadores en Venezuela. 300 Prompts Profesionales + 10 Asistentes Especializados. Edición 2025–2026.",
+        "tags": [
+            "Recursos"
+        ],
+        "features": [
             "Acceso inmediato tras la compra",
             "Pago único (NO es suscripción)",
             "Actualizaciones incluidas",
             "Uso personal e intransferible"
         ],
-        icon: "fa-book",
-        image: "https://cdn2.roaslatam.com/products/FvpFi5QXHrnfV2lZI2UWNLydIYtO3R4jNMM7pCFS.png",
-        komviiLink: "https://app.komvii.com/checkout/9JIgHOkSyd5O5wkdMbuk1AewXah1fpo5"
+        "icon": "fa-book",
+        "image": "https://cdn2.roaslatam.com/products/FvpFi5QXHrnfV2lZI2UWNLydIYtO3R4jNMM7pCFS.png",
+        "komviiLink": "https://app.komvii.com/checkout/9JIgHOkSyd5O5wkdMbuk1AewXah1fpo5"
     },
     {
-        id: "Trading-desde-cero",
-        name: "Curso de Trading desde cero",
-        price: 8,
-        category: "Emprendimiento",
-        badge: "Curso",
-        description: "Aprende Trading de forma profesional. Estrategias probadas, análisis técnico y mentalidad ganadora. Todo lo que necesitas para operar en los mercados financieros con confianza. Domina el mercado y alcanza tu libertad financiera. Sin rodeos, desde cero y a tu ritmo.",
-        tags: ["Emprendimiento"],
-        features: [
+        "id": "Trading-desde-cero",
+        "name": "Curso de Trading desde cero",
+        "price": 8,
+        "category": "Emprendimiento",
+        "badge": "Curso",
+        "description": "Aprende Trading de forma profesional. Estrategias probadas, análisis técnico y mentalidad ganadora. Todo lo que necesitas para operar en los mercados financieros con confianza. Domina el mercado y alcanza tu libertad financiera. Sin rodeos, desde cero y a tu ritmo.",
+        "tags": [
+            "Emprendimiento"
+        ],
+        "features": [
             "Contenido de calidad",
             "Acceso inmediato",
             "Soporte personalizado"
         ],
-        icon: "fa-book",
-        image: "https://cdn.komvii.com/products/oG8ojVS8tIJ1w4NnD3QEluaJuQwThEMXmBeJH6VH.jpg",
-        komviiLink: "https://app.komvii.com/checkout/zyxyPP9Y8IiknoMmU8libAbVIyknhjQh"
+        "icon": "fa-book",
+        "image": "https://cdn.komvii.com/products/oG8ojVS8tIJ1w4NnD3QEluaJuQwThEMXmBeJH6VH.jpg",
+        "komviiLink": "https://app.komvii.com/checkout/zyxyPP9Y8IiknoMmU8libAbVIyknhjQh"
     }
 ];
 
@@ -981,7 +1187,7 @@ function createCourseCard(course) {
     const img = course.image || "";
     const tags = (course.tags || []).map(t => `<span class="tag">${escHtml(t)}</span>`).join("");
     const buy = course.komviiLink
-        ? `<a href="${escAttr(course.komviiLink)}" target="_blank" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>`
+        ? `<a href="${escAttr(course.komviiLink)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Comprar</a>`
         : `<button class="btn btn-primary" onclick="buyOnWhatsApp('${escAttr(course.name)}', ${course.price})"><i class="fab fa-whatsapp"></i> Consultar</button>`;
     return `
     <div class="course-card">
@@ -1008,7 +1214,7 @@ function showCourseDetails(courseId) {
         `<li style="padding:0.5rem 0;border-bottom:1px solid rgba(0,86,179,0.1);color:var(--text-muted);font-size:0.9rem"><i class="fas fa-check" style="color:var(--gold-primary);margin-right:8px"></i>${escHtml(f)}</li>`
     ).join("");
     const buy = course.komviiLink
-        ? `<a href="${escAttr(course.komviiLink)}" target="_blank" class="btn btn-primary" style="flex:1"><i class="fas fa-shopping-cart"></i> Comprar Ahora</a>`
+        ? `<a href="${escAttr(course.komviiLink)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex:1"><i class="fas fa-shopping-cart"></i> Comprar Ahora</a>`
         : `<button class="btn btn-primary" onclick="buyOnWhatsApp('${escAttr(course.name)}', ${course.price});closeModal()" style="flex:1"><i class="fab fa-whatsapp"></i> Consultar por WhatsApp</button>`;
     document.getElementById("modalBody").innerHTML = `
         <div style="text-align:center;margin-bottom:1.5rem">
@@ -1050,8 +1256,36 @@ document.addEventListener("keydown", function (e) {
     }
 });
 
+const ADMIN_HASH = "151a0db977979f";
+
+function cyrb53(str, seed) {
+    seed = seed || 0;
+    let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+    for (let i = 0, ch; i < str.length; i++) {
+        ch = str.charCodeAt(i);
+        h1 = Math.imul(h1 ^ ch, 2654435761);
+        h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+    return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(16);
+}
+
+function adminAuth() {
+    if (sessionStorage.getItem("geotter_admin_ok") === "1") return true;
+    const pass = prompt("Contraseña de administrador:");
+    if (pass === null) return false;
+    if (cyrb53(pass) === ADMIN_HASH) {
+        sessionStorage.setItem("geotter_admin_ok", "1");
+        return true;
+    }
+    toast("Contraseña incorrecta", "err");
+    return false;
+}
+
 function toggleAdmin() {
     const o = document.getElementById("adminOverlay");
+    if (!o.classList.contains("active") && !adminAuth()) return;
     o.classList.toggle("active");
     if (o.classList.contains("active")) {
         renderAdminTable();
@@ -1335,5 +1569,5 @@ function buildFullHTML() {
     return html;
 }
 </script>
-</body>
-</html>
+
+</body></html>
