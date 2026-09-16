@@ -315,6 +315,45 @@
             background: var(--secondary-blue); color: white;
         }
         .benefits-view, .contact-view { padding: 5rem 5% 3rem; }
+        .services-view { padding: 5rem 5% 3rem; }
+        .services-intro {
+            max-width: 720px; margin: 0 auto 2.5rem; text-align: center;
+            color: var(--text-muted); font-size: 1rem; line-height: 1.7;
+        }
+        .services-intro strong { color: var(--gold-primary); }
+        .services-grid { max-width: 1100px; }
+        .service-card { position: relative; }
+        .price-tag {
+            display: inline-block; margin-top: 1rem; padding: 0.4rem 1.1rem;
+            background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(0,86,179,0.12));
+            border: 1px solid rgba(212,175,55,0.35); border-radius: 30px;
+            color: var(--gold-primary); font-weight: 700; font-size: 0.95rem;
+        }
+        .price-tag small { color: var(--text-muted); font-weight: 400; font-size: 0.75rem; }
+        .services-faq .faq-q { max-width: 100%; }
+        .services-cta {
+            padding: 3rem 1rem;
+        }
+        .services-cta-content {
+            max-width: 760px; margin: 0 auto; text-align: center;
+            background: linear-gradient(135deg, rgba(0,86,179,0.12), rgba(212,175,55,0.1));
+            border: var(--border-blue); border-radius: 20px; padding: 2.5rem 2rem;
+        }
+        .services-cta-icon {
+            font-size: 2.6rem; margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, var(--gold-primary), #00d4ff);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .services-cta-content h2 {
+            font-family: var(--font-heading); font-size: 1.6rem; margin-bottom: 0.8rem;
+        }
+        .services-cta-content p { color: var(--text-muted); margin-bottom: 1.5rem; }
+        .cta-alt {
+            margin-top: 0.75rem;
+            background: transparent;
+            border: 2px solid var(--gold-primary); color: var(--gold-primary);
+        }
+        .cta-alt:hover { background: var(--gold-primary); color: var(--black-bg); }
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -760,6 +799,7 @@
             <ul>
                 <li><a onclick="showView('home')" id="nav-home" class="">Inicio</a></li>
                 <li><a onclick="showView('courses')" id="nav-cursos" class="active">Cursos</a></li>
+                <li><a onclick="showView('services')" id="nav-servicios">Servicios</a></li>
                 <li><a onclick="showView('benefits')" id="nav-beneficios">Beneficios</a></li>
                 <li><a onclick="showView('faq')" id="nav-faq">Preguntas Frecuentes</a></li>
                 <li><a onclick="showView('contact')" id="nav-contacto">Contacto</a></li>
@@ -786,7 +826,8 @@
                     <i class="fas fa-mobile-alt"></i>
                     <p><strong>Paga con Pago Móvil en bolívares.</strong> No necesitas PayPal, tarjeta internacional ni cuenta en el extranjero. Todos nuestros cursos se pagan fácilmente desde Venezuela con tu banca en línea (Pago Móvil) en Bs.</p>
                 </div>
-                <button class="cta-button" onclick="showView('courses')"><i class="fas fa-book"></i> Ver Todos los Cursos</button>
+                <button class="cta-button" onclick="showView('courses')" style="margin-right:0.5rem"><i class="fas fa-book"></i> Ver Todos los Cursos</button>
+                <button class="cta-button cta-alt" onclick="showView('services')"><i class="fas fa-code"></i> Creo tu Página Web</button>
             </div>
         </div>
 
@@ -867,6 +908,16 @@
                         <span class="stars">★★★★★</span>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- SERVICIOS WEB (CTA) -->
+        <div class="home-section services-cta" id="servicesCta">
+            <div class="services-cta-content">
+                <i class="fas fa-code services-cta-icon"></i>
+                <h2>¿Tienes un negocio y necesitas una página web?</h2>
+                <p><strong>GeotterMiu no solo es cursos.</strong> Creamos páginas web modernas para negocios pequeños en Venezuela: página de presentación, catálogo, menú digital o tienda en línea. Listas en 3 a 7 días, pagas con Pago Móvil en bolívares.</p>
+                <button class="btn btn-primary" style="padding:0.9rem 2.5rem;border-radius:50px;font-size:1rem" onclick="showView('services')"><i class="fas fa-code"></i> Ver Servicios Web</button>
             </div>
         </div>
     </section>
@@ -1252,6 +1303,114 @@
         </div>
     </section>
 
+    <!-- SERVICES -->
+    <section class="view" id="view-services">
+        <div class="services-view">
+            <button class="back-btn" onclick="showView('home')" style="display:block;margin:0 auto 2rem"><i class="fas fa-arrow-left"></i> Volver al Inicio</button>
+            <div class="section-header">
+                <h2>Servicios Web para tu Negocio</h2>
+                <p>Creamos la página web de tu negocio: moderna, rápida y a tu alcance</p>
+            </div>
+            <div class="services-intro">
+                <p>¿No buscas cursos? También te ayudamos a <strong>poner tu negocio en internet</strong>. Si vendes comida, belleza, reparaciones, importas o vendes en redes, una página web te da credibilidad y te ayuda a conseguir más clientes. <strong>Pagas con Pago Móvil en bolívares</strong>, sin mensualidades ni complicaciones.</p>
+            </div>
+
+            <h3 class="course-browser-title" style="text-align:center"><i class="fas fa-layer-group"></i> Lo que podemos hacer por ti</h3>
+            <div class="benefits-grid services-grid">
+                <div class="benefit service-card">
+                    <div class="benefit-icon"><i class="fas fa-store"></i></div>
+                    <h3>Página de Presentación</h3>
+                    <p>Tu negocio con una página profesional: información, servicios, galería, WhatsApp y cómo llegar. Ideal para dar confianza y ser encontrado en Google.</p>
+                    <span class="price-tag">Desde $25 USD <small>· Pago Móvil Bs</small></span>
+                </div>
+                <div class="benefit service-card">
+                    <div class="benefit-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Página + Catálogo</h3>
+                    <p>Presentación completa con secciones de servicios, productos, menú digital, testimonios y contacto. Para negocios que venden servicios o productos.</p>
+                    <span class="price-tag">Desde $40 USD <small>· Pago Móvil Bs</small></span>
+                </div>
+                <div class="benefit service-card">
+                    <div class="benefit-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h3>Tienda o Catálogo en Línea</h3>
+                    <p>Como esta tienda: muestra tus cursos o productos, con catálogo, categorías y links de pago. Perfecto para vender digital o físico desde tu web.</p>
+                    <span class="price-tag">Desde $60 USD <small>· Pago Móvil Bs</small></span>
+                </div>
+                <div class="benefit service-card">
+                    <div class="benefit-icon"><i class="fas fa-wrench"></i></div>
+                    <h3>Rediseño o Mejoras</h3>
+                    <p>¿Ya tienes una web y se ve vieja o no funciona? La rediseñamos, corregimos errores o le agregamos secciones nuevas. Consulta precio por WhatsApp.</p>
+                    <span class="price-tag">Precio según proyecto <small>· Escríbenos</small></span>
+                </div>
+            </div>
+
+            <div class="payment-notice" style="max-width:700px;margin:2.5rem auto 0">
+                <i class="fas fa-mobile-alt"></i>
+                <p><strong>Pago 100% venezolano:</strong> todo se paga con <strong>Pago Móvil en bolívares (Bs)</strong>. Sin tarjetas internacionales ni PayPal. Tú eliges el plan, pagas por adelantado la mitad para empezar y el resto al entregarte tu página lista.</p>
+            </div>
+
+            <div class="home-section" id="howToServices" style="padding-top:2.5rem">
+                <div class="section-header">
+                    <h2>¿Cómo trabajamos?</h2>
+                    <p>Así de fácil se pone tu negocio en internet</p>
+                </div>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <h3>Cuéntanos tu negocio</h3>
+                        <p>Escríbenos por WhatsApp y dinos qué vendes, tu nombre y qué necesitas. Sin costo.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <h3>Recibe tu propuesta</h3>
+                        <p>Te enviamos un precio fijo y un ejemplo de cómo se verá tu página.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">3</div>
+                        <h3>Paga y desarrollamos</h3>
+                        <p>Pagas la mitad con Pago Móvil en Bs y tu página queda lista en 3 a 7 días.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">4</div>
+                        <h3>Publicada y para crecer</h3>
+                        <p>Publicamos tu página, te pasamos el enlace y te enseñamos cuándo quieras nuevos cambios.</p>
+                    </div>
+                </div>
+                <div class="trust-badges">
+                    <div class="trust-badge"><i class="fas fa-clock"></i> Entrega en 3 a 7 días</div>
+                    <div class="trust-badge"><i class="fas fa-shield-alt"></i> Pago protegido</div>
+                    <div class="trust-badge"><i class="fas fa-mobile-alt"></i> Se ve perfecta en celulares</div>
+                    <div class="trust-badge"><i class="fab fa-whatsapp"></i> Soporte y cambios por WhatsApp</div>
+                </div>
+                <div style="text-align:center;margin-top:2.5rem">
+                    <a href="https://wa.me/584129430088?text=Hola%20GeotterMiu%2C%20quiero%20una%20p%C3%A1gina%20web%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:1rem 2.8rem;border-radius:50px;font-size:1.05rem"><i class="fab fa-whatsapp"></i> Pedir mi página web</a>
+                </div>
+            </div>
+
+            <div class="faq-list services-faq" style="max-width:700px;margin:3rem auto 0">
+                <div class="section-header" style="margin-bottom:1.5rem">
+                    <h2>Preguntas frecuentes</h2>
+                    <p>Sobre los servicios web</p>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">¿Tengo que pagar mensualidad por mi página? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-a"><p>No. El precio es <strong>único</strong> por la creación de tu página. Puedes opcionalmente comprar un dominio propio, pero puedes empezar gratis con el enlace que te entregamos. Los cambios adicionales se cotizan aparte según tu petición.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">¿Necesito saber de computadoras o diseño? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-a"><p>No. Nosotros hacemos todo el trabajo. Solo necesitas contarnos tu negocio, enviarnos tus fotos e información, y pagar por Pago Móvil en Bs.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">¿Mi página se verá bien en el celular? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-a"><p>Sí. Todas nuestras páginas son <strong>diseñadas primero para móviles</strong>, porque tus clientes la abrirán desde el celular. También se ve perfecta en computadora.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">¿Qué información te debo enviar para empezar? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-a"><p>Solo lo básico: el <strong>nombre de tu negocio</strong>, a qué te dedicas, tu número de WhatsApp y fotos o listado de productos. Con eso empezamos, y el resto lo definimos contigo por chat.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CONTACT -->
     <section class="view" id="view-contact">
         <div class="contact-view">
@@ -1569,7 +1728,7 @@ function showView(viewName) {
     document.getElementById("view-" + viewName).classList.add("active");
     window.scrollTo(0, 0);
     document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
-    const map = { home: "nav-home", courses: "nav-cursos", benefits: "nav-beneficios", faq: "nav-faq", contact: "nav-contacto" };
+    const map = { home: "nav-home", courses: "nav-cursos", services: "nav-servicios", benefits: "nav-beneficios", faq: "nav-faq", contact: "nav-contacto" };
     if (map[viewName]) document.getElementById(map[viewName]).classList.add("active");
     document.getElementById("mainNav").classList.remove("active");
 }

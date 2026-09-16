@@ -48,8 +48,7 @@ window.courses = [
         ],
         "icon": "fa-book",
         "image": "https://cdn.komvii.com/products/gPWgvMksytRO4XSwj9vcO7xDOZuGdl3xK9r8N7NX.jpg",
-        "komviiLink": "https://app.komvii.com/checkout/v8mvTuUMAMhzGvlTRQbwKHt0iyUfVNqU",
-        "featured": true
+        "komviiLink": "https://app.komvii.com/checkout/v8mvTuUMAMhzGvlTRQbwKHt0iyUfVNqU"
     },
     {
         "id": "Vende-y-Multiplica",
